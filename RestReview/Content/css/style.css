@@ -1,0 +1,81 @@
+*,html,body
+{
+    padding: 0px;
+    margin: 0px;
+}
+
+.bg
+{
+    height: auto; 
+    width:auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.column {
+    float: left;
+    width: 33.33%;
+    padding: 5px;
+}
+
+.image
+{
+    margin-left: 460px;
+    padding-top: 205px;
+    width: 258px;
+    height: 441px;
+}
+
+.headerquota
+{
+    margin-top: 64px;
+    width: 1430px;
+    height: 64px;
+    margin-left: -123px;
+}
+
+.poweredby
+{
+    margin-left: 340px;
+    width: 300px;
+    height: 56px;
+    margin-top: 25px;
+}
+
+.upserve
+{
+    margin-top: 36px;
+    margin-left: 270px;
+    width: 178px;
+    height: 40px;
+}
+
+.mainheader{
+    margin-top: 230px;
+    margin-left: -735px;
+    width: 2690px;
+    height: 295px;
+}
+
+.stmnt
+{
+    margin-top: 38px;
+    height: 70px;
+    margin-left: -187px;
+}
+
+.footer
+{
+    margin-top: 1110px;
+    width: 5463px;
+    height: 226px;
+    margin-left: -2148px;
+}
+
+.formpost {
+    position: absolute;
+    bottom: 990px;
+    margin-left: 330px;
+    padding-left: 20px;
+    padding-right: 20px;
+}

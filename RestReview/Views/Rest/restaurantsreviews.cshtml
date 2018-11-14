@@ -1,0 +1,207 @@
+﻿@model IEnumerable<Yelp.Api.Models.BusinessResponse>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Restaurants Reviews</title>
+    <style type="text/css">
+        .img-circle {
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <table align="center" style=" width:900px; border: 1px solid thick;">
+            <tr>
+                <td>
+                    <table align="center" style="text-align:center;width:300px;height:500px">
+                        <tr>
+                            <td style="height:50px">
+                                &nbsp;
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img class="img-circle" src="@ViewBag.data1.ImageUrl" style="width:150px;height:150px" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h3>@ViewBag.data1.Name</h3>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @ViewBag.data1.Phone
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @if (ViewBag.data1.Location != null)
+                                {
+                                    @ViewBag.data1.Location.Address1
+                                }
+                                <br />
+                                @ViewBag.data1.Location.City ,
+                                @ViewBag.data1.Location.State
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h3>@ViewBag.data1.Rating</h3>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @ViewBag.data1.ReviewCount Review
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="@ViewBag.data1.Url" target="_blank">WebSite</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="button" value=" ANALYZE " />
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <table align="center" style="text-align:center;width:300px;height:500px">
+                        <tr>
+                            <td>
+                                <img class="img-circle" src="@ViewBag.data.ImageUrl" style="width:200px;height:200px" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h3>@ViewBag.data.Name</h3>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @ViewBag.data.Phone
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @ViewBag.data.Location.Address1<br />
+                                @ViewBag.data.Location.City,
+                                @ViewBag.data.Location.State
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h3>@ViewBag.data.Rating</h3>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @ViewBag.data.ReviewCount Review
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="@ViewBag.data.Url" target="_blank">WebSite</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p><b>Closest Match</b></p><br />
+                                <input type="button" value=" ANALYZE " />
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <table align="center" style="text-align:center;width:300px;height:500px">
+                        <tr>
+                            <td style="height:50px">
+                                &nbsp;
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img class="img-circle" src="@ViewBag.data2.ImageUrl" style="width:150px;height:150px" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h3>@ViewBag.data2.Name</h3>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @ViewBag.data2.Phone
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @ViewBag.data2.Location.Address1<br />
+                                @ViewBag.data2.Location.City, @ViewBag.data2.Location.State
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h3>@ViewBag.data2.Rating</h3>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @ViewBag.data2.ReviewCount Review
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="@ViewBag.data2.Url" target="_blank">WebSite</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="button" value=" ANALYZE " />
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <table style="width:70%" align="center">
+                        <tr>
+                            <td style="width:80%"><b>Business Name </b></td>
+
+                            <td style="width:20%"><b>Review</b></td>
+                        </tr>
+                        
+                        @foreach (var item in ViewBag.businessList)
+                        {
+                            <tr>
+                                <td style="width:80%">@item.name (@item.rate *)</td>
+
+                                <td style="width:20%">@item.ratecount  Review</td>
+                            </tr>
+                        }
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+    @*<p>Name : @ViewBag.data.Name</p>
+
+        <p>Phone : @ViewBag.data.Phone</p>
+        <p>Url : @ViewBag.data.Url</p>
+        <p>Price : @ViewBag.data.Price</p>
+        <p>Rating : @ViewBag.data.Rating</p>
+        <p>ReviewCount : @ViewBag.data.ReviewCount</p>
+        <p>ID : @ViewBag.data.Id</p>
+        <p>Image : <img src="@ViewBag.data.ImageUrl" style="width:100px;height:100px" /></p>*@
+</body>
+</html>
