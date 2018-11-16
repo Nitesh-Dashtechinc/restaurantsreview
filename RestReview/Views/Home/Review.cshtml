@@ -1,7 +1,8 @@
 ﻿@model IEnumerable<Yelp.Api.Models.BusinessResponse>
 @{
-    //Layout = null;
+    ViewBag.Title = "Review";
 }
+
 <style type="text/css">
     .img-circle {
         border-radius: 50%;
@@ -46,10 +47,16 @@
         overflow-y: scroll;
         overflow-x: hidden;
     }
+
+    .table-striped > tbody > tr:nth-of-type(odd) {
+        background-color: #dfeafe !important;
+    }
+
+    .p-l {
+        padding-left: 5% !important;
+    }
 </style>
 
-
-@*<link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/themes/blitzer/jquery-ui.css" rel="Stylesheet" type="text/css" />*@
 <div class="container">
     <div class="row ">
         <div class="col-md-4 col-xs-1"></div>
@@ -79,7 +86,7 @@
 </div>
 <div class="container" style="min-height:400px;padding-top:7%;">
     <div class="row text-center">
-        @using (Html.BeginForm("restaurantsreviews", "Rest", FormMethod.Post, new { @class = "" }))
+        @using (Html.BeginForm("Review", "Home", FormMethod.Post))
         {
             <div class="col-md-4 col-md-offset-1">
                 <i class="glyphicon glyphicon-triangle-bottom" style="top: 6px;right: 18px;position: absolute;font-size:x-large;"></i>
@@ -93,44 +100,67 @@
             </div>
 
             <input type="hidden" id="hfCustomer" name="CustomerId" />
-            @*<div class="form-group col-lg-12 col-md-12" style="padding-left: 13%;padding-top: 2%;">
-                    <input type="text" id="txtCustomer" placeholder="Restaurant Name" name="CustomerName" class="form-control homepage col-lg-5 col-md-5 col-xs-12 " />
-                    <input type="text" id="txtLocation" name="LocationName" class="form-control homepage col-lg-5 col-md-5 col-xs-12" value="San Francisco, CA, USA" onchange="LoadData()" />
-                    <input type="submit" id="btnSubmit" value="Submit" class="btn btn-success col-lg-2 col-md-2 col-xs-12 form-control" />
-                </div>*@
         }
 
-        @ViewBag.Message
+        @*@ViewBag.Message*@
     </div>
 </div>
 
 <div class="container">
-    <table align="center" style=" width:900px; border: 1px solid thick;">
-        <tr>
-            <td>
-                <table align="center" style="text-align:center;width:300px;height:500px">
-                    <tr>
-                        <td style="height:50px">
-                            &nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img class="img-circle" src="@ViewBag.data1.ImageUrl" style="width:150px;height:150px" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h3>@ViewBag.data1.Name</h3>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            @ViewBag.data1.Phone
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card col-md-11 col-md-offset-1">
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        @*<img src="@ViewBag.data1.ImageUrl" class="img-round-border img-responsive" style="width: 200px;height: 200px;">*@
+                        <img src="@ViewBag.businessList[0].imageurl" class="img-round-border img-responsive" style="width: 200px;height: 200px;">
+                    </div>
+                    <div class="col-md-2"></div>
+
+                </div>
+                <div class="card-container text-center">
+                    @*<h4><b>@ViewBag.data1.Name</b></h4>
+                        <span>@ViewBag.data1.Phone</span>*@
+                    <h4><b>@ViewBag.businessList[0].name</b></h4>
+                    <span>@ViewBag.businessList[0].Phone</span>
+                    <p>
+                        @*@if (ViewBag.data1.Location != null)
+                            {
+                                @ViewBag.data1.Location.Address1
+                            }
+                            <br />
+                            @ViewBag.data1.Location.City,
+                            @ViewBag.data1.Location.State*@
+                        @ViewBag.businessList[0].Location
+                        <div>
+                            <div class="my-progress-bar-left">
+                                @*<span>@ViewBag.data1.Rating</span>*@
+                            </div>
+                            @*<a class="btn btn-review" href="@ViewBag.data1.Url" target="_blank">@ViewBag.data1.ReviewCount Review</a>*@
+                            <a class="btn btn-review" href="#" target="_blank">@ViewBag.businessList[0].ratecount Review</a>
+                        </div>
+                    </p>
+                    <button class="btn btn-yellow btn-block">ANALYZE</button>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card card-inverse col-md-12">
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <img src="@ViewBag.data1.ImageUrl" class="img-round-border img-responsive" style="width: 200px;height: 200px;">
+
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+                <div class="card-container text-center">
+                    <div class="titel">
+                        <h4><b>@ViewBag.data1.Name</b></h4>
+                        <span>@ViewBag.data1.Phone</span>
+                        <p>
                             @if (ViewBag.data1.Location != null)
                             {
                                 @ViewBag.data1.Location.Address1
@@ -138,180 +168,78 @@
                             <br />
                             @ViewBag.data1.Location.City,
                             @ViewBag.data1.Location.State
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h3>@ViewBag.data1.Rating</h3>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            @ViewBag.data1.ReviewCount Review
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="@ViewBag.data1.Url" target="_blank">WebSite</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="button" value=" ANALYZE " />
-                        </td>
-                    </tr>
-                </table>
-            </td>
-            <td>
-                <table align="center" style="text-align:center;width:300px;height:500px">
-                    <tr>
-                        <td>
-                            <img class="img-circle" src="@ViewBag.data.ImageUrl" style="width:200px;height:200px" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h3>@ViewBag.data.Name</h3>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            @ViewBag.data.Phone
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            @ViewBag.data.Location.Address1<br />
-                            @ViewBag.data.Location.City,
-                            @ViewBag.data.Location.State
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h3>@ViewBag.data.Rating</h3>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            @ViewBag.data.ReviewCount Review
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="@ViewBag.data.Url" target="_blank">WebSite</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p><b>Closest Match</b></p><br />
-                            <input type="button" value=" ANALYZE " />
-                        </td>
-                    </tr>
-                </table>
-            </td>
-            <td>
-                <table align="center" style="text-align:center;width:300px;height:500px">
-                    <tr>
-                        <td style="height:50px">
-                            &nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img class="img-circle" src="@ViewBag.data2.ImageUrl" style="width:150px;height:150px" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h3>@ViewBag.data2.Name</h3>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            @ViewBag.data2.Phone
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            @ViewBag.data2.Location.Address1<br />
-                            @ViewBag.data2.Location.City, @ViewBag.data2.Location.State
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h3>@ViewBag.data2.Rating</h3>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            @ViewBag.data2.ReviewCount Review
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="@ViewBag.data2.Url" target="_blank">WebSite</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="button" value=" ANALYZE " />
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="3">
-                <table style="width:70%" align="center">
-                    <tr>
-                        <td style="width:80%"><b>Business Name </b></td>
+                            <div>
 
-                        <td style="width:20%"><b>Review</b></td>
-                    </tr>
+                                <div class="my-progress-bar-center">
+                                </div>
+                                <a class="btn btn-review" href="@ViewBag.data1.Url" target="_blank">@ViewBag.data1.ReviewCount Review</a>
+                            </div>
+                        </p>
+                    </div>
+                    <button class="btn btn-yellow btn-block">ANALYZE</button>
+                </div>
+            </div>
+        </div>
 
-                    @foreach (var item in ViewBag.businessList)
-                    {
-                        <tr>
-                            <td style="width:80%">@item.name (@item.rate *)</td>
+        <div class="col-md-4">
+            <div class="card col-md-11">
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        @*<img src="@ViewBag.data1.ImageUrl" class="img-round-border img-responsive" style="width: 200px;height: 200px;">*@
+                        <img src="@ViewBag.businessList[1].imageurl" class="img-round-border img-responsive" style="width: 200px;height: 200px;">
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+                <div class="card-container text-center">
+                    @*<h4><b>@ViewBag.data1.Name</b></h4>
+                        <span>@ViewBag.data1.Phone</span>*@
+                    <h4><b>@ViewBag.businessList[0].name</b></h4>
+                    <span>@ViewBag.businessList[0].Phone</span>
+                    <p>
+                        @*@if (ViewBag.data1.Location != null)
+                            {
+                                @ViewBag.data1.Location.Address1
+                            }
+                            <br />
+                            @ViewBag.data1.Location.City,
+                            @ViewBag.data1.Location.State*@
+                        @ViewBag.businessList[1].Location
+                        <div>
+                            <div class="my-progress-bar-right">
+                                @*<span>@ViewBag.data1.Rating</span>*@
+                            </div>
+                            @*<a class="btn btn-review" href="@ViewBag.data1.Url" target="_blank">@ViewBag.data1.ReviewCount Review</a>*@
+                            <a class="btn btn-review" href="#" target="_blank">@ViewBag.businessList[1].ratecount Review</a>
+                        </div>
+                    </p>
+                    <button class="btn btn-yellow btn-block">ANALYZE</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                            <td style="width:20%">@item.ratecount  Review</td>
-                        </tr>
-                    }
-                </table>
-            </td>
-        </tr>
-    </table>
-</div>
 
-<div class="container">
     <div class="row">
-        <div class="col-md-4">
-            <div class="card col-md-11">
-                <img src="https://www.w3schools.com/howto/img_avatar.png" class="img-circle" alt="Avatar" style="width:100%">
-                <div class="card-container">
-                    <h4><b>John Doe</b></h4>
-                    <p>Architect & Engineer</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card">
-                <img src="https://www.w3schools.com/howto/img_avatar.png" class="img-circle" alt="Avatar" style="width:100%">
-                <div class="card-container">
-                    <h4><b>John Doe</b></h4>
-                    <p>Architect & Engineer</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card col-md-11">
-                <img src="https://www.w3schools.com/howto/img_avatar.png" class="img-circle" alt="Avatar" style="width:100%">
-                <div class="card-container">
-                    <h4><b>John Doe</b></h4>
-                    <p>Architect & Engineer</p>
-                </div>
-            </div>
-        </div>
+
+        <table class="table table-striped table-responsive">
+            <thead>
+                <tr>
+                    <th class="p-l"><b>Business Name</b></th>
+                    <th class="pull-right"><b>Review</b></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ViewBag.businessList)
+                {
+                    <tr>
+                        <td class="p-l">@item.name <button class="btn btn-success btn-xs">@item.rate <i class="glyphicon glyphicon-star-empty"></i></button></td>
+                        <td><button class="btn btn-info btn-xs pull-right">@item.ratecount Reviews</button></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
     </div>
 </div>
 
@@ -420,7 +348,54 @@
                 minLength: 1
             });
         });
+
+        $(document).ready(function () {
+            $(".my-progress-bar").circularProgress({
+                line_width: 12,
+                color: "#72a0fe",
+                starting_position: 75, // 12.00 o' clock position, 25 stands for 3.00 o'clock (clock-wise)
+                percent: 0, // percent starts from
+                percentage: true,
+                //text: "More power behind every pixel"
+            }).circularProgress('animate', 50, 1000);
+        });
+
     </script>
 
     <script src="~/Scripts/js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/js/Meterplugin.js"></script>
+    <script type="text/javascript">
+        var Rating =@ViewBag.data1.Rating;
+        if (Rating) {
+            Rating = parseInt(Rating * 10);
+        }
+        //debugger
+        $(document).ready(function () {
+            $(".my-progress-bar-left").circularProgress({
+                line_width: 12,
+                color: "#8470ff",
+                starting_position: 75, // 12.00 o' clock position, 25 stands for 3.00 o'clock (clock-wise)
+                percent: 0, // percent starts from
+                percentage: true,
+                //text: "More power behind every pixel"
+            }).circularProgress('animate', Rating, 1000);
+            $(".my-progress-bar-center").circularProgress({
+                line_width: 12,
+                color: "#8470ff",
+                starting_position: 75, // 12.00 o' clock position, 25 stands for 3.00 o'clock (clock-wise)
+                percent: 0, // percent starts from
+                percentage: true,
+                //text: "More power behind every pixel"
+            }).circularProgress('animate', Rating, 1000);
+            $(".my-progress-bar-right").circularProgress({
+                line_width: 12,
+                color: "#8470ff",
+                starting_position: 75, // 12.00 o' clock position, 25 stands for 3.00 o'clock (clock-wise)
+                percent: 0, // percent starts from
+                percentage: true,
+                //text: "More power behind every pixel"
+            }).circularProgress('animate', Rating, 1000);
+        });
+    </script>
 }
