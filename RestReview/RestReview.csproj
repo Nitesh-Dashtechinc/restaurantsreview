@@ -262,6 +262,7 @@
     <Content Include="Views\Rest\Index.cshtml" />
     <Content Include="Views\Rest\restaurantsreviews.cshtml" />
     <Content Include="Views\Home\Review.cshtml" />
+    <Content Include="Views\Rest\RestaurantMarketGrade.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
