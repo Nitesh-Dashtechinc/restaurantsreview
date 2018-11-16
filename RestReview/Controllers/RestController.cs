@@ -60,9 +60,6 @@ namespace RestReview.Controllers
         {
             if (!string.IsNullOrEmpty(CustomerName))
             {
-
-
-
                 client = new Client(API_KEY);
                 var results = await client.GetBusinessAsync(CustomerId);//, request.Latitude, request.Longitude);
                                                                         //results.Location.DisplayAddress[0].ToString();
@@ -105,5 +102,12 @@ namespace RestReview.Controllers
             public float rate { get; set; }
             public int ratecount { get; set; }
         }
+
+        [HttpPost]
+        public ActionResult RestaurantMarketGrade()
+        {
+            return View();
+        }
+
     }
 }

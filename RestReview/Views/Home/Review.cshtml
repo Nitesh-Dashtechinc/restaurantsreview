@@ -141,7 +141,7 @@
                             <a class="btn btn-review" href="#" target="_blank">@ViewBag.businessList[0].ratecount Review</a>
                         </div>
                     </p>
-                    <button class="btn btn-yellow btn-block">ANALYZE</button>
+                    <button type="button" class="btn btn-yellow btn-block" onclick="restMarketGrade()">ANALYZE</button>
                 </div>
 
             </div>
@@ -176,7 +176,7 @@
                             </div>
                         </p>
                     </div>
-                    <button class="btn btn-yellow btn-block">ANALYZE</button>
+                    <button type="button" class="btn btn-yellow btn-block" onclick="restMarketGrade()">ANALYZE</button>
                 </div>
             </div>
         </div>
@@ -213,7 +213,7 @@
                             <a class="btn btn-review" href="#" target="_blank">@ViewBag.businessList[1].ratecount Review</a>
                         </div>
                     </p>
-                    <button class="btn btn-yellow btn-block">ANALYZE</button>
+                    <button type="button" class="btn btn-yellow btn-block" onclick="restMarketGrade()">ANALYZE</button>
                 </div>
             </div>
         </div>
@@ -397,5 +397,19 @@
                 //text: "More power behind every pixel"
             }).circularProgress('animate', Rating, 1000);
         });
+    </script>
+
+    <script type="text/javascript">
+    function restMarketGrade() {
+       $.ajax({
+          url: "@Url.Action("RestaurantMarketGrade", "Rest")",
+          async: true,
+          type: "POST",
+          data: {  },
+          sucess: function (data) {
+              alert(data);
+          }
+       });
+    }
     </script>
 }
