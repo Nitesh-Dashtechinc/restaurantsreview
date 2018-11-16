@@ -26,50 +26,49 @@ namespace RestReview.Controllers
         {
             try
             {
-            
-            if (!string.IsNullOrEmpty(CustomerName))
-            {
-                client = new Client(API_KEY);
-                var results = await client.GetBusinessAsync(CustomerId);//, request.Latitude, request.Longitude);
-                                                                        //results.Location.DisplayAddress[0].ToString();
-                ViewBag.data = results;
-                ViewBag.data1 = results;
-                ViewBag.data2 = results;
-
-                var businesses = (from business in searchResponse.Businesses
-                                  where (business.Id != CustomerId)
-                                  select new
-                                  {
-                                      name = business.Name,
-                                      id = business.Id,
-                                      rate = business.Rating,
-                                      ratecount = business.ReviewCount,
-                                      ImageUrl = business.ImageUrl,
-                                      Phone = business.DisplayPhone,
-                                      Location = business.Location.DisplayAddress.FirstOrDefault() + " " + business.Location.City+ ", " + business.Location.Country
-                                      // }).Distinct().Take(3);
-                                  }).Distinct().ToList();
-
-                List<biz_data> obj = new List<biz_data>();
-                foreach (var item in businesses)
+                if (!string.IsNullOrEmpty(CustomerName))
                 {
-                    biz_data b1 = new biz_data();
-                    b1.id = item.id;
-                    b1.name = item.name;
-                    b1.rate = item.rate;
-                    b1.ratecount = item.ratecount;
-                    b1.imageurl = item.ImageUrl;
-                    b1.Location = item.Location;
-                    b1.Phone = item.Phone;
-                    obj.Add(b1);
-                }
-                //ViewData["dt"] = businesses;
-                ViewBag.businessList = obj;
-                ViewBag.Message = "CustomerName: " + CustomerName + " CustomerId: " + CustomerId;
+                    client = new Client(API_KEY);
+                    var results = await client.GetBusinessAsync(CustomerId);//, request.Latitude, request.Longitude);
+                                                                            //results.Location.DisplayAddress[0].ToString();
+                    ViewBag.data = results;
+                    ViewBag.data1 = results;
+                    ViewBag.data2 = results;
 
-                return View();
-            }
-            return RedirectToAction("Index");
+                    var businesses = (from business in searchResponse.Businesses
+                                      where (business.Id != CustomerId)
+                                      select new
+                                      {
+                                          name = business.Name,
+                                          id = business.Id,
+                                          rate = business.Rating,
+                                          ratecount = business.ReviewCount,
+                                          ImageUrl = business.ImageUrl,
+                                          Phone = business.DisplayPhone,
+                                          Location = business.Location.DisplayAddress.FirstOrDefault() + " " + business.Location.City + ", " + business.Location.Country
+                                          // }).Distinct().Take(3);
+                                      }).Distinct().ToList();
+
+                    List<biz_data> obj = new List<biz_data>();
+                    foreach (var item in businesses)
+                    {
+                        biz_data b1 = new biz_data();
+                        b1.id = item.id;
+                        b1.name = item.name;
+                        b1.rate = item.rate;
+                        b1.ratecount = item.ratecount;
+                        b1.imageurl = item.ImageUrl;
+                        b1.Location = item.Location;
+                        b1.Phone = item.Phone;
+                        obj.Add(b1);
+                    }
+                    //ViewData["dt"] = businesses;
+                    ViewBag.businessList = obj;
+                    ViewBag.Message = "CustomerName: " + CustomerName + " CustomerId: " + CustomerId;
+
+                    return View();
+                }
+                return RedirectToAction("Index");
             }
             catch (Exception)
             {
