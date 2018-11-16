@@ -1,1 +1,4 @@
 /packages
+/.vs
+/RestReview/bin
+/RestReview/obj
