@@ -67,7 +67,7 @@
 .circular-progress-bar {
     position: relative;
     margin: 0 auto;
-    height: 50% !important;
+    height: 100% !important;
 }
 
 .progress-percentage, .progress-text {

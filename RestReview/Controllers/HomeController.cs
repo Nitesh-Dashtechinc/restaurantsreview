@@ -45,7 +45,8 @@ namespace RestReview.Controllers
                                           ratecount = business.ReviewCount,
                                           ImageUrl = business.ImageUrl,
                                           Phone = business.DisplayPhone,
-                                          Location = business.Location.DisplayAddress.FirstOrDefault() + " " + business.Location.City + ", " + business.Location.Country
+                                          Location = business.Location.DisplayAddress.FirstOrDefault() + " " + business.Location.City + ", " + business.Location.Country,
+                                          Url=business.Url
                                           // }).Distinct().Take(3);
                                       }).Distinct().ToList();
 
@@ -60,6 +61,7 @@ namespace RestReview.Controllers
                         b1.imageurl = item.ImageUrl;
                         b1.Location = item.Location;
                         b1.Phone = item.Phone;
+                        b1.Url = item.Url;
                         obj.Add(b1);
                     }
                     //ViewData["dt"] = businesses;
@@ -135,6 +137,7 @@ namespace RestReview.Controllers
             public string imageurl { get; set; }
             public string Phone { get; set; }
             public string Location { get; set; }
+            public string Url { get; set; }
         }
     }
 }
