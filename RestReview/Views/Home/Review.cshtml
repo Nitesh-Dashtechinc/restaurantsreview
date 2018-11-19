@@ -8,78 +8,21 @@
         border-radius: 50%;
     }
 
-    .homepage {
-        border-top: none;
-        border-left: none;
-        border-right: none;
-        box-shadow: none;
-        background-color: #fdfcfc00;
-        border-bottom: 3px solid #0a0a0a;
-        transition: none;
-        color: #0a0a0a;
-    }
-
-    input:-moz-placeholder {
-        color: black !important;
-    }
-
-    input::-moz-placeholder {
-        color: black !important;
-    }
-
-    input::-webkit-input-placeholder {
-        color: black !important;
-    }
-
-    input:-ms-input-placeholder {
-        color: black !important;
-    }
-
-    .form-control:focus {
-        border-color: black;
-        outline: 0;
-        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(248, 249, 249, 0.04);
-        box-shadow: inset 0 0px 0px rgba(0,0,0,.075), 0 0 8px rgba(242, 242, 243, 0.06);
-    }
-
-    .ui-autocomplete {
-        height: 200px;
-        overflow-y: scroll;
-        overflow-x: hidden;
-    }
-
     .table-striped > tbody > tr:nth-of-type(odd) {
         background-color: #dfeafe !important;
     }
 
     .table-striped > tbody > tr:nth-of-type(even) {
-        background-color: #f9f5f5c7 !important
+        background-color: rgba(249, 245, 245, 0.78) !important;
     }
 
     .p-l {
         padding-left: 5% !important;
     }
 </style>
-
-@*<div class="container">
-        <div class="row ">
-            <div class="col-md-4 col-xs-1"></div>
-            <div class="col-md-4 col-xs-10 text-center">
-                <a href="" class="logo"><img class="image" src="~/Content/image/logo.png"></a>
-            </div>
-            <div class="col-md-4 col-xs-1"></div>
-        </div>
-        <div class="row">
-            <div class="text-center col-md-12"><h1><b style="font-weight:800;letter-spacing:-2px;">RESTAURANT MARKETING GRADER</b></h1></div>
-
-            <div class="text-center  col-md-12" style="margin-top:-20px;">
-                <h4><b style="font-weight: 800;">Powered by</b> Upserve</h4>
-            </div>
-
-        </div>
-    </div>*@
+<link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/themes/blitzer/jquery-ui.css" rel="Stylesheet" type="text/css" />
 <div class="container">
-    <div class="row" style="margin-top:7%;">
+    <div class="row" style="margin-top:5%;">
         <div class="text-center col-lg-12 col-md-12">
             <span> <b style="font-weight: 800;font-size:55px;letter-spacing:-2px;">Restaurants that acore a 90 or above record 30 percent higher sales</b></span>
         </div>
@@ -94,13 +37,13 @@
         {
             <div class="col-md-4 col-md-offset-1">
                 <i class="glyphicon glyphicon-triangle-bottom" style="top: 6px;right: 18px;position: absolute;font-size:x-large;"></i>
-                <input type="text" id="txtCustomer" placeholder="Restaurant Name" name="CustomerName" class="form-control homepage col-md-12" />
+                <input type="text" id="txtCustomer" placeholder="Restaurant Name" name="CustomerName" class="form-control border-bottom-input col-md-12" />
             </div>
             <div class="form-group col-md-4">
-                <input type="text" id="txtLocation" name="LocationName" class="form-control homepage" value="San Francisco, CA, USA" onchange="LoadData()" style="width:100%;" />
+                <input type="text" id="txtLocation" name="LocationName" class="form-control border-bottom-input" value="San Francisco, CA, USA" onchange="LoadData()" style="width:100%;" />
             </div>
             <div class="form-group col-md-2 offset-1">
-                <input type="submit" id="btnSubmit" value="Submit" class="btn btn-success form-control" style="background:black" />
+                <input type="submit" id="btnSubmit" value="SUBMIT" class="btn btn-bold btn-black" />
             </div>
 
             <input type="hidden" id="hfCustomer" name="CustomerId" />
@@ -112,54 +55,48 @@
 
 <div class="container">
     <div class="row" style="padding-bottom:7%;">
-        <div class="col-md-4">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
             <div class="card col-md-11 col-md-offset-1">
                 <div class="row">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-8">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-md-2"></div>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-md-8">
                         @*<img src="@ViewBag.data1.ImageUrl" class="img-round-border img-responsive" style="width: 200px;height: 200px;">*@
                         <img src="@ViewBag.businessList[0].imageurl" class="img-round-border img-responsive" style="width: 200px;height: 200px;">
                     </div>
-                    <div class="col-md-2"></div>
-
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-md-2"></div>
                 </div>
                 <div class="card-container text-center">
-                    @*<h4><b>@ViewBag.data1.Name</b></h4>
-        <span>@ViewBag.data1.Phone</span>*@
                     <h4><b>@ViewBag.businessList[0].name</b></h4>
                     <span>@ViewBag.businessList[0].Phone</span>
                     <p>
                         @*@if (ViewBag.data1.Location != null)
-            {
-                @ViewBag.data1.Location.Address1
-            }
-            <br />
-            @ViewBag.data1.Location.City,
-            @ViewBag.data1.Location.State*@
+                            {
+                                @ViewBag.data1.Location.Address1
+                            }
+                            <br />
+                            @ViewBag.data1.Location.City,
+                            @ViewBag.data1.Location.State*@
                         @ViewBag.businessList[0].Location
                         <div>
                             <div class="my-progress-bar-left">
-                                @*<span>@ViewBag.data1.Rating</span>*@
                             </div>
-                            @*<a class="btn btn-review" href="@ViewBag.data1.Url" target="_blank">@ViewBag.data1.ReviewCount Review</a>*@
-                            <a class="btn btn-review" href="@ViewBag.businessList[0].Url" target="_blank">@ViewBag.businessList[0].ratecount Reviews</a>
+                            <a class="btn btn-bold btn-review" href="@ViewBag.businessList[0].Url" target="_blank">@ViewBag.businessList[0].ratecount Reviews</a>
                         </div>
                     </p>
-                    @*<button type="button" class="btn btn-yellow btn-block" onclick="restMarketGrade()">ANALYZE</button>*@
-                    <a href="@Url.Action("Contact", "Home")" class="btn btn-yellow btn-block">ANALYZE</a>
+                    <a href="@Url.Action("Contact", "Home")" class="btn btn-bold btn-yellow btn-block">ANALYZE</a>
                 </div>
 
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 card-mobile-responsive">
             <div class="card card-inverse col-md-12">
                 <div class="row">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-8">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-md-2"></div>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-md-8">
                         <img src="@ViewBag.data1.ImageUrl" class="img-round-border img-responsive" style="width: 200px;height: 200px;">
 
                     </div>
-                    <div class="col-md-2"></div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-md-2"></div>
                 </div>
                 <div class="card-container text-center">
                     <div class="titel">
@@ -177,7 +114,7 @@
 
                                 <div class="my-progress-bar-center">
                                 </div>
-                                <a class="btn btn-review" href="@ViewBag.data1.Url" target="_blank">@ViewBag.data1.ReviewCount Reviews</a>
+                                <a class="btn btn-bold btn-review" href="@ViewBag.data1.Url" target="_blank">@ViewBag.data1.ReviewCount Reviews</a>
                             </div>
                         </p>
                     </div>
@@ -185,47 +122,33 @@
                         <b>Closest Match</b>
                     </div>
                     @*<button type="button" class="btn btn-yellow btn-block" onclick="restMarketGrade()">ANALYZE</button>*@
-                    <a href="@Url.Action("Contact", "Home")" class="btn btn-yellow btn-block">ANALYZE</a>
+                    <a href="@Url.Action("Contact", "Home")" class="btn btn-bold btn-yellow btn-block">ANALYZE</a>
                 </div>
             </div>
         </div>
-
-        <div class="col-md-4">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 card-mobile-responsive">
             <div class="card col-md-11">
                 <div class="row">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-8">
-                        @*<img src="@ViewBag.data1.ImageUrl" class="img-round-border img-responsive" style="width: 200px;height: 200px;">*@
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-md-2"></div>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-md-8">
                         <img src="@ViewBag.businessList[1].imageurl" class="img-round-border img-responsive" style="width: 200px;height: 200px;">
                     </div>
-                    <div class="col-md-2"></div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-md-2"></div>
                 </div>
                 <div class="card-container text-center">
-                    @*<h4><b>@ViewBag.data1.Name</b></h4>
-        <span>@ViewBag.data1.Phone</span>*@
+                   
                     <h4><b>@ViewBag.businessList[0].name</b></h4>
                     <span>@ViewBag.businessList[0].Phone</span>
                     <p>
-                        @*@if (ViewBag.data1.Location != null)
-            {
-                @ViewBag.data1.Location.Address1
-            }
-            <br />
-            @ViewBag.data1.Location.City,
-            @ViewBag.data1.Location.State*@
                         @ViewBag.businessList[1].Location
                         <div>
                             <div class="my-progress-bar-right">
-                                @*<span>@ViewBag.data1.Rating</span>*@
                             </div>
-                            @*<a class="btn btn-review" href="@ViewBag.data1.Url" target="_blank">@ViewBag.data1.ReviewCount Review</a>*@
-                            <a class="btn btn-review" href="@ViewBag.businessList[0].Url" target="_blank">@ViewBag.businessList[1].ratecount Review</a>
+                            <a class="btn btn-bold btn-review" href="@ViewBag.businessList[0].Url" target="_blank">@ViewBag.businessList[1].ratecount Review</a>
                         </div>
                     </p>
+                    <a href="@Url.Action("Contact", "Home")" class="btn btn-bold btn-yellow btn-block">ANALYZE</a>
 
-                    @*<button type="button" class="btn btn-yellow btn-block" onclick="restMarketGrade()">ANALYZE</button>*@
-                    <a href="@Url.Action("Contact", "Home")" class="btn btn-yellow btn-block" >ANALYZE</a>
-                    
                 </div>
             </div>
         </div>
@@ -234,7 +157,7 @@
     <div class="clearfix"></div>
     <div class="clearfix"></div>
     <div class="clearfix"></div>
-    <div class="row">
+    <div class="row" style="padding: 0% 4%;">
 
         <table class="table table-striped table-responsive">
 
@@ -242,9 +165,9 @@
                 @foreach (var item in ViewBag.businessList)
                 {
                     <tr>
-                        <td class="p-l">@item.name <button class="btn btn-success btn-xs">@item.rate <i class="glyphicon glyphicon-star-empty"></i></button></td>
+                        <td class="p-l">@item.name <button class="btn btn-bold btn-green btn-xs">@item.rate <i class="glyphicon glyphicon-star-empty"></i></button></td>
                         @*<td><button class="btn btn-info btn-xs pull-right">@item.ratecount Reviews</button></td>*@
-                        <td><a class="btn btn-info btn-xs pull-right" href="@item.Url" target="_blank">@item.ratecount Reviews</a></td>
+                        <td><a class="btn btn-review btn-xs pull-right" href="@item.Url" target="_blank">@item.ratecount Reviews</a></td>
                     </tr>
                 }
             </tbody>
