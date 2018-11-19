@@ -1,17 +1,382 @@
 ﻿@{
     ViewBag.Title = "Contact";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+<style>
+    .progress-percentage {
+        color: black;
+        transform: translate(-50%, -122%);
+        font-weight: 800;
+        font-size: -webkit-xxx-large;
+        font-size:50px;
+    }
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+    .progress-bar-black {
+        background-color: black;
+    }
+
+    .progress {
+        margin-bottom: 0px;
+        height: 10px;
+    }
+
+    .border-baner {
+        background: #72a0fe;
+        border: 10px solid white;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    }
+
+    .divider {
+        background: white;
+        height: 5px;
+        margin: 6% 0%;
+    }
+
+    .btn-orange {
+        color: white;
+        background: #eb6a05;
+    }
+    .p-t-5px {
+        padding-top: 5px;
+    }
+    .p-t-15px{
+        padding-top:15px;
+    }
+</style>
+<div class="container">
+    <div class="row" style="margin-top:7%;">
+        <div class="text-center col-lg-12 col-md-12">
+            <span> <b style="font-weight: 800;font-size:55px;letter-spacing:-2px;">Your Restaurant's Marketing Grade is:</b></span>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="my-progress-bar"></div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-3">
+                <div class="text-uppercase"><h5><b>Data Consistency</b></h5></div>
+            </div>
+            <div class="col-md-3">
+                <div class="text-uppercase"><h5><b>Reviews</b></h5></div>
+            </div>
+            <div class="col-md-3">
+                <div class="text-uppercase"><h5><b>Social Media Completion <br />& Engagement </b></h5></div>
+            </div>
+            <div class="col-md-3">
+                <div class="text-uppercase"><h5><b>website</b></h5></div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="col-md-3">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-black" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:50%">
+                    </div>
+                </div>
+                <div>
+                    <h5><strong class="initialism">33 / </strong><small style="color: white;">30</small></h5>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-black" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:25%">
+                    </div>
+                </div>
+                <div>
+                    <h5><strong class="initialism">15 / </strong><small style="color: white;">30</small></h5>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-black" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:75%">
+                    </div>
+                </div>
+                <div>
+                    <h5><strong class="initialism">30 / </strong><small style="color: white;">30</small></h5>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-black" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                    </div>
+                </div>
+                <div>
+                    <h5><strong class="initialism">30 / </strong><small style="color: white;">30</small></h5>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="container" style="padding-top:7%;padding-bottom:8%; ">
+    <div class="row">
+
+        <div class="col-md-3"></div>
+        <div class="col-md-6 ">
+            <div class="col-md-12 border-baner">
+                <div class="text-center" style="color:white;"><p><h1><b>To see full results and  recommendations, please fill out your contact information</b></h1></p></div>
+                <div class="divider"></div> 
+                <div class="box-content form-group required" style="padding:0% 15%;">
+                    <div class="p-t-5px"><input type="text" class="form-control" placeholder="First Name*" /></div>
+                    <div class="p-t-5px"><input type="text" class="form-control" placeholder="Last Name*"/></div>
+                    <div class="p-t-5px"><input type="text" class="form-control" placeholder="Email Address*" /></div>
+                    <div class="p-t-5px"><input type="text" class="form-control" placeholder="Restaurant Name*" /></div>
+                    <div class="p-t-5px"><input type="text" class="form-control" placeholder="Schedule Demo?" /></div>
+                    <div class="p-t-5px"><input type="text" class="form-control" placeholder="Phone Number*" /></div>
+                    <div class="p-t-15px">
+                        <button class="btn btn-block btn-orange">GET FULL RESULTS</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jquery")
+    @*<script src="~/Scripts/js/Meterplugin.js"></script>*@
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".my-progress-bar").circularProgress({
+                line_width: 12,
+                color: "black",
+                starting_position: 75, // 12.00 o' clock position, 25 stands for 3.00 o'clock (clock-wise)
+                percent: 0, // percent starts from
+                percentage: true,
+                //text: "More power behind every pixel"
+            }).circularProgress('animate', 100, 1000);
+
+
+        });
+
+        (function ($) {
+
+            var global_settings = {};
+
+            var methods = {
+                init: function (options) {
+                    // This is the easiest way to have default options.
+                    var settings = $.extend({
+                        // These are the defaults.
+                        color: "#72a0fe",
+                        height: "300px",
+                        width: "300px",
+                        line_width: 8,
+                        starting_position: 25,
+                        percent: 100,
+                        counter_clockwise: false,
+                        percentage: true,
+                        text: ''
+                    }, options);
+                    global_settings = settings;
+
+
+                    // Create percentage
+                    var percentage = $("<div class='progress-percentage'></div>");
+
+                    if (!global_settings.percentage) {
+                        percentage.text(global_settings.percentage);
+                    }
+                    $(this).append(percentage);
+
+
+                    // Create text
+                    //var text = $("<div class='progress-text'></div>");
+
+                    // Custom text
+                    //if (global_settings.text != "percent") {
+                    //    text.text(global_settings.text);
+                    //}
+                    //$(this).append(text);
+
+                    // Correct any invalid values
+                    if (global_settings.starting_position != 100) {
+                        global_settings.starting_position = global_settings.starting_position % 100;
+                    }
+                    if (global_settings.ending_position != 100) {
+                        global_settings.ending_position = global_settings.ending_position % 100;
+                    }
+                    // No 'px' or '%', add 'px'
+                    appendUnit(global_settings.width);
+                    appendUnit(global_settings.height);
+
+                    // Apply global_settings
+                    $(this).css({
+                        "height": global_settings.height,
+                        "width": global_settings.width
+                    });
+                    $(this).addClass("circular-progress-bar");
+
+                    // Remove old canvas
+                    $(this).find("canvas").remove();
+
+                    // Put canvas inside this
+                    $(this).append(createCanvas($(this)));
+
+                    // Return allows for chaining
+                    return this;
+                },
+                percent: function (value) {
+                    // Change percent
+                    global_settings.percent = value;
+                    // Apply global_settings
+                    $(this).css({
+                        "height": global_settings.height,
+                        "width": global_settings.width
+                    });
+                    // Remove old canvas
+                    $(this).children("canvas").remove();
+                    // Put canvas inside this
+                    $(this).append(createCanvas($(this)));
+
+                    // Return allows for chaining
+                    return this;
+                },
+                animate: function (value, time) {
+                    // Apply global_settings
+                    $(this).css({
+                        "height": global_settings.height,
+                        "width": global_settings.width
+                    });
+
+                    // Number of intervals, 10ms interval
+                    var num_of_steps = time / 10;
+                    // Amount of change each step
+                    var percent_change = (value - global_settings.percent) / num_of_steps;
+
+                    // Variable conflict, rename this
+                    var scope = $(this);
+                    var theInterval = setInterval(function () {
+                        if (global_settings.percent < value) {
+                            // Remove old canvas
+                            scope.children("canvas").remove();
+                            // Increment percent
+                            global_settings.percent += percent_change;
+                            // Put canvas inside this
+                            scope.append(createCanvas(scope));
+                        } else {
+                            clearInterval(theInterval);
+                        }
+                    }, 10);
+
+                    // Return allows for chaining
+                    return this;
+                }
+            };
+
+            $.fn.circularProgress = function (methodOrOptions) {
+                if (methods[methodOrOptions]) {
+                    // Method found
+                    return methods[methodOrOptions].apply(this, Array.prototype.slice.call(arguments, 1));
+                } else if (typeof methodOrOptions === 'object' || !methodOrOptions) {
+                    // Default to "init", object passed in or nothing passed in
+                    return methods.init.apply(this, arguments);
+                } else {
+                    $.error('Method ' + methodOrOptions + ' does not exist.');
+                }
+            };
+
+            /* =========================================================================
+                PRIVATE FUNCTIONS
+            ========================================================================= */
+
+            // return string without 'px' or '%'
+            function removeUnit(apples) {
+                if (apples.indexOf("px")) {
+                    return apples.substring(0, apples.length - 2);
+                } else if (canvas_height.indexOf("%")) {
+                    return apples.substring(0, apples.length - 1);
+                }
+            };
+            // return string with 'px'
+            function appendUnit(apples) {
+                if (apples.toString().indexOf("px") < -1 && apples.toString().indexOf("%") < -1) {
+                    return apples += "px";
+                }
+            };
+            // calculate starting position on canvas
+            function calcPos(apples, percent) {
+                if (percent < 0) {
+                    // Calculate starting position
+                    var starting_degree = (parseInt(apples) / 100) * 360;
+                    var starting_radian = starting_degree * (Math.PI / 180);
+                    return starting_radian - (Math.PI / 2);
+                } else {
+                    // Calculate ending position
+                    var ending_degree = ((parseInt(apples) + parseInt(percent)) / 100) * 360;
+                    var ending_radian = ending_degree * (Math.PI / 180);
+                    return ending_radian - (Math.PI / 2);
+                }
+            };
+            // Put percentage or custom text inside progress circle
+            function insertText(scope) {
+                //$(".progress-percentage").text(Math.round(global_settings.percent));
+                $(".progress-percentage").text(global_settings.percent + '%');
+            }
+            // create canvas
+            function createCanvas(scope) {
+                // Remove 'px' or '%'
+                var canvas_height = removeUnit(global_settings.height.toString());
+                var canvas_width = removeUnit(global_settings.width.toString());
+
+                // Create canvas
+                var canvas = document.createElement("canvas");
+                canvas.height = canvas_height;
+                //canvas.height = 180;
+                canvas.width = canvas_width;
+
+                // Create drawable canvas and apply properties
+                var ctx = canvas.getContext("2d");
+                ctx.strokeStyle = global_settings.color;
+                ctx.lineWidth = global_settings.line_width;
+
+                // Draw arc
+                ctx.beginPath();
+
+                // Calculate starting and ending positions
+                var starting_radian = calcPos(global_settings.starting_position, -1);
+                var ending_radian = calcPos(global_settings.starting_position, global_settings.percent);
+                // Calculate radius and x,y coordinates
+                var radius = 0;
+                var xcoord = canvas_width / 2;
+                var ycoord = canvas_height / 2;
+                // Height or width greater
+                if (canvas_height >= canvas_width) {
+                    radius = canvas_width * 0.9 / 2 - (global_settings.line_width * 2);
+                } else {
+                    radius = canvas_height * 0.9 / 2 - (global_settings.line_width * 2);
+                }
+
+                /*
+                    x coordinate
+                    y coordinate
+                    radius of circle
+                    starting angle in radians
+                    ending angle in radians
+                    clockwise (false, default) or counter-clockwise (true)
+                */
+                ctx.arc(xcoord, ycoord, radius, starting_radian, ending_radian, global_settings.counter_clockwise);
+                ctx.stroke();
+
+                // Add text
+                if (global_settings.percentage) {
+                    insertText(scope);
+                }
+
+                return canvas;
+            };
+
+        }(jQuery));
+
+    </script>
+}
