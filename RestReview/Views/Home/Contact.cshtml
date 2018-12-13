@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<Yelp.Api.Models.BusinessResponse>
+@{
     ViewBag.Title = "Contact";
 }
 
@@ -8,7 +9,7 @@
         transform: translate(-50%, -122%);
         font-weight: 800;
         font-size: -webkit-xxx-large;
-        font-size:50px;
+        font-size: 50px;
     }
 
     .progress-bar-black {
@@ -37,11 +38,13 @@
         color: white;
         background: #eb6a05;
     }
+
     .p-t-5px {
         padding-top: 5px;
     }
-    .p-t-15px{
-        padding-top:15px;
+
+    .p-t-15px {
+        padding-top: 15px;
     }
 </style>
 <div class="container">
@@ -88,11 +91,11 @@
             </div>
             <div class="col-md-3">
                 <div class="progress">
-                    <div class="progress-bar progress-bar-black" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:25%">
+                    <div class="progress-bar progress-bar-black" id="RateProgressbar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:2%">
                     </div>
                 </div>
                 <div>
-                    <h5><strong class="initialism">15 / </strong><small style="color: white;">30</small></h5>
+                    <h5><strong class="initialism">@ViewBag.ratingData / </strong><small style="color: white;">30</small></h5>
                 </div>
             </div>
             <div class="col-md-3">
@@ -110,7 +113,7 @@
                     </div>
                 </div>
                 <div>
-                    <h5><strong class="initialism">30 / </strong><small style="color: white;">30</small></h5>
+                    <h5><strong class="initialism">10 / </strong><small style="color: white;">10</small></h5>
                 </div>
             </div>
         </div>
@@ -125,17 +128,20 @@
         <div class="col-md-6 ">
             <div class="col-md-12 border-baner">
                 <div class="text-center" style="color:white;"><p><h1><b>To see full results and  recommendations, please fill out your contact information</b></h1></p></div>
-                <div class="divider"></div> 
+                <div class="divider"></div>
                 <div class="box-content form-group required" style="padding:0% 15%;">
-                    <div class="p-t-5px"><input type="text" class="form-control" placeholder="First Name*" /></div>
-                    <div class="p-t-5px"><input type="text" class="form-control" placeholder="Last Name*"/></div>
-                    <div class="p-t-5px"><input type="text" class="form-control" placeholder="Email Address*" /></div>
-                    <div class="p-t-5px"><input type="text" class="form-control" placeholder="Restaurant Name*" /></div>
-                    <div class="p-t-5px"><input type="text" class="form-control" placeholder="Schedule Demo?" /></div>
-                    <div class="p-t-5px"><input type="text" class="form-control" placeholder="Phone Number*" /></div>
-                    <div class="p-t-15px">
-                        <button class="btn btn-block btn-orange">GET FULL RESULTS</button>
-                    </div>
+                    <form id="mktoForm_6143">
+                        @*<div class="p-t-5px"><input type="text" class="form-control" placeholder="First Name*" /></div>
+                        <div class="p-t-5px"><input type="text" class="form-control" placeholder="Last Name*" /></div>
+                        <div class="p-t-5px"><input type="text" class="form-control" placeholder="Email Address*" /></div>
+                        <div class="p-t-5px"><input type="text" class="form-control" placeholder="Restaurant Name*" /></div>
+                        <div class="p-t-5px"><input type="text" class="form-control" placeholder="Schedule Demo?" /></div>
+                        <div class="p-t-5px"><input type="text" class="form-control" placeholder="Phone Number*" /></div>
+                        <div class="p-t-15px">
+                            <button class="btn btn-block btn-orange">GET FULL RESULTS</button>*@
+                            @*<a href="@Url.Action("Analyze", "Home")" class="btn btn-block btn-orange">GET FULL RESULTS</a>*@
+                        @*</div>*@
+                    </form>
                 </div>
             </div>
         </div>
@@ -144,25 +150,28 @@
 </div>
 @section Scripts {
     @Scripts.Render("~/bundles/jquery")
-    @*<script src="~/Scripts/js/Meterplugin.js"></script>*@
+    <script src="//app-sj01.marketo.com/js/forms2/js/forms2.min.js"></script>
+    <script>MktoForms2.loadForm("//app-sj01.marketo.com", "025-DFN-263", 6143);</script>
     <script type="text/javascript">
         $(document).ready(function () {
+            var progressValue = (@ViewBag.ratingData* 100) / 30;
+            $('#RateProgressbar').attr("style", "width:" + progressValue + "%");
+
+
             $(".my-progress-bar").circularProgress({
                 line_width: 12,
                 color: "black",
-                starting_position: 75, // 12.00 o' clock position, 25 stands for 3.00 o'clock (clock-wise)
+                starting_position: 50, // 12.00 o' clock position, 25 stands for 3.00 o'clock (clock-wise)
                 percent: 0, // percent starts from
                 percentage: true,
                 //text: "More power behind every pixel"
-            }).circularProgress('animate', 100, 1000);
+            }).circularProgress('animate', 85, 1000);
 
 
         });
 
         (function ($) {
-
             var global_settings = {};
-
             var methods = {
                 init: function (options) {
                     // This is the easiest way to have default options.
@@ -172,14 +181,13 @@
                         height: "300px",
                         width: "300px",
                         line_width: 8,
-                        starting_position: 25,
+                        starting_position: 75,
                         percent: 100,
                         counter_clockwise: false,
                         percentage: true,
                         text: ''
                     }, options);
                     global_settings = settings;
-
 
                     // Create percentage
                     var percentage = $("<div class='progress-percentage'></div>");
@@ -188,16 +196,6 @@
                         percentage.text(global_settings.percentage);
                     }
                     $(this).append(percentage);
-
-
-                    // Create text
-                    //var text = $("<div class='progress-text'></div>");
-
-                    // Custom text
-                    //if (global_settings.text != "percent") {
-                    //    text.text(global_settings.text);
-                    //}
-                    //$(this).append(text);
 
                     // Correct any invalid values
                     if (global_settings.starting_position != 100) {
@@ -252,7 +250,7 @@
                     // Number of intervals, 10ms interval
                     var num_of_steps = time / 10;
                     // Amount of change each step
-                    var percent_change = (value - global_settings.percent) / num_of_steps;
+                    var percent_change = Math.round((value - global_settings.percent) / num_of_steps);
 
                     // Variable conflict, rename this
                     var scope = $(this);

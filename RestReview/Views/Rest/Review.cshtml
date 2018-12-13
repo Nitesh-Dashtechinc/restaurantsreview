@@ -33,7 +33,7 @@
 </div>
 <div class="container" style="min-height:280px;padding-top:7%;">
     <div class="row text-center">
-        @using (Html.BeginForm("Review", "Home", FormMethod.Post))
+        @using (Html.BeginForm("Review", "Rest", FormMethod.Post))
         {
             @*<div class="form-group col-md-4">*@
             <div class="col-md-4 col-md-offset-1">
@@ -83,8 +83,7 @@
                             <a class="btn btn-bold btn-review" href="@ViewBag.closeresult2[1].Url" target="_blank">@ViewBag.closeresult2[1].ratecount Reviews</a>
                         </div>
                     </p>
-                    <a href="@Url.Action("Contact", "Home",new { @rateing = ViewBag.closeresult2[1].rate, @id = ViewBag.closeresult2[1].id})" class="btn btn-bold btn-yellow btn-block">ANALYZE</a>
-                   
+                    <a href="@Url.Action("Contact", "Home")" class="btn btn-bold btn-yellow btn-block">ANALYZE</a>
                 </div>
             </div>
         </div>
@@ -120,7 +119,7 @@
                     <div style="padding-bottom:5px;">
                         <b>Closest Match</b>
                     </div>
-                    <a href="@Url.Action("Contact", "Home",new { @rateing = ViewBag.closeresult1[0].rate, @id = ViewBag.closeresult1[0].id})" class="btn btn-bold btn-yellow btn-block">ANALYZE</a>
+                    <a href="@Url.Action("Contact", "Home")" class="btn btn-bold btn-yellow btn-block">ANALYZE</a>
                 </div>
             </div>
         </div>
@@ -151,7 +150,7 @@
                             <a class="btn btn-bold btn-review" href="@ViewBag.closeresult3[2].Url" target="_blank">@ViewBag.closeresult3[2].ratecount Review</a>
                         </div>
                     </p>
-                    <a href="@Url.Action("Contact", "Home",new { @rateing = ViewBag.closeresult3[2].rate, @id = ViewBag.closeresult3[2].id})" class="btn btn-bold btn-yellow btn-block">ANALYZE</a>
+                    <a href="@Url.Action("Contact", "Home")" class="btn btn-bold btn-yellow btn-block">ANALYZE</a>
                 </div>
             </div>
         </div>
@@ -227,7 +226,7 @@
             var xlocation = $("#txtLocation").val();
 
             $.ajax({
-                url: '/Home/GetAllData/',
+                url: '/Rest/GetAllData/',
                 data: "{ 'xlocation': '" + xlocation + "'}",
                 dataType: "json",
                 type: "POST",
@@ -247,7 +246,7 @@
                 source: function (request, response) {
                     var xlocation = $("#txtLocation").val();
                     $.ajax({
-                        url: '/Home/AutoComplete/',
+                        url: '/Rest/AutoComplete/',
                         data: "{ 'prefix': '" + request.term + "','location': '" + xlocation + "'}",
                         dataType: "json",
                         type: "POST",
