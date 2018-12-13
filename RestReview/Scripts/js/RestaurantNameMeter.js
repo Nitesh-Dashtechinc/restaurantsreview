@@ -1,4 +1,4 @@
-(function ($) {
+﻿(function ($) {
 
     var global_settings = {};
 
@@ -8,11 +8,11 @@
             var settings = $.extend({
                 // These are the defaults.
                 color: "#000000",
-                height: "300px",
-                width: "300px",
+                height: "200px",
+                width: "200px",
                 line_width: 8,
                 starting_position: 25,
-                percent: 100,
+                percent: 50,
                 counter_clockwise: false,
                 percentage: true,
                 text: ''
@@ -21,12 +21,12 @@
 
 
             // Create percentage
-            var percentage = $("<div class='progress-percentage'></div>");
+            //var percentage = $("<div class='progress-percentage'></div>");
 
-            if (!global_settings.percentage) {
-              //  percentage.text(global_settings.percentage);
-            }
-            $(this).append(percentage);
+            //if (!global_settings.percentage) {
+            //    //  percentage.text(global_settings.percentage);
+            //}
+            //$(this).append(percentage);
 
 
             // Create text
@@ -34,8 +34,8 @@
 
             // Custom text
             if (global_settings.text != "percent") {
-              //  text.text(global_settings.text);      
-                }
+                //  text.text(global_settings.text);      
+            }
             $(this).append(text);
 
             // Correct any invalid values
@@ -73,7 +73,7 @@
                 "height": global_settings.height,
                 "width": global_settings.width
             });
-            
+
             // Remove old canvas
             $(this).children("canvas").remove();
             // Put canvas inside this
@@ -85,17 +85,17 @@
         myvalue: function (val) {
             var percentage = $("<div class='progress-percentage'></div>");
             percentage.text((val / 10).toFixed(1));
-                        $(this).append(percentage);
-         //   $(".progress-percentage").text((val / 10).toFixed(1));
+            $(this).append(percentage);
+            //   $(".progress-percentage").text((val / 10).toFixed(1));
         },
         animate: function (value, time) {
             // Apply global_settings
             $(this).css({
                 "height": global_settings.height,
                 "width": global_settings.width
-            });           
+            });
 
-           // $(".progress-percentage").text((value / 10).toFixed(1));
+            // $(".progress-percentage").text((value / 10).toFixed(1));
 
             // Number of intervals, 10ms interval
             var num_of_steps = time / 10;
@@ -117,7 +117,7 @@
                 }
             }, 10);
 
-         
+
             // Return allows for chaining
             return this;
         }
@@ -172,8 +172,8 @@
     function insertText(scope) {
         //$(".progress-percentage").text(Math.round(global_settings.percent) + "%");
         //  $(".progress-percentage").text((global_settings.percent / 10).toFixed(1));
-      
-        
+
+
     }
     // create canvas
     function createCanvas(scope) {
@@ -184,7 +184,7 @@
         // Create canvas
         var canvas = document.createElement("canvas");
         //canvas.height = canvas_height;
-        canvas.height = 180;
+        canvas.height = 110;
         canvas.width = canvas_width;
 
         // Create drawable canvas and apply properties
@@ -222,7 +222,7 @@
 
         // Add text
         if (global_settings.percentage) {
-       //     insertText(scope);
+            //     insertText(scope);
         }
 
         return canvas;

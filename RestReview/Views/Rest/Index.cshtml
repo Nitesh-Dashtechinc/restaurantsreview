@@ -72,7 +72,7 @@
         });
         function LoadData() {
             if ($("#txtLocation").val().trim() == "") {
-                alert("Please select location");
+                //alert("Please select location");
                 $("#txtLocation").focus();
                 return;
             }
@@ -90,10 +90,10 @@
                     //}))
                 },
                 error: function (response) {
-                    alert(response.responseText);
+                    //alert(response.responseText);
                 },
                 failure: function (response) {
-                    alert(response.responseText);
+                    //alert(response.responseText);
                 }
             });
         }
@@ -112,10 +112,10 @@
                             }))
                         },
                         error: function (response) {
-                            alert(response.responseText);
+                            //alert(response.responseText);
                         },
                         failure: function (response) {
-                            alert(response.responseText);
+                            //alert(response.responseText);
                         }
                     });
                 },
