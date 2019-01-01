@@ -210,8 +210,22 @@
     <Compile Include="Models\BusinessMatch.cs" />
     <Compile Include="Models\CloseMatchData.cs" />
     <Compile Include="Models\Coordinates.cs" />
+    <Compile Include="Models\data_consistency\Consistency_Example.cs" />
+    <Compile Include="Models\data_consistency\MainTextMatchedSubstring.cs" />
+    <Compile Include="Models\data_consistency\MatchedSubstring.cs" />
+    <Compile Include="Models\data_consistency\Prediction.cs" />
+    <Compile Include="Models\data_consistency\StructuredFormatting.cs" />
+    <Compile Include="Models\data_consistency\Term.cs" />
+    <Compile Include="Models\data_consi_phone\Data_consi_Example.cs" />
+    <Compile Include="Models\data_consi_phone\Result.cs" />
     <Compile Include="Models\Example.cs" />
+    <Compile Include="Models\FB\Example_FB.cs" />
+    <Compile Include="Models\FB\HttpEatatplowCom.cs" />
+    <Compile Include="Models\FB\OgObject.cs" />
+    <Compile Include="Models\FB\Share.cs" />
     <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\phone_data\Candidate.cs" />
+    <Compile Include="Models\phone_data\TestExample.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Table.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
@@ -226,6 +240,9 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\gif\Spin-1.2s-95px.gif" />
+    <Content Include="Content\gif\Spin-1s-95px.gif" />
+    <Content Include="Content\gif\Spinner-1s-200px.gif" />
     <Content Include="Content\image\NoImege.png" />
     <Content Include="Content\style.css" />
     <Content Include="Content\image\backgrnd.png" />
