@@ -132,20 +132,20 @@
         <div class="col-md-12">
             <div class="col-md-3">
                 <div class="progress">
-                    <div class="progress-bar progress-bar-black" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:50%">
+                    <div class="progress-bar progress-bar-black" id="DataConsistencyProgressbar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:50%">
                     </div>
                 </div>
                 <div>
-                    <h5><strong class="initialism">33 / </strong><small style="color: white;">30</small></h5>
+                    <h5><strong class="initialism">@ViewBag.dataConsistency / </strong><small style="color: white;">10</small></h5>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="progress">
-                    <div class="progress-bar progress-bar-black" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:20%">
+                    <div class="progress-bar progress-bar-black" id="RateProgressbar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:20%">
                     </div>
                 </div>
                 <div>
-                    <h5><strong class="initialism">10 / </strong><small style="color: white;">30</small></h5>
+                    <h5><strong class="initialism">@ViewBag.ratingData / </strong><small style="color: white;">40</small></h5>
                 </div>
             </div>
             <div class="col-md-3">
@@ -154,16 +154,16 @@
                     </div>
                 </div>
                 <div>
-                    <h5><strong class="initialism">30 / </strong><small style="color: white;">30</small></h5>
+                    <h5><strong class="initialism">30 / </strong><small style="color: white;">35</small></h5>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="progress">
-                    <div class="progress-bar progress-bar-black" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                    <div class="progress-bar progress-bar-black" id="websiteProgressbar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:100%">
                     </div>
                 </div>
                 <div>
-                    <h5><strong class="initialism">10 / </strong><small style="color: white;">10</small></h5>
+                    <h5><strong class="initialism">@ViewBag.website / </strong><small style="color: white;">15</small></h5>
                 </div>
             </div>
         </div>
@@ -172,18 +172,19 @@
 </div>
 
 <div class="container" style="padding-top:7%;padding-bottom:5%; "></div>
+@*Data Consistency*@
 <div class="container">
     <div class="row border-baner top-box">
 
         <div class="col-sm-12">
             <div class="text-center col-md-12" style="padding-top:3%;">
-                <span> <b style="font-weight: 800;font-size:35px;letter-spacing:-2px;color:orange;padding-top:5%;">30/</b><b style="font-weight: 800;font-size:25px;letter-spacing:-2px;">30</b></span>
+                <span> <b style="font-weight: 800;font-size:35px;letter-spacing:-2px;color:orange;padding-top:5%;">@ViewBag.dataConsistency/</b><b style="font-weight: 800;font-size:25px;letter-spacing:-2px;">10</b></span>
             </div>
             <div class="text-center col-md-12" style="padding-bottom:2%;">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
                     <div class="progress">
-                        <div class="progress-bar progress-bar-orange" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
+                        <div class="progress-bar progress-bar-orange" id="DataConsistencyProgressbarIn" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:10%;"></div>
                     </div>
                 </div>
                 <div class="col-md-3"></div>
@@ -248,19 +249,19 @@
 
     </div>
 </div>
-
+@*Review rating and count*@
 <div class="container">
     <div class="row border-baner top-box">
 
         <div class="col-sm-12">
             <div class="text-center col-md-12" style="padding-top:3%;">
-                <span> <b style="font-weight: 800;font-size:35px;letter-spacing:-2px;color:orange;padding-top:5%;">15/</b><b style="font-weight: 800;font-size:25px;letter-spacing:-2px;">30</b></span>
+                <span> <b style="font-weight: 800;font-size:35px;letter-spacing:-2px;color:orange;padding-top:5%;">@ViewBag.ratingData/</b><b style="font-weight: 800;font-size:25px;letter-spacing:-2px;">40</b></span>
             </div>
             <div class="text-center col-md-12" style="padding-bottom:2%;">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
                     <div class="progress">
-                        <div class="progress-bar progress-bar-orange" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:50%;"></div>
+                        <div class="progress-bar progress-bar-orange" id="RateProgressbarIn" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:10%;"></div>
                     </div>
                 </div>
                 <div class="col-md-3"></div>
@@ -326,7 +327,7 @@
         </div>
     </div>
 </div>
-
+@*Social media*@
 <div class="container">
     <div class="row border-baner top-box">
 
@@ -405,19 +406,19 @@
         </div>
     </div>
 </div>
-
+@*Website*@
 <div class="container" style="margin-bottom:5%;">
     <div class="row border-baner top-box">
 
         <div class="col-sm-12">
             <div class="text-center col-md-12" style="padding-top:3%;">
-                <span> <b style="font-weight: 800;font-size:35px;letter-spacing:-2px;color:orange;padding-top:5%;">30/</b><b style="font-weight: 800;font-size:25px;letter-spacing:-2px;">30</b></span>
+                <span> <b style="font-weight: 800;font-size:35px;letter-spacing:-2px;color:orange;padding-top:5%;">@ViewBag.website/</b><b style="font-weight: 800;font-size:25px;letter-spacing:-2px;">15</b></span>
             </div>
             <div class="text-center col-md-12" style="padding-bottom:2%;">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
                     <div class="progress">
-                        <div class="progress-bar progress-bar-orange" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
+                        <div class="progress-bar progress-bar-orange" id="websiteProgressbarIn" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
                     </div>
                 </div>
                 <div class="col-md-3"></div>
@@ -865,6 +866,18 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
+             var dataConsistencyProgressValue = (@ViewBag.dataConsistency* 100) / 10;
+            $('#DataConsistencyProgressbar').attr("style", "width:" + dataConsistencyProgressValue + "%");
+            $('#DataConsistencyProgressbarIn').attr("style", "width:" + dataConsistencyProgressValue + "%");
+
+            var progressValue = (@ViewBag.ratingData* 100) / 40;
+            $('#RateProgressbar').attr("style", "width:" + progressValue + "%");
+            $('#RateProgressbarIn').attr("style", "width:" + progressValue + "%");
+
+             var websiteProgressValue = (@ViewBag.website* 100) / 15;
+            $('#websiteProgressbar').attr("style", "width:" + websiteProgressValue + "%");
+            $('#websiteProgressbarIn').attr("style", "width:" + websiteProgressValue + "%");
+
             $(".my-progress-bar").circularProgressMain({
                 line_width: 12,
                 color: "black",
@@ -874,6 +887,7 @@
                 //text: "More power behind every pixel"
             }).circularProgressMain('animate', 85, 1000);
 
+            var nm_bar_val=(@ViewBag.dataConsistency* 50) / 10;
             $(".restaurant-name-progress-bar").circularProgress({
                 line_width: 12,
                 color: "#8470ff",
@@ -881,8 +895,9 @@
                 percent: 0, // percent starts from
                 percentage: true,
                 //text: "More power behind every pixel"
-            }).circularProgress('animate', 25, 500);
+            }).circularProgress('animate', nm_bar_val, 500); //50 is max value
 
+            var pn_bar_val=(@ViewBag.dataConsistency* 50) / 10;  //phone rate /5
             $(".phone-number-progress-bar").circularProgress({
                 line_width: 12,
                 color: "#8470ff",
@@ -890,8 +905,11 @@
                 percent: 0, // percent starts from
                 percentage: true,
                 //text: "More power behind every pixel"
-            }).circularProgress('animate', 45, 500);
+            }).circularProgress('animate', pn_bar_val, 500);
 
+            var rev_count_val = (@ViewBag.reviewCount* 50) / 1738;
+            if (rev_count_val > 50)
+                rev_count_val = 50;
             $(".reviews-count-progress-bar").circularProgress({
                 line_width: 12,
                 color: "#8470ff",
@@ -899,8 +917,9 @@
                 percent: 0, // percent starts from
                 percentage: true,
                 //text: "More power behind every pixel"
-            }).circularProgress('animate', 25, 500);
+            }).circularProgress('animate', rev_count_val, 500);
 
+            var rev_rating_val = (@ViewBag.reviewRating* 50) / 5;
             $(".reviews-rating-progress-bar").circularProgress({
                 line_width: 12,
                 color: "#8470ff",
@@ -908,7 +927,7 @@
                 percent: 0, // percent starts from
                 percentage: true,
                 //text: "More power behind every pixel"
-            }).circularProgress('animate', 25, 500);
+            }).circularProgress('animate',rev_rating_val, 500);
 
             $(".facebook-progress-bar").circularProgress({
                 line_width: 12,
@@ -927,7 +946,8 @@
                 percentage: true,
                 //text: "More power behind every pixel"
             }).circularProgress('animate', 25, 500);
-
+          
+            var rev_web_val = (@ViewBag.website* 50) / 15;
             $(".website-url-progress-bar").circularProgress({
                 line_width: 12,
                 color: "#8470ff",
@@ -935,7 +955,7 @@
                 percent: 0, // percent starts from
                 percentage: true,
                 //text: "More power behind every pixel"
-            }).circularProgress('animate', 25, 500);
+            }).circularProgress('animate', rev_web_val, 500);
 
             $(".referral-domain-progress-bar").circularProgress({
                 line_width: 12,
@@ -944,7 +964,7 @@
                 percent: 0, // percent starts from
                 percentage: true,
                 //text: "More power behind every pixel"
-            }).circularProgress('animate', 25, 500);
+            }).circularProgress('animate', rev_web_val, 500);
 
             $(".number-of-pages-progress-bar").circularProgress({
                 line_width: 12,
@@ -953,7 +973,7 @@
                 percent: 0, // percent starts from
                 percentage: true,
                 //text: "More power behind every pixel"
-            }).circularProgress('animate', 25, 500);
+            }).circularProgress('animate', rev_web_val, 500);
 
 
         });

@@ -19,12 +19,34 @@
     .p-l {
         padding-left: 5% !important;
     }
+
+    .loadMess {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        z-index: 10000;
+    }
+
+    .overlay {
+        display: none;
+        position: fixed;
+        background-color: rgba(0,0,0,0.7);
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        height: 100%;
+        width: 100%;
+        z-index: 10000;
 </style>
 <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/themes/blitzer/jquery-ui.css" rel="Stylesheet" type="text/css" />
 <div class="container">
     <div class="row" style="margin-top:5%;">
         <div class="text-center col-lg-12 col-md-12">
-            <span> <b style="font-weight: 800;font-size:55px;letter-spacing:-2px;">Restaurants that acore a 90 or above record 30 percent higher sales</b></span>
+            <span> <b style="font-weight: 800;font-size:55px;letter-spacing:-2px;">Restaurants that score a 90 or above record 30 percent higher sales</b></span>
         </div>
         <div class="text-center col-lg-12 col-md-12">
             <h4> <b style="font-weight: 600;">How does your restaurant marketing stack up?</b></h4>
@@ -46,8 +68,10 @@
             </div>
 
             <div class="form-group col-md-2 offset-1">
-                <input type="submit" id="btnSubmit" value="SUBMIT" class="btn btn-bold btn-black" />
+                <input type="submit" id="btnSubmit" value="SUBMIT" class="btn btn-bold btn-black" onclick="showsl();" />
+                <div id="overDiv" class="overlay"></div><div id="loadMess" class=" loadMess"><img id="mySpinner" src="~/Content/gif/Spin-1s-95px.gif" /></div>
             </div>
+
 
             <input type="hidden" id="hfCustomer" name="CustomerId" />
         }
@@ -83,7 +107,7 @@
                             <a class="btn btn-bold btn-review" href="@ViewBag.closeresult2[1].Url" target="_blank">@ViewBag.closeresult2[1].ratecount Reviews</a>
                         </div>
                     </p>
-                    <a href="@Url.Action("Contact", "Home",new { @rateing = ViewBag.closeresult2[1].rate, @id = ViewBag.closeresult2[1].id})" class="btn btn-bold btn-yellow btn-block">ANALYZE</a>
+                    <a href="@Url.Action("Contact", "Home",new { @rateing = ViewBag.closeresult2[1].rate, @Phone = ViewBag.closeresult2[1].Phone})" class="btn btn-bold btn-yellow btn-block">ANALYZE</a>
                    
                 </div>
             </div>
@@ -120,7 +144,7 @@
                     <div style="padding-bottom:5px;">
                         <b>Closest Match</b>
                     </div>
-                    <a href="@Url.Action("Contact", "Home",new { @rateing = ViewBag.closeresult1[0].rate, @id = ViewBag.closeresult1[0].id})" class="btn btn-bold btn-yellow btn-block">ANALYZE</a>
+                    <a href="@Url.Action("Contact", "Home",new { @rateing = ViewBag.closeresult1[0].rate, @Phone = ViewBag.closeresult1[0].Phone})" class="btn btn-bold btn-yellow btn-block">ANALYZE</a>
                 </div>
             </div>
         </div>
@@ -151,7 +175,7 @@
                             <a class="btn btn-bold btn-review" href="@ViewBag.closeresult3[2].Url" target="_blank">@ViewBag.closeresult3[2].ratecount Review</a>
                         </div>
                     </p>
-                    <a href="@Url.Action("Contact", "Home",new { @rateing = ViewBag.closeresult3[2].rate, @id = ViewBag.closeresult3[2].id})" class="btn btn-bold btn-yellow btn-block">ANALYZE</a>
+                    <a href="@Url.Action("Contact", "Home",new { @rateing = ViewBag.closeresult3[2].rate, @Phone = ViewBag.closeresult3[2].Phone})" class="btn btn-bold btn-yellow btn-block">ANALYZE</a>
                 </div>
             </div>
         </div>
@@ -219,6 +243,28 @@
         $(document).ready(function () {
             LoadData();
         });
+
+        function showsl() {
+          //  debugger;
+            ShowLoader();
+            var delay = 10;
+            var start = new Date().getTime();
+            while (new Date().getTime() < start + delay);
+            // HideLoader();
+            //  alert('done');
+
+        }
+
+        function ShowLoader() {
+            $("#overDiv")[0].style.display = 'block';
+            $("#loadMess")[0].style.display = 'block';
+        }
+
+        function HideLoader() {
+            $("#overDiv")[0].style.display = 'none';
+            $("#loadMess")[0].style.display = 'none';
+        }
+
         function LoadData() {
             if ($("#txtLocation").val().trim() == "") {
                 $("#txtLocation").focus();
