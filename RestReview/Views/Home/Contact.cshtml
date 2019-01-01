@@ -49,7 +49,7 @@
 </style>
 <div class="container">
     <div class="row" style="margin-top:7%;">
-        <div class="text-center col-lg-12 col-md-12">
+        <div class="text-center col-lg-12 col-md-12">           
             <span> <b style="font-weight: 800;font-size:55px;letter-spacing:-2px;">Your Restaurant's Marketing Grade is:</b></span>
         </div>
     </div>
@@ -82,11 +82,11 @@
         <div class="col-md-12">
             <div class="col-md-3">
                 <div class="progress">
-                    <div class="progress-bar progress-bar-black" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:50%">
+                    <div class="progress-bar progress-bar-black" id="DataConsistencyProgressbar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:5%">
                     </div>
                 </div>
                 <div>
-                    <h5><strong class="initialism">33 / </strong><small style="color: white;">30</small></h5>
+                    <h5><strong class="initialism">@ViewBag.dataConsistency / </strong><small style="color: white;">10</small></h5>
                 </div>
             </div>
             <div class="col-md-3">
@@ -95,7 +95,7 @@
                     </div>
                 </div>
                 <div>
-                    <h5><strong class="initialism">@ViewBag.ratingData / </strong><small style="color: white;">30</small></h5>
+                    <h5><strong class="initialism">@ViewBag.ratingData / </strong><small style="color: white;">40</small></h5>
                 </div>
             </div>
             <div class="col-md-3">
@@ -104,16 +104,16 @@
                     </div>
                 </div>
                 <div>
-                    <h5><strong class="initialism">30 / </strong><small style="color: white;">30</small></h5>
+                    <h5><strong class="initialism">30 / </strong><small style="color: white;">35</small></h5>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="progress">
-                    <div class="progress-bar progress-bar-black" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                    <div class="progress-bar progress-bar-black" id="websiteProgressbar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:10%">
                     </div>
                 </div>
                 <div>
-                    <h5><strong class="initialism">10 / </strong><small style="color: white;">10</small></h5>
+                    <h5><strong class="initialism">@ViewBag.website / </strong><small style="color: white;">15</small></h5>
                 </div>
             </div>
         </div>
@@ -132,20 +132,25 @@
                 <div class="box-content form-group required" style="padding:0% 15%;">
                     <form id="mktoForm_6143">
                         @*<div class="p-t-5px"><input type="text" class="form-control" placeholder="First Name*" /></div>
-                        <div class="p-t-5px"><input type="text" class="form-control" placeholder="Last Name*" /></div>
-                        <div class="p-t-5px"><input type="text" class="form-control" placeholder="Email Address*" /></div>
-                        <div class="p-t-5px"><input type="text" class="form-control" placeholder="Restaurant Name*" /></div>
-                        <div class="p-t-5px"><input type="text" class="form-control" placeholder="Schedule Demo?" /></div>
-                        <div class="p-t-5px"><input type="text" class="form-control" placeholder="Phone Number*" /></div>
-                        <div class="p-t-15px">
-                            <button class="btn btn-block btn-orange">GET FULL RESULTS</button>*@
-                            @*<a href="@Url.Action("Analyze", "Home")" class="btn btn-block btn-orange">GET FULL RESULTS</a>*@
+            <div class="p-t-5px"><input type="text" class="form-control" placeholder="Last Name*" /></div>
+            <div class="p-t-5px"><input type="text" class="form-control" placeholder="Email Address*" /></div>
+            <div class="p-t-5px"><input type="text" class="form-control" placeholder="Restaurant Name*" /></div>
+            <div class="p-t-5px"><input type="text" class="form-control" placeholder="Schedule Demo?" /></div>
+            <div class="p-t-5px"><input type="text" class="form-control" placeholder="Phone Number*" /></div>
+            <div class="p-t-15px">
+                <button class="btn btn-block btn-orange">GET FULL RESULTS</button>*@
+                        @*<a href="@Url.Action("Analyze", "Home")" class="btn btn-block btn-orange">GET FULL RESULTS</a>*@
                         @*</div>*@
                     </form>
                 </div>
             </div>
         </div>
-        <div class="col-md-3"></div>
+        <div class="col-md-3">        </div>
+    </div>
+    <div class="row">
+        <div class="text-center">
+            <a href="@Url.Action("Analyze", "Home")" class="btn btn-block btn-orange">GET FULL RESULTS</a>
+        </div>
     </div>
 </div>
 @section Scripts {
@@ -154,8 +159,14 @@
     <script>MktoForms2.loadForm("//app-sj01.marketo.com", "025-DFN-263", 6143);</script>
     <script type="text/javascript">
         $(document).ready(function () {
-            var progressValue = (@ViewBag.ratingData* 100) / 30;
+            var progressValue = (@ViewBag.ratingData* 100) / 40;
             $('#RateProgressbar').attr("style", "width:" + progressValue + "%");
+
+            var dataConsistencyProgressValue = (@ViewBag.dataConsistency* 100) / 10;
+            $('#DataConsistencyProgressbar').attr("style", "width:" + dataConsistencyProgressValue + "%");
+
+             var websiteProgressValue = (@ViewBag.website* 100) / 15;
+            $('#websiteProgressbar').attr("style", "width:" + websiteProgressValue + "%");
 
 
             $(".my-progress-bar").circularProgress({

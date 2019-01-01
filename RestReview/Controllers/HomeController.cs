@@ -13,6 +13,12 @@ using System.Net.Http.Headers;
 using System.Web.Script.Serialization;
 using Newtonsoft.Json;
 using RestReview.Models;
+using Newtonsoft.Json.Linq;
+using RestReview.Models.data_consistency;
+using RestReview.Models.data_consi_phone;
+using System.Text.RegularExpressions;
+using RestReview.Models.phone_data;
+using RestReview.Models.FB;
 
 namespace RestReview.Controllers
 {
@@ -189,18 +195,159 @@ namespace RestReview.Controllers
             return View();
         }
 
-        public ActionResult Contact(float rateing, string id)
+
+        public ActionResult Contact(float rateing, string Phone)
         {
             ViewBag.Message = "Your contact page.";
-            //rating bar code
-            float rate = (rateing * 30) / 5;
-            ViewBag.ratingData = rate;
+            ViewBag.ratingData = 0;  //total 40
+            ViewBag.dataConsistency = 0;  //total 10
+            ViewBag.phoneRate = 0;  //total 5
+            ViewBag.RestaurantName = "";
+            ViewBag.reviewCount = 0;
+            ViewBag.reviewRating = 0;
+            ViewBag.website = 0;
+            var website = "";
+
+            var res = new Example();
+            var google_place_id = "";
+
+            //rating Data
+            using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
+            {
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", API_KEY);
+                client.BaseAddress = new Uri("https://api.yelp.com/v3/businesses/search/phone");
+                HttpResponseMessage response = client.GetAsync("?phone=" + Phone + "").Result;
+                response.EnsureSuccessStatusCode();
+                string result = response.Content.ReadAsStringAsync().Result;
+                res = JsonConvert.DeserializeObject<Example>(result);
+
+                //rate count code
+                decimal rate = (Convert.ToDecimal(res.businesses[0].rating) * 20) / 5;
+                decimal rate_count = (Convert.ToInt16(res.businesses[0].review_count) * 20) / 1738;
+                if (rate_count > 20)
+                    rate_count = 20;
+                else if (rate_count == 0)
+                    rate_count = 1;
+                ViewBag.ratingData = (rate + rate_count);
+                ViewBag.RestaurantName = res.businesses[0].name;
+                ViewBag.reviewCount = res.businesses[0].review_count;
+                ViewBag.reviewRating = res.businesses[0].rating;
+
+            }
+            //data consistency
+            using (var client_consistency = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
+            {
+                //data cosistency code
+                string original_phone = new string(Phone.Where(char.IsDigit).ToArray());
+                client_consistency.BaseAddress = new Uri("https://maps.googleapis.com/maps/api/place/findplacefromtext/json");
+                HttpResponseMessage response_consistency = client_consistency.GetAsync("?input=%2B"+ original_phone + "&inputtype=phonenumber&fields=place_id,name&key=AIzaSyBEnSTOkBqHX2LDW-yuzXD9Zi3lnQvbe9Y").Result;
+                response_consistency.EnsureSuccessStatusCode();
+                string result_consistency = response_consistency.Content.ReadAsStringAsync().Result;
+                var res_consistency = JsonConvert.DeserializeObject<TestExample>(result_consistency);
+
+                var actual_nm = res.businesses[0].name;
+                   //data consistency full value is 10
+
+               
+                        var res1_nm = res_consistency.candidates[0].name;
+                        google_place_id = res_consistency.candidates[0].place_id;
+
+                        string[] actual_nm_array = actual_nm.Split(' ');
+                        string[] diff1 = res1_nm.Split(' ');
+                       
+
+                        int count1 = 0;
+                       
+                        for (int i = 0; i < actual_nm_array.Length; i++)
+                        {
+                            if (String.Compare(actual_nm_array[i], diff1[i]) != 0)
+                            {
+                                count1 += 1;
+                            }
+                        }
+                        if (count1 == 0 && (diff1.Length == actual_nm_array.Length))
+                        {
+                            ViewBag.dataConsistency = 10;       //data consistency full value is 10
+                        }
+                       
+                        if (ViewBag.dataConsistency == 0)
+                        {
+                            if (actual_nm_array.Length == diff1.Length)
+                            {
+                                int diff = 10 - count1;   //data consistency full value is 10
+                                if (diff < 0)
+                                    diff = 2;
+                                ViewBag.dataConsistency = diff;        //data consistency full value is 10
+                            }                           
+                            else
+                            {
+                                Random randm = new Random();
+                                ViewBag.dataConsistency = randm.Next(2, 7);
+                            }
+                        }
+                    
+                }
+            
+            //data consistency for website
+            using (var client_consistency = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
+            {
+               
+                //data cosistency with website from google
+                client_consistency.BaseAddress = new Uri("https://maps.googleapis.com/maps/api/place/details/json");
+                HttpResponseMessage response_consistency = client_consistency.GetAsync("?key=AIzaSyBEnSTOkBqHX2LDW-yuzXD9Zi3lnQvbe9Y&placeid=" + google_place_id+ "&fields=name,rating,formatted_phone_number,website,international_phone_number").Result;
+                response_consistency.EnsureSuccessStatusCode();
+                string result_consistency = response_consistency.Content.ReadAsStringAsync().Result;
+                var res_consistency = JsonConvert.DeserializeObject<Data_consi_Example>(result_consistency);
+
+                if (res_consistency.result.website != "")
+                {
+                    ViewBag.website = 15;
+                    website = res_consistency.result.website;
+                }
+              
+            }
+
+            //facebook call
+            using (var client_consistency = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
+            {
+
+                //facebook
+                client_consistency.BaseAddress = new Uri("https://graph.facebook.com/");
+                HttpResponseMessage response_consistency = client_consistency.GetAsync("?ids="+website+"").Result;
+                response_consistency.EnsureSuccessStatusCode();
+                string result_consistency = response_consistency.Content.ReadAsStringAsync().Result;
+
+               
+                JavaScriptSerializer serializer = new JavaScriptSerializer();
+                dynamic item = serializer.Deserialize<dynamic>(result_consistency);
+                var like = item[website]["share"]["share_count"];              
+              
+                           
+
+            }
+
+            TempData["ratingData"] = ViewBag.ratingData;
+            TempData["dataConsistency"] = ViewBag.dataConsistency;
+            TempData["phoneRate"] = ViewBag.RestaurantName;  //ViewBag.phoneRate
+            TempData["RestaurantName"] = ViewBag.RestaurantName;
+            TempData["reviewCount"] = ViewBag.reviewCount;
+            TempData["reviewRating"] = ViewBag.reviewRating;
+            TempData["website"] = ViewBag.website;
             return View();
         }
+      
 
         public ActionResult Analyze()
         {
             ViewBag.Message = "Your Analyze page.";
+            ViewBag.dataConsistency = Convert.ToInt32(TempData["dataConsistency"]);
+            ViewBag.RestaurantName = TempData["RestaurantName"];
+            ViewBag.phoneRate = TempData["RestaurantName"];
+            ViewBag.ratingData = Convert.ToInt32(TempData["ratingData"]);
+            ViewBag.reviewCount= TempData["reviewCount"];
+            ViewBag.reviewRating = TempData["reviewRating"];
+            ViewBag.website= TempData["website"];
+
             return View();
         }
 
@@ -259,8 +406,7 @@ namespace RestReview.Controllers
             request.Term = prefix;
             request.MaxResults = 50;
 
-            //int count = 0;
-            //request.ResultsOffset = count;
+
             searchResponse = await client.SearchBusinessesAllAsync(request);
 
             foreach (var b in searchResponse.Businesses)
@@ -269,7 +415,7 @@ namespace RestReview.Controllers
                     SearchList.Add(b);
             }
 
-            //   var customers = (from customer in searchResponse.Businesses
+
             var customers = (from customer in SearchList
                              where ((customer.Name.ToLower()).Contains(prefix.ToLower()))
                              select new

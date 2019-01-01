@@ -1,13 +1,36 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+<style type="text/css">
+    .loadMess {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        z-index: 10000;
+    }
 
+    .overlay {
+        display: none;
+        position: fixed;
+        background-color: rgba(0,0,0,0.7);
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        height: 100%;
+        width: 100%;
+        z-index: 10000;
+    }
+</style>
 <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/themes/blitzer/jquery-ui.css" rel="Stylesheet" type="text/css" />
 
 <div class="container">
     <div class="row" style="margin-top:5%;">
         <div class="text-center col-lg-12 col-md-12">
-            <span> <b style="font-weight: 800;font-size:55px;letter-spacing:-2px;">Restaurants that acore a 90 or above record 30 percent higher sales</b></span>
+            <span> <b style="font-weight: 800;font-size:55px;letter-spacing:-2px;">Restaurants that score a 90 or above record 30 percent higher sales</b></span>
         </div>
         <div class="text-center col-lg-12 col-md-12">
             <h4> <b style="font-weight: 600;">How does your restaurant marketing stack up?</b></h4>
@@ -18,7 +41,7 @@
     <div class="row text-center">
         @using (Html.BeginForm("Review", "Home", FormMethod.Post, new { @class = "" }))
         {
-                @*<div class="form-group col-md-4">*@
+            @*<div class="form-group col-md-4">*@
             <div class="col-md-4 col-md-offset-1">
                 <input type="text" id="txtLocation" name="LocationName" class="form-control border-bottom-input" value="San Francisco, CA" onchange="LoadData()" style="width:100%;" />
             </div>
@@ -30,8 +53,11 @@
             </div>
 
             <div class="form-group col-md-2 offset-1">
-                <input type="submit" id="btnSubmit" value="SUBMIT" class="btn btn-black" />
+                <input type="submit" id="btnSubmit" value="SUBMIT" class="btn btn-black" onclick="showsl();" />
             </div>
+
+            <div id="overDiv" class="overlay"></div><div id="loadMess" class=" loadMess"><img id="mySpinner" src="~/Content/gif/Spin-1s-95px.gif" /></div>
+
 
             <input type="hidden" id="hfCustomer" name="CustomerId" />
         }
@@ -91,6 +117,29 @@
         $(document).ready(function () {
             LoadData();
         });
+
+        function showsl() {
+          //  debugger;
+            ShowLoader();
+            var delay = 10;
+            var start = new Date().getTime();
+            while (new Date().getTime() < start + delay);
+           // HideLoader();
+          //  alert('done');
+
+        }
+
+        function ShowLoader() {
+            $("#overDiv")[0].style.display = 'block';
+            $("#loadMess")[0].style.display = 'block';
+        }
+
+        function HideLoader() {
+            $("#overDiv")[0].style.display = 'none';
+            $("#loadMess")[0].style.display = 'none';
+        }
+
+
         function LoadData() {
             if ($("#txtLocation").val().trim() == "") {
                 $("#txtLocation").focus();
