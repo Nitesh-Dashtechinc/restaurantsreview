@@ -3,15 +3,111 @@
     ViewBag.Title = "Contact";
 }
 
-<style>
+<style type="text/css" media="screen and (max-width: 767px)">
+    .progress-div {
+        padding-top: 20px;
+    }
+    .progress-title {
+        font-size: 8px;
+        font-weight: 800;
+    }
     .progress-percentage {
         color: black;
-        transform: translate(-50%, -122%);
+        transform: translate(-50%, -111%);
         font-weight: 800;
-        font-size: -webkit-xxx-large;
-        font-size: 50px;
+        font-size: 30px;
+        position: absolute;
+        width: 100%;
+        top: 65%;
+        left: 35%;
+        text-align: center;
+        padding: 0px 60px;
+    }
+</style>
+<style type="text/css" media="(min-width: 768px)">
+    .progress-div {
+        padding-top: 20px;
+    }
+    .progress-title {
+        font-size: 10px;
+        font-weight: 800;
+    }
+    .progress-percentage {
+        color: black;
+        transform: translate(-50%, -110%);
+        font-weight: 800;
+        font-size: 45px;
+        position: absolute;
+        width: 100%;
+        top: 65%;
+        left: 50%;
+        text-align: center;
+        padding: 0px 60px;
+    }
+</style>
+<style type="text/css" media="(min-width: 992px)">
+    .progress-div {
+        padding-top: 20px;
+    }
+    .progress-title {
+        font-size: 12px;
+        font-weight: 800;
+    }
+    .progress-percentage {
+        color: black;
+        transform: translate(-50%, -100%);
+        font-weight: 800;
+        font-size: 65px;
+        position: absolute;
+        width: 100%;
+        top: 63%;
+        left: 52%;
+        text-align: center;
+    }
+</style>
+<style type="text/css" media="(min-width: 1200px)">
+    .progress-div {
+        padding-top: 20px;
+    }
+    .progress-title {
+        font-size: 12px;
+        font-weight: 800;
+    }
+    .progress-percentage {
+        color: black;
+        transform: translate(-50%, -100%);
+        font-weight: 800;
+        font-size: 80px;
+        position: absolute;
+        width: 100%;
+        top: 65%;
+        left: 53%;
+        text-align: center;
+    }
+</style>
+<style type="text/css" media="(min-width: 2560px)">
+    .progress-div {
+        padding-top: 20px;
     }
 
+    .progress-title {
+        font-size: 12px;
+        font-weight: 800;
+    }
+
+    .progress-percentage {
+        color: black;
+        transform: translate(-50%, -100%);
+        font-weight: 800;
+        font-size: 90px;
+        position: absolute;
+        width: 100%;
+        top: 65%;
+        left: 53%;
+    }
+</style>
+<style type="text/css">
+   
     .progress-bar-black {
         background-color: black;
     }
@@ -28,12 +124,11 @@
     .border-baner {
         border: 1px solid lightgray;
         border-radius: 15px;
+        margin-bottom: 2%;
     }
 
-    .divider {
-        background: white;
-        height: 5px;
-        margin: 6% 0%;
+    .row-divider {
+        padding-top: 5%;
     }
 
     .btn-orange {
@@ -49,88 +144,68 @@
         padding-top: 15px;
     }
 
-    .left-box {
-        display: block;
-        /*padding: 0px;*/
-        text-align: justify;
-        margin-left: 70px;
-        min-height: 300px;
-    }
-
-    .right-box {
-        display: block;
-        /*padding: 0px;*/
-        text-align: justify;
-        margin-left: 40px;
-        min-height: 300px;
-    }
-
     .top-box {
         margin-left: 80px;
         margin-right: 80px;
     }
 
-    .last-left-box {
-        display: block;
-        /*padding: 0px;*/
-        text-align: justify;
-        margin-left: 70px;
-        min-height: 400px;
+    table {
+        align-content: center;
+        height: 150px;
+        width: 100%;
     }
 
-    .last-center-box {
-        display: block;
-        /*padding: 0px;*/
-        text-align: justify;
-        margin-left: 70px;
-        min-height: 400px;
+    .table-responsive {
+        border-radius: 15px;
+        border: 1px solid;
+        border-color: white;
     }
 
-    .last-right-box {
-        display: block;
-        /*padding: 0px;*/
-        text-align: justify;
-        margin-left: 70px;
-        min-height: 400px;
+    thead > tr {
+        background-color: black;
+        color: white;
     }
-    td,th {
+
+    tbody > tr {
+        background-color: rgb(255, 255, 255);
+        color: black;
+    }
+
+    .odd {
+        background-color: rgba(254, 205, 0, 0.28);
+    }
+
+    td {
         padding: 10px;
+    }
+
+    th {
+        padding: 10px 0px 10px 2%;
     }
 </style>
 <div class="container">
     <div class="row" style="margin-top:7%;">
-        <div class="text-center col-lg-12 col-md-12">
-            <span> <b style="font-weight: 800;font-size:55px;letter-spacing:-2px;">Your Restaurant's Marketing Grade is:</b></span>
+        <div class="text-center col-lg-12 col-md-12 page_title">
+            Your Restaurant's Marketing Grade is:
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-3" id="progress_div_left"></div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6" id="progress_div_center">
+                <div class="my-progress-bar" id="progress_div_right"></div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-3"></div>
         </div>
     </div>
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
-            <div class="my-progress-bar"></div>
-        </div>
-        <div class="col-md-4"></div>
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="col-md-3">
-                <div class="text-uppercase"><h5><b>Data Consistency</b></h5></div>
-            </div>
-            <div class="col-md-3">
-                <div class="text-uppercase"><h5><b>Reviews</b></h5></div>
-            </div>
-            <div class="col-md-3">
-                <div class="text-uppercase"><h5><b>Social Media Completion <br />& Engagement </b></h5></div>
-            </div>
-            <div class="col-md-3">
-                <div class="text-uppercase"><h5><b>website</b></h5></div>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="col-md-3">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="progress-div">
+                    <div class="text-uppercase"><span class="progress-title"> Data Consistency</span></div>
+                </div>
                 <div class="progress">
                     <div class="progress-bar progress-bar-black" id="DataConsistencyProgressbar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:50%">
                     </div>
@@ -138,8 +213,11 @@
                 <div>
                     <h5><strong class="initialism">@ViewBag.dataConsistency / </strong><small style="color: white;">10</small></h5>
                 </div>
+
+
             </div>
-            <div class="col-md-3">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="progress-div"><div class="text-uppercase"><span class="progress-title">Reviews</span></div></div>
                 <div class="progress">
                     <div class="progress-bar progress-bar-black" id="RateProgressbar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:20%">
                     </div>
@@ -148,7 +226,8 @@
                     <h5><strong class="initialism">@ViewBag.ratingData / </strong><small style="color: white;">40</small></h5>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div><div class="text-uppercase"><span class="progress-title">Social Media Completion <br />& Engagement</span></div></div>
                 <div class="progress">
                     <div class="progress-bar progress-bar-black" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:75%">
                     </div>
@@ -157,7 +236,8 @@
                     <h5><strong class="initialism">30 / </strong><small style="color: white;">35</small></h5>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="progress-div"><div class="text-uppercase"><span class="progress-title">website</span></div></div>
                 <div class="progress">
                     <div class="progress-bar progress-bar-black" id="websiteProgressbar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:100%">
                     </div>
@@ -167,705 +247,725 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 
 <div class="container" style="padding-top:7%;padding-bottom:5%; "></div>
-@*Data Consistency*@
 <div class="container">
-    <div class="row border-baner top-box">
-
-        <div class="col-sm-12">
-            <div class="text-center col-md-12" style="padding-top:3%;">
-                <span> <b style="font-weight: 800;font-size:35px;letter-spacing:-2px;color:orange;padding-top:5%;">@ViewBag.dataConsistency/</b><b style="font-weight: 800;font-size:25px;letter-spacing:-2px;">10</b></span>
+    <!--Data Consistency-->
+    <div class="row row-divider">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="border-baner">
+                <div class="text-center" style="padding-top:3%;">
+                    <span> <b style="font-weight: 800;font-size:35px;letter-spacing:-2px;color:orange;padding-top:5%;">@ViewBag.dataConsistency/</b><b style="font-weight: 800;font-size:25px;letter-spacing:-2px;">10</b></span>
+                </div>
+                <div class="text-center" style="padding-bottom:2%;">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-orange" id="DataConsistencyProgressbarIn" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:10%;"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+                <div class="text-center" style="padding-bottom:2%;">
+                    <span> <b style="font-weight: 700;font-size:35px;letter-spacing:0px;color:#72a0fe;padding-top:5%;padding-bottom:5%;">Data Consistency</b></span>
+                </div>
+                <div class="text-center">
+                    <b style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">
+                        It's important that all of your restaurant's information is consistent across all social media platform.<br />
+                        You don't want customers driving to the wrong address of calling the wrong phone number!
+                    </b>
+                </div>
+                <div class="text-center" style="padding-bottom:5%;padding-top:3%;">
+                    <span><a href="#"><b style="font-weight: 600;font-size:20px;letter-spacing:0px;color:orange;padding-top:5%;">Read More </b></a></span>
+                </div>
             </div>
-            <div class="text-center col-md-12" style="padding-bottom:2%;">
-                <div class="col-md-3"></div>
-                <div class="col-md-6">
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-orange" id="DataConsistencyProgressbarIn" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:10%;"></div>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="border-baner left-box">
+                    <div class="text-center" style="padding-bottom:4%;padding-top:4%;">
+                        <span> <b style="font-weight: 700;font-size:20px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">Restaurant Name</b></span>
+                    </div>
+                    <div class="restaurant-name-progress-bar"></div>
+                    <div class="text-center">
+                        <span> <b style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:2%;padding-bottom:2%;">ADVICE</b></span>
+                    </div>
+                    <div class="text-center" style="padding-bottom:5%;padding-top:4%;">
+                        <span>
+                            <b style="font-weight: 600;font-size:15px;letter-spacing:0px;">
+                                When updating your social media,<br />
+                                make sure that your restaurant's name<br />
+                                is the same across all platforms.
+                            </b>
+                        </span>
                     </div>
                 </div>
-                <div class="col-md-3"></div>
             </div>
-            <div class="text-center col-md-12" style="padding-bottom:2%;">
-                <span> <b style="font-weight: 700;font-size:35px;letter-spacing:0px;color:#72a0fe;padding-top:5%;padding-bottom:5%;">Data Consistency</b></span>
-            </div>
-            <div class="text-center col-md-12">
-                <b style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">
-                    It's important that all of your restaurant's information is consistent across all social media platform.<br />
-                    You don't want customers driving to the wrong address of calling the wrong phone number!
-                </b>
-            </div>
-
-
-            <div class="text-center col-md-12" style="padding-bottom:5%;padding-top:3%;">
-                <span><a href="#"><b style="font-weight: 600;font-size:20px;letter-spacing:0px;color:orange;padding-top:5%;">Read More </b></a></span>
-            </div>
-
-        </div>
-
-    </div>
-    <div class="row " style="padding:2%;">
-
-        <div class="col-md-5 border-baner left-box">
-            <div class="text-center" style="padding-bottom:4%;padding-top:4%;">
-                <span> <b style="font-weight: 700;font-size:20px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">Restaurant Name</b></span>
-            </div>
-            <div class="restaurant-name-progress-bar"></div>
-            <div class="text-center">
-                <span> <b style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:2%;padding-bottom:2%;">ADVICE</b></span>
-            </div>
-            <div class="text-center" style="padding-bottom:5%;padding-top:4%;">
-                <span>
-                    <b style="font-weight: 600;font-size:15px;letter-spacing:0px;">
-                        When updating your social media,<br />
-                        make sure that your restaurant's name<br />
-                        is the same across all platforms.
-                    </b>
-                </span>
-            </div>
-        </div>
-
-        <div class="col-md-5 border-baner right-box">
-            <div class="text-center" style="padding-bottom:4%;padding-top:4%;">
-                <span> <b style="font-weight: 700;font-size:20px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">Phone Number </b></span>
-            </div>
-            <div class="phone-number-progress-bar"></div>
-            <div class="text-center">
-                <span> <b style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:2%;padding-bottom:2%;">ADVICE</b></span>
-            </div>
-            <div class="text-center" style="padding-bottom:5%;padding-top:4%;">
-                <span>
-                    <b style="font-weight: 600;font-size:15px;letter-spacing:0px;">
-                        Your phone number should be the,<br />
-                        same and correct on all platforms!<br />
-                    </b>
-                </span>
-            </div>
-        </div>
-
-
-    </div>
-</div>
-@*Review rating and count*@
-<div class="container">
-    <div class="row border-baner top-box">
-
-        <div class="col-sm-12">
-            <div class="text-center col-md-12" style="padding-top:3%;">
-                <span> <b style="font-weight: 800;font-size:35px;letter-spacing:-2px;color:orange;padding-top:5%;">@ViewBag.ratingData/</b><b style="font-weight: 800;font-size:25px;letter-spacing:-2px;">40</b></span>
-            </div>
-            <div class="text-center col-md-12" style="padding-bottom:2%;">
-                <div class="col-md-3"></div>
-                <div class="col-md-6">
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-orange" id="RateProgressbarIn" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:10%;"></div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="border-baner right-box">
+                    <div class="text-center" style="padding-bottom:4%;padding-top:4%;">
+                        <span> <b style="font-weight: 700;font-size:20px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">Phone Number </b></span>
+                    </div>
+                    <div class="phone-number-progress-bar"></div>
+                    <div class="text-center">
+                        <span> <b style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:2%;padding-bottom:2%;">ADVICE</b></span>
+                    </div>
+                    <div class="text-center" style="padding-bottom:9%;padding-top:4%;">
+                        <span>
+                            <b style="font-weight: 600;font-size:15px;letter-spacing:0px;">
+                                Your phone number should be the,<br />
+                                same and correct on all platforms!<br />
+                            </b>
+                        </span>
                     </div>
                 </div>
-                <div class="col-md-3"></div>
-            </div>
-            <div class="text-center col-md-12" style="padding-bottom:2%;">
-                <span> <b style="font-weight: 700;font-size:35px;letter-spacing:0px;color:#72a0fe;padding-top:5%;padding-bottom:5%;">Reviews</b></span>
-            </div>
-            <div class="text-center col-md-12">
-                <b style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">
-                    Reviews quanity the experience that your customers have at your restaurant and they set a<br />
-                    precedence for fututre customers. Today, 85% of diners trust online reviews as much as personal<br />
-                    reviews (source)making reviews on websites such as Yelp, Facebook, and Zomato crucial to your<br />
-                    online presence. 97% of consumers read online reviews for local businesses last year (Brightlocal)<br />
-                </b>
-            </div>
-
-
-            <div class="text-center col-md-12" style="padding-bottom:5%;padding-top:3%;">
-                <span><a href="#"><b style="font-weight: 600;font-size:20px;letter-spacing:0px;color:orange;padding-top:5%;">Read More </b></a></span>
-            </div>
-
-        </div>
-
-    </div>
-    <div class="row " style="padding:2%;">
-
-        <div class="col-md-5 border-baner left-box">
-            <div class="text-center" style="padding-bottom:4%;padding-top:4%;">
-                <span> <b style="font-weight: 700;font-size:20px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">Reviews Count</b></span>
-            </div>
-            <div class="reviews-count-progress-bar"></div>
-            <div class="text-center">
-                <span> <b style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:2%;padding-bottom:2%;">ADVICE</b></span>
-            </div>
-            <div class="text-center" style="padding-bottom:5%;padding-top:4%;">
-                <span>
-                    <b style="font-weight: 600;font-size:15px;letter-spacing:0px;">
-                        Having online reviews is extremely<br />
-                        important as most diners search a<br />
-                        restaurant before they visit it.
-                    </b>
-                </span>
-            </div>
-        </div>
-
-        <div class="col-md-5 border-baner right-box">
-            <div class="text-center" style="padding-bottom:4%;padding-top:4%;">
-                <span> <b style="font-weight: 700;font-size:20px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">Reviews Rating </b></span>
-            </div>
-            <div class="reviews-rating-progress-bar"></div>
-            <div class="text-center">
-                <span> <b style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:2%;padding-bottom:2%;">ADVICE</b></span>
-            </div>
-            <div class="text-center" style="padding-bottom:5%;padding-top:4%;">
-                <span>
-                    <b style="font-weight: 600;font-size:15px;letter-spacing:0px;">
-                        Consumers read and consider<br />
-                        restaurant reviews at a higher rate<br />
-                        than any other industry.
-                    </b>
-                </span>
             </div>
         </div>
     </div>
-</div>
-@*Social media*@
-<div class="container">
-    <div class="row border-baner top-box">
-
-        <div class="col-sm-12">
-            <div class="text-center col-md-12" style="padding-top:3%;">
-                <span> <b style="font-weight: 800;font-size:35px;letter-spacing:-2px;color:orange;padding-top:5%;">30/</b><b style="font-weight: 800;font-size:25px;letter-spacing:-2px;">30</b></span>
+    <!--Review rating and count-->
+    <div class="row row-divider">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="border-baner">
+                <div class="text-center" style="padding-top:3%;">
+                    <span> <b style="font-weight: 800;font-size:35px;letter-spacing:-2px;color:orange;padding-top:5%;">@ViewBag.ratingData/</b><b style="font-weight: 800;font-size:25px;letter-spacing:-2px;">40</b></span>
+                </div>
+                <div class="text-center" style="padding-bottom:2%;">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-orange" id="RateProgressbarIn" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:10%;"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+                <div class="text-center" style="padding-bottom:2%;">
+                    <span> <b style="font-weight: 700;font-size:35px;letter-spacing:0px;color:#72a0fe;padding-top:5%;padding-bottom:5%;">Reviews</b></span>
+                </div>
+                <div class="text-center">
+                    <b style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">
+                        Reviews quanity the experience that your customers have at your restaurant and they set a<br />
+                        precedence for fututre customers. Today, 85% of diners trust online reviews as much as personal<br />
+                        reviews (source)making reviews on websites such as Yelp, Facebook, and Zomato crucial to your<br />
+                        online presence. 97% of consumers read online reviews for local businesses last year (Brightlocal)<br />
+                    </b>
+                </div>
+                <div class="text-center" style="padding-bottom:5%;padding-top:3%;">
+                    <span><a href="#"><b style="font-weight: 600;font-size:20px;letter-spacing:0px;color:orange;padding-top:5%;">Read More </b></a></span>
+                </div>
             </div>
-            <div class="text-center col-md-12" style="padding-bottom:2%;">
-                <div class="col-md-3"></div>
-                <div class="col-md-6">
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-orange" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="border-baner left-box">
+                    <div class="text-center" style="padding-bottom:4%;padding-top:4%;">
+                        <span> <b style="font-weight: 700;font-size:20px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">Reviews Count</b></span>
+                    </div>
+                    <div class="reviews-count-progress-bar"></div>
+                    <div class="text-center">
+                        <span> <b style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:2%;padding-bottom:2%;">ADVICE</b></span>
+                    </div>
+                    <div class="text-center" style="padding-bottom:5%;padding-top:4%;">
+                        <span>
+                            <b style="font-weight: 600;font-size:15px;letter-spacing:0px;">
+                                Having online reviews is extremely<br />
+                                important as most diners search a<br />
+                                restaurant before they visit it.
+                            </b>
+                        </span>
                     </div>
                 </div>
-                <div class="col-md-3"></div>
             </div>
-            <div class="text-center col-md-12" style="padding-bottom:2%;">
-                <span> <b style="font-weight: 700;font-size:35px;letter-spacing:0px;color:#72a0fe;padding-top:5%;padding-bottom:5%;">Social Media</b></span>
-            </div>
-            <div class="text-center col-md-12">
-                <b style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">
-                    Social media is king in today's information age making it an important asset for any restaurant that<br />
-                    wants to have a robust online presence. Engaging with customers online by sharing their photos and<br />
-                    keeping them up to date with what is happening at your restaurant is a great way to boost your web presence!
-                </b>
-            </div>
-
-
-            <div class="text-center col-md-12" style="padding-bottom:5%;padding-top:3%;">
-                <span><a href="#"><b style="font-weight: 600;font-size:20px;letter-spacing:0px;color:orange;padding-top:5%;">Read More </b></a></span>
-            </div>
-
-        </div>
-
-    </div>
-    <div class="row " style="padding:2%;">
-
-        <div class="col-md-5 border-baner left-box">
-            <div class="text-center" style="padding-bottom:4%;padding-top:4%;">
-                <span> <b style="font-weight: 700;font-size:20px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">Facebook</b></span>
-            </div>
-            <div class="facebook-progress-bar"></div>
-            <div class="text-center">
-                <span> <b style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:2%;padding-bottom:2%;">ADVICE</b></span>
-            </div>
-            <div class="text-center" style="padding-bottom:5%;padding-top:4%;">
-                <span>
-                    <b style="font-weight: 600;font-size:15px;letter-spacing:0px;">
-                        Facebook is alive and well! The 'book<br />
-                        is a great tool to update your loyal<br />
-                        customers on everything that is<br />
-                        happening at your restaurant!<br />
-                    </b>
-                </span>
-            </div>
-        </div>
-
-        <div class="col-md-5 border-baner right-box">
-            <div class="text-center" style="padding-bottom:4%;padding-top:4%;">
-                <span> <b style="font-weight: 700;font-size:20px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">Photos </b></span>
-            </div>
-            <div class="photos-progress-bar"></div>
-            <div class="text-center">
-                <span> <b style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:2%;padding-bottom:2%;">ADVICE</b></span>
-            </div>
-            <div class="text-center" style="padding-bottom:5%;padding-top:4%;">
-                <span>
-                    <b style="font-weight: 600;font-size:15px;letter-spacing:0px;">
-                        People love visuals,especially when it  comes<br />
-                        to photos of food.Use this to your advantage by encouraging<br />
-                        dinners to take pictures of their food and re-posting<br />
-                        them on your restaurant's social media!
-                    </b>
-                </span>
-            </div>
-        </div>
-    </div>
-</div>
-@*Website*@
-<div class="container" style="margin-bottom:5%;">
-    <div class="row border-baner top-box">
-
-        <div class="col-sm-12">
-            <div class="text-center col-md-12" style="padding-top:3%;">
-                <span> <b style="font-weight: 800;font-size:35px;letter-spacing:-2px;color:orange;padding-top:5%;">@ViewBag.website/</b><b style="font-weight: 800;font-size:25px;letter-spacing:-2px;">15</b></span>
-            </div>
-            <div class="text-center col-md-12" style="padding-bottom:2%;">
-                <div class="col-md-3"></div>
-                <div class="col-md-6">
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-orange" id="websiteProgressbarIn" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="border-baner right-box">
+                    <div class="text-center" style="padding-bottom:4%;padding-top:4%;">
+                        <span> <b style="font-weight: 700;font-size:20px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">Reviews Rating </b></span>
+                    </div>
+                    <div class="reviews-rating-progress-bar"></div>
+                    <div class="text-center">
+                        <span> <b style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:2%;padding-bottom:2%;">ADVICE</b></span>
+                    </div>
+                    <div class="text-center" style="padding-bottom:5%;padding-top:4%;">
+                        <span>
+                            <b style="font-weight: 600;font-size:15px;letter-spacing:0px;">
+                                Consumers read and consider<br />
+                                restaurant reviews at a higher rate<br />
+                                than any other industry.
+                            </b>
+                        </span>
                     </div>
                 </div>
-                <div class="col-md-3"></div>
             </div>
-            <div class="text-center col-md-12" style="padding-bottom:2%;">
-                <span> <b style="font-weight: 700;font-size:35px;letter-spacing:0px;color:#72a0fe;padding-top:5%;padding-bottom:5%;">Website</b></span>
-            </div>
-            <div class="text-center col-md-12">
-                <b style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">
-                    Wheter it is to look at your restaurant's ,menu or to find your hours, customers are constantly<br />
-                    searching about your restaurant. By keeping all thi information up to date your website it<br />
-                    provides customers with one easy place to find everything they need!
-                </b>
-            </div>
-
-
-            <div class="text-center col-md-12" style="padding-bottom:5%;padding-top:3%;">
-                <span><a href="#"><b style="font-weight: 600;font-size:20px;letter-spacing:0px;color:orange;padding-top:5%;">Read More </b></a></span>
-            </div>
-
         </div>
-
     </div>
-    <div class="row " style="padding:2%;">
-
-        <div class="col-md-3 border-baner last-left-box">
-            <div class="text-center" style="padding-bottom:4%;padding-top:4%;">
-                <span> <b style="font-weight: 700;font-size:20px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">Website URL</b></span>
-            </div>
-            <div class="website-url-progress-bar"></div>
-            <div class="text-center">
-                <span> <b style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:2%;padding-bottom:2%;">ADVICE</b></span>
-            </div>
-            <div class="text-center" style="padding-bottom:5%;padding-top:4%;">
-                <span>
-                    <b style="font-weight: 600;font-size:15px;letter-spacing:0px;">
-                        It's important that your website<br />
-                        URL is correct across all social<br />
-                        media platforms. Consistency<br />
-                        creates less confusion and<br />
-                        drives more potential<br />
-                        customers to youe site.
+    <!--Social media-->
+    <div class="row row-divider">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="border-baner">
+                <div class="text-center" style="padding-top:3%;">
+                    <span> <b style="font-weight: 800;font-size:35px;letter-spacing:-2px;color:orange;padding-top:5%;">30/</b><b style="font-weight: 800;font-size:25px;letter-spacing:-2px;">30</b></span>
+                </div>
+                <div class="text-center" style="padding-bottom:2%;">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-orange" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+                <div class="text-center" style="padding-bottom:2%;">
+                    <span> <b style="font-weight: 700;font-size:35px;letter-spacing:0px;color:#72a0fe;padding-top:5%;padding-bottom:5%;">Social Media</b></span>
+                </div>
+                <div class="text-center">
+                    <b style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">
+                        Social media is king in today's information age making it an important asset for any restaurant that<br />
+                        wants to have a robust online presence. Engaging with customers online by sharing their photos and<br />
+                        keeping them up to date with what is happening at your restaurant is a great way to boost your web presence!
                     </b>
-                </span>
+                </div>
+                <div class="text-center" style="padding-bottom:5%;padding-top:3%;">
+                    <span><a href="#"><b style="font-weight: 600;font-size:20px;letter-spacing:0px;color:orange;padding-top:5%;">Read More </b></a></span>
+                </div>
             </div>
         </div>
-
-        <div class="col-md-3 border-baner last-center-box">
-            <div class="text-center" style="padding-bottom:4%;padding-top:4%;">
-                <span> <b style="font-weight: 700;font-size:20px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">Referral Domain </b></span>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="border-baner left-box">
+                    <div class="text-center" style="padding-bottom:4%;padding-top:4%;">
+                        <span> <b style="font-weight: 700;font-size:20px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">Facebook</b></span>
+                    </div>
+                    <div class="facebook-progress-bar"></div>
+                    <div class="text-center">
+                        <span> <b style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:2%;padding-bottom:2%;">ADVICE</b></span>
+                    </div>
+                    <div class="text-center" style="padding-bottom:5%;padding-top:4%;">
+                        <span>
+                            <b style="font-weight: 600;font-size:15px;letter-spacing:0px;">
+                                Facebook is alive and well! The 'book<br />
+                                is a great tool to update your loyal<br />
+                                customers on everything that is<br />
+                                happening at your restaurant!<br />
+                            </b>
+                        </span>
+                    </div>
+                </div>
             </div>
-            <div class="referral-domain-progress-bar"></div>
-            <div class="text-center">
-                <span> <b style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:2%;padding-bottom:2%;">ADVICE</b></span>
-            </div>
-            <div class="text-center" style="padding-bottom:5%;padding-top:4%;">
-                <span>
-                    <b style="font-weight: 600;font-size:15px;letter-spacing:0px;">
-                        When other websites mention<br />
-                        or link to youe website it drives<br />
-                        more traffic to your site!<br />
-                        There's no such things as too<br />
-                        much exposure for your<br />
-                        restaurant. Just make sure<br />
-                        these links are good quality<br />
-                        and not spam!
-                    </b>
-                </span>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="border-baner right-box">
+                    <div class="text-center" style="padding-bottom:4%;padding-top:4%;">
+                        <span> <b style="font-weight: 700;font-size:20px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">Photos </b></span>
+                    </div>
+                    <div class="photos-progress-bar"></div>
+                    <div class="text-center">
+                        <span> <b style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:2%;padding-bottom:2%;">ADVICE</b></span>
+                    </div>
+                    <div class="text-center" style="padding-bottom:5%;padding-top:4%;">
+                        <span>
+                            <b style="font-weight: 600;font-size:15px;letter-spacing:0px;">
+                                People love visuals,especially when it  comes<br />
+                                to photos of food.Use this to your advantage by encouraging<br />
+                                dinners to take pictures of their food and re-posting<br />
+                                them on your restaurant's social media!
+                            </b>
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <div class="col-md-3 border-baner last-right-box">
-            <div class="text-center" style="padding-bottom:4%;padding-top:4%;">
-                <span> <b style="font-weight: 700;font-size:20px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">Number of Pages </b></span>
-            </div>
-            <div class="number-of-pages-progress-bar"></div>
-            <div class="text-center">
-                <span> <b style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:2%;padding-bottom:2%;">ADVICE</b></span>
-            </div>
-            <div class="text-center" style="padding-bottom:5%;padding-top:4%;">
-                <span>
-                    <b style="font-weight: 600;font-size:15px;letter-spacing:0px;">
-                        Don't just throw all of your<br />
-                        restaurant's onformation onto<br />
-                        one oage on your website.<br />
-                        Create numerous pages for<br />
-                        your site that add value to it<br />
-                        and enhance your users<br />
-                        experience.
+    </div>
+    <!--Website-->
+    <div class="row row-divider">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="border-baner">
+                <div class="text-center" style="padding-top:3%;">
+                    <span> <b style="font-weight: 800;font-size:35px;letter-spacing:-2px;color:orange;padding-top:5%;">@ViewBag.website/</b><b style="font-weight: 800;font-size:25px;letter-spacing:-2px;">15</b></span>
+                </div>
+                <div class="text-center" style="padding-bottom:2%;">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-orange" id="websiteProgressbarIn" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+                <div class="text-center" style="padding-bottom:2%;">
+                    <span> <b style="font-weight: 700;font-size:35px;letter-spacing:0px;color:#72a0fe;padding-top:5%;padding-bottom:5%;">Website</b></span>
+                </div>
+                <div class="text-center">
+                    <b style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">
+                        Wheter it is to look at your restaurant's ,menu or to find your hours, customers are constantly<br />
+                        searching about your restaurant. By keeping all thi information up to date your website it<br />
+                        provides customers with one easy place to find everything they need!
                     </b>
-                </span>
+                </div>
+                <div class="text-center" style="padding-bottom:5%;padding-top:3%;">
+                    <span><a href="#"><b style="font-weight: 600;font-size:20px;letter-spacing:0px;color:orange;padding-top:5%;">Read More </b></a></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="border-baner left-box">
+                    <div class="text-center" style="padding-bottom:4%;padding-top:4%;">
+                        <span> <b style="font-weight: 700;font-size:20px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">Website URL</b></span>
+                    </div>
+                    <div class="website-url-progress-bar"></div>
+                    <div class="text-center">
+                        <span> <b style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:2%;padding-bottom:2%;">ADVICE</b></span>
+                    </div>
+                    <div class="text-center" style="padding-bottom:5%;padding-top:4%;">
+                        <span>
+                            <b style="font-weight: 600;font-size:15px;letter-spacing:0px;">
+                                It's important that your website<br />
+                                URL is correct across all social<br />
+                                media platforms. Consistency<br />
+                                creates less confusion and<br />
+                                drives more potential<br />
+                                customers to youe site.
+                            </b>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="border-baner last-center-box">
+                    <div class="text-center" style="padding-bottom:4%;padding-top:4%;">
+                        <span> <b style="font-weight: 700;font-size:20px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">Referral Domain </b></span>
+                    </div>
+                    <div class="referral-domain-progress-bar"></div>
+                    <div class="text-center">
+                        <span> <b style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:2%;padding-bottom:2%;">ADVICE</b></span>
+                    </div>
+                    <div class="text-center" style="padding-bottom:5%;padding-top:4%;">
+                        <span>
+                            <b style="font-weight: 600;font-size:15px;letter-spacing:0px;">
+                                When other websites mention<br />
+                                or link to youe website it drives<br />
+                                more traffic to your site!<br />
+                                There's no such things as too<br />
+                                much exposure for your<br />
+                                restaurant. Just make sure<br />
+                                these links are good quality<br />
+                                and not spam!
+                            </b>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="border-baner right-box">
+                    <div class="text-center" style="padding-bottom:4%;padding-top:4%;">
+                        <span> <b style="font-weight: 700;font-size:20px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">Number of Pages </b></span>
+                    </div>
+                    <div class="number-of-pages-progress-bar"></div>
+                    <div class="text-center">
+                        <span> <b style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:2%;padding-bottom:2%;">ADVICE</b></span>
+                    </div>
+                    <div class="text-center" style="padding-bottom:5%;padding-top:4%;">
+                        <span>
+                            <b style="font-weight: 600;font-size:15px;letter-spacing:0px;">
+                                Don't just throw all of your<br />
+                                restaurant's onformation onto<br />
+                                one oage on your website.<br />
+                                Create numerous pages for<br />
+                                your site that add value to it<br />
+                                and enhance your users<br />
+                                experience.
+                            </b>
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="container" style="background-color:cornflowerblue;margin-bottom:10%;">
-    <div class="text-center col-md-12" style="padding-top:3%;">
-        <span> <b style="font-weight: 800;font-size:35px;letter-spacing:-2px;padding-top:5%;">Next Step</b></span>
-    </div>
-    <div class="text-center col-md-12" style="padding-top:1%;">
-        <span> <b style="font-size:20px;">Here are some ways to improve your restaurant's marketing</b></span>
-    </div>
-    <div class="text-center col-md-12" style="padding-top:3%;"><hr />    </div>
-    <div class="text-center col-md-12" style="padding-top:3%;">
-        <span> <b style="font-weight: 800;font-size:35px;letter-spacing:-2px;">List Advice</b></span>
-    </div>
+<div style="background-color:cornflowerblue;margin-top: 5%;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center" style="padding-top:3%;">
+                <span> <b style="font-weight: 800;font-size:35px;letter-spacing:-2px;padding-top:5%;">Next Steps</b></span>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center" style="padding-top:1%;">
+                <span> <b style="font-size:20px;">Here are some ways to improve your restaurant's marketing!</b></span>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center" style="padding-top:3%;"><hr style="border-top:2px solid black" />    </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center" style="padding-top:3%;">
+                <span> <b style="font-weight: 800;font-size:35px;letter-spacing:-2px;">List Advice</b></span>
+            </div>
 
-    <div style="padding:3%;">
-        <table align="center" border="1" height="150" width="900">
-            <tr style="background-color:black;color:white;">
-                <th>0</th>
-                <th>0-25%</th>
-                <th>25-50%</th>
-                <th>50-75%</th>
-                <th>75-100%</th>
-            </tr>
-            <tr>
-                <td style="background-color:white;color:black;">
-                    Your Restaurant's<br />
-                    Marketing____
-                </td>
-                <td style="background-color:navajowhite;color:black;">
-                    can only get<br />
-                    better from here!
-                </td>
-                <td style="background-color:white;color:black;">
-                    is on it's way!Lets see<br />
-                    what we can do to make<br />
-                    it ever better!
-                </td>
-                <td style="background-color:navajowhite;color:black;">
-                    is almost there!Here<br />
-                    are some suggestions<br />
-                    that will make it excel!
-                </td>
-                <td style="background-color:white;color:black;">
-                    is top notch!<br />
-                    Looks like you're<br />
-                    a prefessional!
-                </td>
-            </tr>
-
-        </table>
-    </div>
-
-    <div style="padding:3%;">
-        <table align="center" border="1" height="150" width="900">
-            <tr style="background-color:black;color:white;">
-                <th>Data Consistency</th>
-                <th>0-2</th>
-                <th>2-4</th>
-                <th>4-5</th>
-                <th>Advice</th>
-            </tr>
-            <tr>
-                <td style="background-color:white;color:black;">
-                    Restaurant Name
-                </td>
-                <td style="background-color:navajowhite;color:black;">
-                    some things look a<br />
-                    little different...
-                </td>
-                <td style="background-color:white;color:black;">
-                    Looks like your could<br />
-                    use a little help!
-                </td>
-                <td style="background-color:navajowhite;color:black;">
-                    Say my name, say my<br />
-                    name!
-                </td>
-                <td style="background-color:white;color:black;">
-                    It's important that your restaurant's name<br />
-                    and brand is consistent across all platforms.
-                </td>
-            </tr>
-            <tr>
-                <td style="background-color:white;color:black;">
-                    Phone Number<br />
-                    Advice
-                </td>
-                <td style="background-color:navajowhite;color:black;">
-                    Ring, ring... Oops<br />
-                    sorry!Wrong number!
-                </td>
-                <td style="background-color:white;color:black;">
-                    A few things need to<br />
-                    be switched up.
-                </td>
-                <td style="background-color:navajowhite;color:black;">
-                    Put a ring on it!
-                </td>
-                <td style="background-color:white;color:black;">
-                    Make sure that your restaurant's phone<br />
-                    number is the same on Facebook, Yelp,<br />
-                    Google, Zomato, and your website so no one<br />
-                    get confused!
-                </td>
-            </tr>
-
-        </table>
-    </div>
-
-    <div style="padding:3%;">
-        <table align="center" border="1" height="150" width="900">
-            <tr style="background-color:black;color:white;">
-                <th>Reviews</th>
-                <th>0-5</th>
-                <th>5-10</th>
-                <th>10-15</th>
-                <th>15-20</th>
-                <th>Advice</th>
-            </tr>
-            <tr>
-                <td style="background-color:white;color:black;">
-                    Reviews Count
-                </td>
-                <td style="background-color:navajowhite;color:black;">
-                    Time to step up your<br />
-                    Game!
-                </td>
-                <td style="background-color:white;color:black;"></td>
-                <td style="background-color:navajowhite;color:black;">
-                    You're on your way to<br />
-                    being a review pro!
-                </td>
-                <td style="background-color:white;color:black;">
-                    You are review<br />
-                    magnet!
-                </td>
-                <td style="background-color:navajowhite;color:black;">
-                    Online reviews are <br />
-                    extremly important
-                </td>
-            </tr>
-            <tr>
-                <td style="background-color:white;color:black;">
-                    Reviews rating
-                </td>
-                <td style="background-color:navajowhite;color:black;">
-                    Your reviews count<br />
-                    they can only get<br />
-                    better from here
-                </td>
-                <td style="background-color:white;color:black;">
-                    Let's boot those<br />
-                    ratings!
-                </td>
-                <td style="background-color:navajowhite;color:black;">
-                    Who says you need to<br />
-                    shoot for the moon<br />
-                    when five stars is<br />
-                    better?
-                </td>
-                <td style="background-color:white;color:black;">
-                    Look at all your stars!
-                </td>
-                <td style="background-color:navajowhite;color:black;">
-                    it's easy for you to<br />
-                    take control of your<br />
-                    reviews and to<br />
-                    encourage positive<br />
-                    feedback from your
-                    customers
-                </td>
-            </tr>
-        </table>
-    </div>
-
-    <div style="padding:3%;">
-        <table align="center" border="1" height="150" width="900">
-            <tr style="background-color:black;color:white;">
-                <th>Social Media</th>
-                <th>0-3</th>
-                <th>4-6</th>
-                <th>6-8</th>
-                <th>8-10</th>
-                <th>Advice</th>
-            </tr>
-            <tr>
-                <td style="background-color:white;color:black;">
-                    Facebook? What's<br />
-                    that?
-                </td>
-                <td style="background-color:navajowhite;color:black;">
-                    Being on Facebook is<br />
-                    the first step, the<br />
-                    second is getting<br />
-                    those likes up!
-                </td>
-                <td style="background-color:white;color:black;"></td>
-                <td style="background-color:navajowhite;color:black;">
-                    Close to being a<br />
-                    Facebook king!
-                </td>
-                <td style="background-color:white;color:black;">
-                    Your Facebook is<br />
-                    killing it!
-                </td>
-                <td style="background-color:navajowhite;color:black;">
-                    Facebook is an<br />
-                    extremely important<br />
-                    tool for restaurants.
-                </td>
-            </tr>
-            <tr>
-                <td style="background-color:white;color:black;">
-                    Photos
-                </td>
-                <td style="background-color:navajowhite;color:black;">
-                    Start snapping some<br />
-                    pics!
-                </td>
-                <td style="background-color:white;color:black;">
-                    There's no such thing<br />
-                    as having too many<br />
-                    photos! Let's take<br />
-                    some more!
-                </td>
-                <td style="background-color:navajowhite;color:black;">
-                    Visuals always help<br />
-                    and you clearly know<br />
-                    that!
-                </td>
-                <td style="background-color:white;color:black;">
-                    Oh snap! Are you a<br />
-                    professional<br />
-                    photographer?
-                </td>
-                <td style="background-color:navajowhite;color:black;">
-                    Visuals are important!<br />
-                    Drool worthly food<br />
-                    photos are even more<br />
-                    important!
-                </td>
-            </tr>
-        </table>
-    </div>
-
-    <div style="padding:3%;">
-        <table align="center" border="1" height="150" width="900">
-            <tr style="background-color:black;color:white;">
-                <th>Website</th>
-                <th>0-2</th>
-                <th>2-4</th>
-                <th>4-5</th>
-                <th></th>
-                <th>Advice</th>
-            </tr>
-            <tr>
-                <td style="background-color:white;color:black;">
-                    Wbsite Url
-                </td>
-                <td style="background-color:navajowhite;color:black;">
-                    Somethings aren't the<br />
-                    same...
-                </td>
-                <td style="background-color:white;color:black;">
-                    So close!
-                </td>
-                <td style="background-color:navajowhite;color:black;">
-                    Looks like your URLs<br />
-                    are all set!
-                </td>
-                <td style="background-color:white;color:black;"></td>
-                <td style="background-color:navajowhite;color:black;">
-                    Consistency is<br />
-                    important! Make sure<br />
-                    your website URL is<br />
-                    the same across<br />
-                    every site it is listed<br />
-                    on.
-                </td>
-            </tr>
-            <tr>
-                <td style="background-color:white;color:black;">
-                    Number of pages
-                </td>
-                <td style="background-color:navajowhite;color:black;">
-                    Time to beef up your<br />
-                    website!
-                </td>
-                <td style="background-color:white;color:black;">
-                    You're almost there!
-                </td>
-                <td style="background-color:navajowhite;color:black;">
-                    You've got a great<br />
-                    number of pages!
-                </td>
-                <td style="background-color:white;color:black;"></td>
-                <td style="background-color:navajowhite;color:black;">
-                    It's time to optimize<br />
-                    the most important<br />
-                    pages on your<br />
-                    website!
-                </td>
-            </tr>
-            <tr style="background-color:black;color:white;">
-                <th></th>
-                <th>0-3</th>
-                <th>4-6</th>
-                <th>6-8</th>
-                <th>8-10</th>
-                <th>Advice</th>
-            </tr>
-            <tr>
-                <td style="background-color:white;color:black;">
-                    Referral Domain
-                </td>
-                <td style="background-color:navajowhite;color:black;">
-                    Things can only go up<br />
-                    from here!
-                </td>
-                <td style="background-color:white;color:black;">
-                    Let's work on boosting<br />
-                    your referral traffic!
-                </td>
-                <td style="background-color:navajowhite;color:black;">
-                    Looks like you've got<br />
-                    good referral game!
-                </td>
-                <td style="background-color:white;color:black;">
-                    We don't need to<br />
-                    remind you how<br />
-                    important referral<br />
-                    traffic is!
-                </td>
-                <td style="background-color:navajowhite;color:black;">
-                    Referral traffic is<br />
-                    extremely important<br />
-                    to bring more people<br />
-                    to your website and<br />
-                    into your restaurants<br />
-                    doors!
-                </td>
-            </tr>
-        </table>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-top:3%;">
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>0</th>
+                                <th class="odd">0-25%</th>
+                                <th>25-50%</th>
+                                <th class="odd">50-75%</th>
+                                <th>75-100%</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    Your Restaurant's<br />
+                                    Marketing____
+                                </td>
+                                <td class="odd">
+                                    can only get<br />
+                                    better from here!
+                                </td>
+                                <td>
+                                    is on it's way!Lets see<br />
+                                    what we can do to make<br />
+                                    it ever better!
+                                </td>
+                                <td class="odd">
+                                    is almost there!Here<br />
+                                    are some suggestions<br />
+                                    that will make it excel!
+                                </td>
+                                <td>
+                                    is top notch!<br />
+                                    Looks like you're<br />
+                                    a prefessional!
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-top:3%;">
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Data Consistency</th>
+                                <th class="odd">0-2</th>
+                                <th>2-4</th>
+                                <th class="odd">4-5</th>
+                                <th>Advice</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    Restaurant Name
+                                </td>
+                                <td class="odd">
+                                    some things look a<br />
+                                    little different...
+                                </td>
+                                <td>
+                                    Looks like your could<br />
+                                    use a little help!
+                                </td>
+                                <td class="odd">
+                                    Say my name, say my<br />
+                                    name!
+                                </td>
+                                <td>
+                                    It's important that your restaurant's name<br />
+                                    and brand is consistent across all platforms.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Phone Number<br />
+                                    Advice
+                                </td>
+                                <td class="odd">
+                                    Ring, ring... Oops<br />
+                                    sorry!Wrong number!
+                                </td>
+                                <td>
+                                    A few things need to<br />
+                                    be switched up.
+                                </td>
+                                <td class="odd">
+                                    Put a ring on it!
+                                </td>
+                                <td>
+                                    Make sure that your restaurant's phone<br />
+                                    number is the same on Facebook, Yelp,<br />
+                                    Google, Zomato, and your website so no one<br />
+                                    get confused!
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-top:3%;">
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Reviews</th>
+                                <th class="odd">0-5</th>
+                                <th>5-10</th>
+                                <th class="odd">10-15</th>
+                                <th>15-20</th>
+                                <th class="odd">Advice</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    Reviews Count
+                                </td>
+                                <td class="odd">
+                                    Time to step up your<br />
+                                    Game!
+                                </td>
+                                <td></td>
+                                <td class="odd">
+                                    You're on your way to<br />
+                                    being a review pro!
+                                </td>
+                                <td>
+                                    You are review<br />
+                                    magnet!
+                                </td>
+                                <td class="odd">
+                                    Online reviews are <br />
+                                    extremly important
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Reviews rating
+                                </td>
+                                <td class="odd">
+                                    Your reviews count<br />
+                                    they can only get<br />
+                                    better from here
+                                </td>
+                                <td>
+                                    Let's boot those<br />
+                                    ratings!
+                                </td>
+                                <td class="odd">
+                                    Who says you need to<br />
+                                    shoot for the moon<br />
+                                    when five stars is<br />
+                                    better?
+                                </td>
+                                <td>
+                                    Look at all your stars!
+                                </td>
+                                <td class="odd">
+                                    it's easy for you to<br />
+                                    take control of your<br />
+                                    reviews and to<br />
+                                    encourage positive<br />
+                                    feedback from your
+                                    customers
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-top:3%;">
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Social Media</th>
+                                <th class="odd">0-3</th>
+                                <th>4-6</th>
+                                <th class="odd">6-8</th>
+                                <th>8-10</th>
+                                <th class="odd">Advice</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    Facebook? What's<br />
+                                    that?
+                                </td>
+                                <td class="odd">
+                                    Being on Facebook is<br />
+                                    the first step, the<br />
+                                    second is getting<br />
+                                    those likes up!
+                                </td>
+                                <td></td>
+                                <td class="odd">
+                                    Close to being a<br />
+                                    Facebook king!
+                                </td>
+                                <td>
+                                    Your Facebook is<br />
+                                    killing it!
+                                </td>
+                                <td class="odd">
+                                    Facebook is an<br />
+                                    extremely important<br />
+                                    tool for restaurants.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Photos
+                                </td>
+                                <td class="odd">
+                                    Start snapping some<br />
+                                    pics!
+                                </td>
+                                <td>
+                                    There's no such thing<br />
+                                    as having too many<br />
+                                    photos! Let's take<br />
+                                    some more!
+                                </td>
+                                <td class="odd">
+                                    Visuals always help<br />
+                                    and you clearly know<br />
+                                    that!
+                                </td>
+                                <td>
+                                    Oh snap! Are you a<br />
+                                    professional<br />
+                                    photographer?
+                                </td>
+                                <td class="odd">
+                                    Visuals are important!<br />
+                                    Drool worthly food<br />
+                                    photos are even more<br />
+                                    important!
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-top:3%;">
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Website</th>
+                                <th class="odd">0-2</th>
+                                <th>2-4</th>
+                                <th class="odd">4-5</th>
+                                <th></th>
+                                <th class="odd">Advice</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    Wbsite Url
+                                </td>
+                                <td class="odd">
+                                    Somethings aren't the<br />
+                                    same...
+                                </td>
+                                <td>
+                                    So close!
+                                </td>
+                                <td class="odd">
+                                    Looks like your URLs<br />
+                                    are all set!
+                                </td>
+                                <td></td>
+                                <td class="odd">
+                                    Consistency is<br />
+                                    important! Make sure<br />
+                                    your website URL is<br />
+                                    the same across<br />
+                                    every site it is listed<br />
+                                    on.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Number of pages
+                                </td>
+                                <td class="odd">
+                                    Time to beef up your<br />
+                                    website!
+                                </td>
+                                <td>
+                                    You're almost there!
+                                </td>
+                                <td class="odd">
+                                    You've got a great<br />
+                                    number of pages!
+                                </td>
+                                <td></td>
+                                <td class="odd">
+                                    It's time to optimize<br />
+                                    the most important<br />
+                                    pages on your<br />
+                                    website!
+                                </td>
+                            </tr>
+                            <tr style="background-color:black;color:white;">
+                                <th></th>
+                                <th class="odd">0-3</th>
+                                <th>4-6</th>
+                                <th class="odd">6-8</th>
+                                <th>8-10</th>
+                                <th class="odd">Advice</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Referral Domain
+                                </td>
+                                <td class="odd">
+                                    Things can only go up<br />
+                                    from here!
+                                </td>
+                                <td>
+                                    Let's work on boosting<br />
+                                    your referral traffic!
+                                </td>
+                                <td class="odd">
+                                    Looks like you've got<br />
+                                    good referral game!
+                                </td>
+                                <td>
+                                    We don't need to<br />
+                                    remind you how<br />
+                                    important referral<br />
+                                    traffic is!
+                                </td>
+                                <td class="odd">
+                                    Referral traffic is<br />
+                                    extremely important<br />
+                                    to bring more people<br />
+                                    to your website and<br />
+                                    into your restaurants<br />
+                                    doors!
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jquery")
     <script src="~/Scripts/js/RestaurantNameMeter.js"></script>
-
     <script type="text/javascript">
         $(document).ready(function () {
-
+            var dynamic_line_width = 0;
+            if (768 >= $(window).width())
+                dynamic_line_width = 8
+            else
+                dynamic_line_width = 12;
              var dataConsistencyProgressValue = (@ViewBag.dataConsistency* 100) / 10;
             $('#DataConsistencyProgressbar').attr("style", "width:" + dataConsistencyProgressValue + "%");
             $('#DataConsistencyProgressbarIn').attr("style", "width:" + dataConsistencyProgressValue + "%");
@@ -879,7 +979,7 @@
             $('#websiteProgressbarIn').attr("style", "width:" + websiteProgressValue + "%");
 
             $(".my-progress-bar").circularProgressMain({
-                line_width: 12,
+                line_width: dynamic_line_width,
                 color: "black",
                 starting_position: 50, // 12.00 o' clock position, 25 stands for 3.00 o'clock (clock-wise)
                 percent: 0, // percent starts from
@@ -946,7 +1046,7 @@
                 percentage: true,
                 //text: "More power behind every pixel"
             }).circularProgress('animate', 25, 500);
-          
+
             var rev_web_val = (@ViewBag.website* 50) / 15;
             $(".website-url-progress-bar").circularProgress({
                 line_width: 12,
@@ -979,6 +1079,7 @@
         });
 
         (function ($) {
+            var divsize = $('#progress_div_center').width() + "px";
             var global_settings = {};
             var methods = {
                 init: function (options) {
@@ -986,8 +1087,8 @@
                     var settings = $.extend({
                         // These are the defaults.
                         color: "#72a0fe",
-                        height: "300px",
-                        width: "300px",
+                        height: divsize,
+                        width: divsize,
                         line_width: 8,
                         starting_position: 75,
                         percent: 100,
@@ -1162,15 +1263,6 @@
                 } else {
                     radius = canvas_height * 0.9 / 2 - (global_settings.line_width * 2);
                 }
-
-                /*
-                    x coordinate
-                    y coordinate
-                    radius of circle
-                    starting angle in radians
-                    ending angle in radians
-                    clockwise (false, default) or counter-clockwise (true)
-                */
                 ctx.arc(xcoord, ycoord, radius, starting_radian, ending_radian, global_settings.counter_clockwise);
                 ctx.stroke();
 

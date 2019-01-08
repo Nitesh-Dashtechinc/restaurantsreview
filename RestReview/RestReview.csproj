@@ -186,7 +186,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PageController.cs" />
     <Compile Include="DbModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -310,16 +309,11 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Rest\Index.cshtml" />
-    <Content Include="Views\Rest\restaurantsreviews.cshtml" />
     <Content Include="Views\Home\Review.cshtml" />
-    <Content Include="Views\Rest\RestaurantMarketGrade.cshtml" />
-    <Content Include="Views\Rest\Review.cshtml" />
     <Content Include="Views\Home\Analyze.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\css\" />
-    <Folder Include="Views\Page\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

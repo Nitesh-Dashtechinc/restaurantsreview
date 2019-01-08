@@ -2,74 +2,371 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Upserve - Restaurent Marketing Grader</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <style>
-        body {
-            padding: 0px 0px;
-           
-        }
-        .body {
+    <style type="text/css" media="screen and (max-width: 767px)">
+        .home_image {
             padding-bottom: 0px !important;
             background: url("../../Content/image/backgrnd.png")no-repeat center center;
-            /*background-repeat: no-repeat;*/
             background-position: top;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
             background-size: cover;
-            max-width: 1450px;
-            max-height: 850px;
+            max-height: 270px;
         }
-        footer {
-            position: absolute;
+
+        .logo_image {
+            max-height: 30px;
+        }
+
+        .site_name {
+            font-size: 18px;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        .site_powerdby {
+            font-weight: 900;
+            font-size: 8px;
+            margin-top: -4px;
+        }
+
+        .site_span {
+            font-size: 8px;
+        }
+
+        .page_title {
+            font-weight: 900;
+            font-size: 20px;
+            letter-spacing: -2px;
+        }
+
+        .page_title2 {
+            font-weight: 800;
+            font-size: 7px;
+        }
+        .search-area{
+            min-height:200px;
+        }
+        .footer {
+            position: static;
+            bottom: 0;
+            width: 100%;
+            height: 40px;
+            background-color: black;
+            color: white;
+            font-size: 8px;
+        }
+        .left-footer > span, .right-footer > span {
+            font-size: 8px;
+        }
+        
+    </style>
+    <style type="text/css" media="(min-width: 768px)">
+        .home_image {
+            padding-bottom: 0px !important;
+            background: url("../../Content/image/backgrnd.png")no-repeat center center;
+            background-position: top;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            max-height: 490px;
+        }
+
+        .logo_image {
+            max-height: 40px;
+        }
+
+        .site_name {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        .site_powerdby {
+            font-weight: 900;
+            font-size: 12px;
+            margin-top: -4px;
+        }
+
+        .site_span {
+            font-size: 12px;
+        }
+
+        .page_title {
+            font-weight: 900;
+            font-size: 34px;
+            letter-spacing: -2px;
+        }
+
+        .page_title2 {
+            font-weight: 800;
+            font-size: 13px;
+        }
+        .search-area {
+            min-height: 210px;
+        }
+        .footer {
+            position: static;
             bottom: 0;
             width: 100%;
             height: 50px;
-            line-height: 50px;
+            /*line-height: 40px;*/
             background-color: black;
+            color: white;
+            font-size: 8px;
         }
-       
+        .left-footer > span, .right-footer > span {
+            font-size: 8px;
+        }
+        
+    </style>
+    <style type="text/css" media="(min-width: 992px)">
+        .home_image {
+            padding-bottom: 0px !important;
+            background: url("../../Content/image/backgrnd.png")no-repeat center center;
+            background-position: top;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            max-height: 645px;
+        }
+
+        .logo_image {
+            max-height: 50px;
+        }
+
+        .site_name {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        .site_powerdby {
+            font-weight: 900;
+            font-size: 12px;
+            margin-top: -4px;
+        }
+
+        .site_span {
+            font-size: 12px;
+        }
+
+        .page_title {
+            font-weight: 900;
+            font-size: 42px;
+            letter-spacing: -2px;
+        }
+
+        .page_title2 {
+            font-weight: 600;
+        }
+
+        .page_title2 {
+            font-weight: 800;
+            font-size: 16px;
+        }
+        .search-area {
+            min-height: 300px;
+        }
+        .footer {
+            position: static;
+            bottom: 0;
+            width: 100%;
+            height: 55px;
+            /*line-height: 50px;*/
+            background-color: black;
+            color: white;
+            font-size: 12px;
+        }
+        .left-footer > span, .right-footer > span {
+            font-size: 12px;
+        }
+        
+    </style>
+    <style type="text/css" media="(min-width: 1200px)">
+        .home_image {
+            padding-bottom: 0px !important;
+            background: url("../../Content/image/backgrnd.png")no-repeat center center;
+            background-position: top;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            max-height: 850px;
+        }
+
+        .logo_image {
+            max-height: 70px;
+        }
+
+        .site_name {
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        .site_powerdby {
+            font-weight: 900;
+            font-size: 16px;
+            margin-top: -4px;
+        }
+
+        .site_span {
+            font-size: 16px;
+        }
+
+        .page_title {
+            font-weight: 900;
+            font-size: 55px;
+            letter-spacing: -2px;
+        }
+
+        .page_title2 {
+            font-weight: 800;
+            font-size: 21px;
+        }
+        .search-area {
+            min-height: 400px;
+        }
+        .footer {
+            position: static;
+            bottom: 0;
+            width: 100%;
+            height: 55px;
+            background-color: black;
+            color: white;
+            font-size: 12px;
+        }
+        .left-footer > span, .right-footer > span {
+            font-size: 12px;
+        }
+        
+    </style>
+    <style type="text/css" media="(min-width: 2560px)">
+        .container {
+            width: 2000px;
+        }
+        .home_image {
+            padding-bottom: 0px !important;
+            background: url("../../Content/image/backgrnd.png")no-repeat center center;
+            background-position: top;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            max-height: 1600px;
+        }
+
+        .logo_image {
+            max-height: 100px;
+        }
+
+        .site_name {
+            font-size: 55px;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        .site_powerdby {
+            font-weight: 900;
+            font-size: 26px;
+            margin-top: -4px;
+        }
+
+        .site_span {
+            font-size: 26px;
+        }
+
+        .page_title {
+            font-weight: 900;
+            font-size: 95px;
+            letter-spacing: -2px;
+        }
+
+        .page_title2 {
+            font-weight: 800;
+            font-size: 23px;
+        }
+        .search-area {
+            min-height: 1100px;
+        }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 200px;
+            /* line-height: 50px; */
+            background-color: black;
+            color: white;
+            font-size: 45px;
+        }
+        .left-footer > span, .right-footer > span {
+            font-size: 45px;
+        }
+        
+    </style>
+    <style type="text/css">
+        body {
+            padding: 0px 0px;
+            /*background-color: rgb(246, 225, 58);*/
+        }
+
+        .left-footer {
+            float: left;
+            text-align: left;
+            width: 35%;
+            padding-left: 2%;
+        }
+        .right-footer {
+            text-align: right;
+            float: left;
+            width: 65%; padding-right: 3%;
+        }
+        .footer-copyright,.footer-address,.footer-phone {
+            font-style: normal;
+            font-weight: normal;
+        }
     </style>
 </head>
 
 <body>
-    <div class="body">
-    
-        <div class="container body-content" style="padding-top:3%;">
+    <div class="home_image">
+        <div class="container body-content" style="padding-top:2%;">
             <div class="container">
                 <div class="row ">
                     <div class="col-md-4 col-xs-1"></div>
                     <div class="col-md-4 col-xs-10 text-center">
-                        <a href="" class="logo"><img class="image" src="~/Content/image/logo.png" style="max-height:60px;"></a>
+                        <a href="" class="logo"><img class="logo_image" src="~/Content/image/logo.png"></a>
                     </div>
                     <div class="col-md-4 col-xs-1"></div>
                 </div>
                 <div class="row">
-                    <div class="text-center col-md-12"><h1><b style="font-weight:800;letter-spacing:-2px;">RESTAURANT MARKETING GRADER</b></h1></div>
-
-                    <div class="text-center  col-md-12" style="margin-top:-20px;">
-                        <h4><b style="font-weight: 800;">Powered by</b> Upserve</h4>
+                    <div class="text-center col-md-12 site_name">RESTAURANT MARKETING GRADER</div>
+                    <div class="text-center col-md-12 site_powerdby">
+                        Powered by<span class="site_span"> Upserve</span>
                     </div>
-
                 </div>
             </div>
 
-            @RenderBody()
-
+        </div>
+        @RenderBody()
+        <div class="footer">
+            <div style="padding-top: 20px;">
+                <div class="left-footer"><span class="footer-copyright">Copyright &copy; 20018 </span><b> Upserve</b></div>
+                <div class="right-footer"><span class="footer-address">10 Dorrance St. Providence, RI 02903</span><span class="footer-phone">(855)664-3887</span></div>
+                @*<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 left-footer"><span class="footer-copyright">Copyright &copy; 20018 </span><b> Upserve</b></div>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 right-footer"><span class="footer-address">10 Dorrance St. Providence, RI 02903</span><span class="footer-phone">(855)664-3887</span></div>*@
+            </div>
         </div>
     </div>
-    <footer class="navbar-fixed-bottom text-center" style="padding:0px 25px 0px 25px;">
-        <p>
-            <h6 style="color:white;float:left;margin-top: 0px;">Copyright &copy; 20018 <b>Upserve</b></h6>
-            <h6 style="color:white;float:right;margin-top: 0px;">10 Dorrance St. Providence, RI 02903 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   (855)664-3887</h6>
-        </p>
-    </footer>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
-
 </html>
