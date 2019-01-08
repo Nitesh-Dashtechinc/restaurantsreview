@@ -73,6 +73,7 @@
     background-color: black;
     border-color: black;
     float: left;
+    width: 60%;
 }
 
 .btn-green {
@@ -95,7 +96,7 @@
     height: 100% !important;
 }
 
-.progress-percentage, .progress-text {
+/*.progress-percentage, .progress-text {
     position: absolute;
     width: 100%;
     top: 65%;
@@ -110,7 +111,7 @@
     transform: translate(-50%, -50%);
     color: #ffcd00;
     font-weight: 600;
-}
+}*/
 
 .progress-text {
     transform: translate(-50%, 0%);
