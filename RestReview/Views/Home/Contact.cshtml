@@ -172,7 +172,7 @@
                     <div class="text-uppercase"><span class="progress-title"> Data Consistency</span></div>
                 </div>
                 <div class="progress">
-                    <div class="progress-bar progress-bar-black" id="DataConsistencyProgressbar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:50%">
+                    <div class="progress-bar progress-bar-black" id="DataConsistencyProgressbar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:0%">
                     </div>
                 </div>
                 <div>
@@ -184,7 +184,7 @@
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div class="progress-div"><div class="text-uppercase"><span class="progress-title">Reviews</span></div></div>
                 <div class="progress">
-                    <div class="progress-bar progress-bar-black" id="RateProgressbar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:20%">
+                    <div class="progress-bar progress-bar-black" id="RateProgressbar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:0%">
                     </div>
                 </div>
                 <div>
@@ -194,17 +194,17 @@
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div><div class="text-uppercase"><span class="progress-title">Social Media Completion <br />& Engagement</span></div></div>
                 <div class="progress">
-                    <div class="progress-bar progress-bar-black" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:75%">
+                    <div class="progress-bar progress-bar-black" id="FacebookProgressbar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:0%">
                     </div>
                 </div>
                 <div>
-                    <h5><strong class="initialism">30 / </strong><small style="color: white;">35</small></h5>
+                    <h5><strong class="initialism">@ViewBag.socialMediaEng / </strong><small style="color: white;">35</small></h5>
                 </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div class="progress-div"><div class="text-uppercase"><span class="progress-title">website</span></div></div>
                 <div class="progress">
-                    <div class="progress-bar progress-bar-black" id="websiteProgressbar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                    <div class="progress-bar progress-bar-black" id="websiteProgressbar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:0%">
                     </div>
                 </div>
                 <div>
@@ -268,6 +268,11 @@
              var websiteProgressValue = (@ViewBag.website* 100) / 15;
             $('#websiteProgressbar').attr("style", "width:" + websiteProgressValue + "%");
 
+             var fbProgressValue = (@ViewBag.socialMediaEng* 100) / 35;
+            $('#FacebookProgressbar').attr("style", "width:" + fbProgressValue + "%");
+
+            
+            var mainProgress = @ViewBag.ratingData + @ViewBag.dataConsistency + @ViewBag.website + @ViewBag.socialMediaEng;
             $(".my-progress-bar").circularProgress({
                 line_width: dynamic_line_width,
                 color: "black",
@@ -275,7 +280,7 @@
                 percent: 0, // percent starts from
                 percentage: true,
                 //text: "More power behind every pixel"
-            }).circularProgress('animate', 85, 1000);
+            }).circularProgress('animate', mainProgress, 1000);
 
 
         });
@@ -294,7 +299,7 @@
                         //width: "300px",
                         width: divsize,
                         line_width: 8,
-                        starting_position: 75,
+                        starting_position: 50,
                         percent: 100,
                         counter_clockwise: false,
                         percentage: true,
@@ -354,6 +359,7 @@
                     return this;
                 },
                 animate: function (value, time) {
+                    debugger
                     // Apply global_settings
                     $(this).css({
                         "height": global_settings.height,
@@ -364,6 +370,8 @@
                     var num_of_steps = time / 10;
                     // Amount of change each step
                     var percent_change = Math.round((value - global_settings.percent) / num_of_steps);
+                    if (percent_change <= 0)
+                        percent_change = 1;
 
                     // Variable conflict, rename this
                     var scope = $(this);

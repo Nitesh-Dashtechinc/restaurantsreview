@@ -225,6 +225,10 @@
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\phone_data\Candidate.cs" />
     <Compile Include="Models\phone_data\TestExample.cs" />
+    <Compile Include="Models\PhotoCountFB\Cursors.cs" />
+    <Compile Include="Models\PhotoCountFB\Datum.cs" />
+    <Compile Include="Models\PhotoCountFB\FBidExample.cs" />
+    <Compile Include="Models\PhotoCountFB\Paging.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Table.cs">
       <DependentUpon>DbModel.tt</DependentUpon>

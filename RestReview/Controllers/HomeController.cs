@@ -19,12 +19,14 @@ using RestReview.Models.data_consi_phone;
 using System.Text.RegularExpressions;
 using RestReview.Models.phone_data;
 using RestReview.Models.FB;
+using RestReview.Models.PhotoCountFB;
 
 namespace RestReview.Controllers
 {
     public class HomeController : Controller
     {
         public static string API_KEY = WebConfigurationManager.AppSettings["yelp_api"];
+        public static string FACEBOOK_ACCESS_TOKEN = WebConfigurationManager.AppSettings["facebook_access_token"];
         Client client = new Client(API_KEY);
         public static SearchResponse searchResponse;
         static List<BusinessResponse> SearchList = new List<BusinessResponse>();
@@ -207,9 +209,13 @@ namespace RestReview.Controllers
             ViewBag.reviewRating = 0;
             ViewBag.website = 0;
             var website = "";
+            var resturantName = "";
 
             var res = new Example();
             var google_place_id = "";
+            var fbID = "";
+            int like_count = 0;
+            int photo_count = 0;
 
             //rating Data
             using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
@@ -221,6 +227,7 @@ namespace RestReview.Controllers
                 string result = response.Content.ReadAsStringAsync().Result;
                 res = JsonConvert.DeserializeObject<Example>(result);
 
+                resturantName = res.businesses[0].name;
                 //rate count code
                 decimal rate = (Convert.ToDecimal(res.businesses[0].rating) * 20) / 5;
                 decimal rate_count = (Convert.ToInt16(res.businesses[0].review_count) * 20) / 1738;
@@ -307,7 +314,7 @@ namespace RestReview.Controllers
               
             }
 
-            //facebook call
+            //facebook Like Count
             using (var client_consistency = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
             {
 
@@ -320,11 +327,60 @@ namespace RestReview.Controllers
                
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 dynamic item = serializer.Deserialize<dynamic>(result_consistency);
-                var like = item[website]["share"]["share_count"];              
-              
-                           
+                var like = item[website]["share"]["share_count"];
+
+                like_count = (Convert.ToInt16(like) * 20) / 2500;
+                if (like_count > 20)
+                    like_count = 20;
+                else if (like_count < 0)
+                    like_count = 0;
 
             }
+
+            //facebook id generator
+            using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
+            {
+                var idRes = new FBidExample();
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", FACEBOOK_ACCESS_TOKEN);
+                client.BaseAddress = new Uri("https://graph.facebook.com/pages/search");
+                HttpResponseMessage response = client.GetAsync("?q=" + resturantName + "").Result;
+                response.EnsureSuccessStatusCode();
+                string result = response.Content.ReadAsStringAsync().Result;
+                idRes = JsonConvert.DeserializeObject<FBidExample>(result);
+
+                fbID = idRes.data[0].id;
+            }
+
+            //facebook photo count api
+            using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
+            {
+                var idRes = new FBidExample();
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", FACEBOOK_ACCESS_TOKEN);
+                client.BaseAddress = new Uri("https://graph.facebook.com/v3.2/"+fbID+"/albums");
+                HttpResponseMessage response = client.GetAsync("?fields=count,name").Result;
+                response.EnsureSuccessStatusCode();
+                string result = response.Content.ReadAsStringAsync().Result;
+                idRes = JsonConvert.DeserializeObject<FBidExample>(result);
+
+                //photo count code
+                int count = idRes.data.Count;
+                int photos = 0;
+                for(int i = 0; i < count; i++)
+                {
+                    photos += idRes.data[i].count;
+                }
+
+                photo_count = (Convert.ToInt16(photos) * 15) / 100;
+                if (photo_count > 15)
+                    photo_count = 15;
+                else if (photo_count < 0)
+                    photo_count = 0;
+
+                ViewBag.likeCount = like_count;
+                ViewBag.photoCount = photo_count;
+                ViewBag.socialMediaEng = like_count + photo_count;
+            }
+
 
             TempData["ratingData"] = ViewBag.ratingData;
             TempData["dataConsistency"] = ViewBag.dataConsistency;
@@ -333,6 +389,9 @@ namespace RestReview.Controllers
             TempData["reviewCount"] = ViewBag.reviewCount;
             TempData["reviewRating"] = ViewBag.reviewRating;
             TempData["website"] = ViewBag.website;
+            TempData["photoCount"] = ViewBag.photoCount;
+            TempData["likeCount"] = ViewBag.likeCount;
+            TempData["socialMediaEng"] = ViewBag.socialMediaEng;
             return View();
         }
       
@@ -347,6 +406,9 @@ namespace RestReview.Controllers
             ViewBag.reviewCount= TempData["reviewCount"];
             ViewBag.reviewRating = TempData["reviewRating"];
             ViewBag.website= TempData["website"];
+            ViewBag.photoCount = TempData["photoCount"];
+            ViewBag.likeCount = TempData["likeCount"];
+            ViewBag.socialMediaEng = TempData["socialMediaEng"];
 
             return View();
         }
