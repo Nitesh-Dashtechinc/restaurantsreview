@@ -24,9 +24,10 @@
         width: 100%;
         z-index: 10000;
     }
+
     .footer {
         position: static !important;
-        bottom:0px;
+        bottom: 0px;
     }
 </style>
 <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/themes/blitzer/jquery-ui.css" rel="Stylesheet" type="text/css" />
@@ -44,7 +45,7 @@
 <div class="container search-area" style="min-height:400px;padding-top:7%;">
     <div class="row text-center">
         <div class="col-md-12">
-            @using (Html.BeginForm("Review", "Home", FormMethod.Post, new { @class = "" }))
+            @using (Html.BeginForm("Review", "Home", FormMethod.Post, new { @class = "", @id="Form" }))
             {
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-0">
                     <input type="text" id="txtLocation" name="LocationName" class="form-control border-bottom-input" value="San Francisco, CA" onchange="LoadData()" style="width:100%;" />
@@ -54,7 +55,7 @@
                     <input type="text" id="txtCustomer" placeholder="Restaurant Name" name="CustomerName" class="form-control border-bottom-input col-md-12" />
                 </div>
                 <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-9 col-lg-offset-0 col-md-offset-0 col-sm-offset-0  col-xs-offset-3">
-                    <input type="submit" id="btnSubmit" value="SUBMIT" disabled="disabled"  class="btn btn-black" onclick="showsl();" />
+                    <input type="submit" id="btnSubmit" value="SUBMIT" class="btn btn-black" onclick="showsl();" />
                 </div>
                 <div id="overDiv" class="overlay"></div><div id="loadMess" class=" loadMess"><img id="mySpinner" src="~/Content/gif/Spin-1s-95px.gif" /></div>
                 <input type="hidden" id="hfCustomer" name="CustomerId" />
@@ -68,9 +69,11 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
+    
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.0.min.js" type="text/javascript"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/jquery-ui.min.js" type="text/javascript"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-1061875490"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEnSTOkBqHX2LDW-yuzXD9Zi3lnQvbe9Y&sensor=false&libraries=places"></script>
     <script>
         google.maps.event.addDomListener(window, 'load', function () {
@@ -115,17 +118,28 @@
     <script type="text/javascript">
         $(document).ready(function () {
             LoadData();
-            
+
         });
         function showsl() {
-          //  debugger;
-            ShowLoader();
-            var delay = 10;
-            var start = new Date().getTime();
-            while (new Date().getTime() < start + delay);
-           // HideLoader();
-          //  alert('done');
 
+           // debugger;
+            if ($('#hfCustomer').val() != "") {
+                ShowLoader();
+                var delay = 10;
+                var start = new Date().getTime();
+                while (new Date().getTime() < start + delay);
+            } else {
+                $("#Form").empty();
+
+                //swal("Sorry, Restaurant not available,Please search another");
+               
+                
+                swal({                   
+                    text: "Sorry, Restaurant not available,Please search another"                    
+                }).then(function () {
+                   window.location = "@Url.Action("Index","Home")";
+                });
+            }
         }
 
         function ShowLoader() {
@@ -151,7 +165,7 @@
                 type: "POST",
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                   
+
                 },
                 error: function (response) {
                     //alert(response.responseText);
@@ -186,12 +200,12 @@
                 },
                 select: function (e, i) {
                     $("#hfCustomer").val(i.item.val);
-                     //  debugger                        
+                    //  debugger
                     if (i.item) {
-                        $('#btnSubmit').removeAttr('disabled');
-                    } 
+                        // $('#btnSubmit').removeAttr('disabled');
+                    }
                 },
-                
+
                 minLength: 1
             });
         });
