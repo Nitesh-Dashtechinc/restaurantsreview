@@ -227,7 +227,10 @@ namespace RestReview.Controllers
                 string result = response.Content.ReadAsStringAsync().Result;
                 res = JsonConvert.DeserializeObject<Example>(result);
 
-                resturantName = res.businesses[0].name;
+                if (res.businesses[0].name != null)
+                {
+                    resturantName = res.businesses[0].name;
+                }
                 //rate count code
                 decimal rate = (Convert.ToDecimal(res.businesses[0].rating) * 20) / 5;
                 decimal rate_count = (Convert.ToInt16(res.businesses[0].review_count) * 20) / 1738;

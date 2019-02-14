@@ -54,7 +54,7 @@
                     <input type="text" id="txtCustomer" placeholder="Restaurant Name" name="CustomerName" class="form-control border-bottom-input col-md-12" />
                 </div>
                 <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-9 col-lg-offset-0 col-md-offset-0 col-sm-offset-0  col-xs-offset-3">
-                    <input type="submit" id="btnSubmit" value="SUBMIT" class="btn btn-black" onclick="showsl();" />
+                    <input type="submit" id="btnSubmit" value="SUBMIT" disabled="disabled"  class="btn btn-black" onclick="showsl();" />
                 </div>
                 <div id="overDiv" class="overlay"></div><div id="loadMess" class=" loadMess"><img id="mySpinner" src="~/Content/gif/Spin-1s-95px.gif" /></div>
                 <input type="hidden" id="hfCustomer" name="CustomerId" />
@@ -115,6 +115,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             LoadData();
+            
         });
         function showsl() {
           //  debugger;
@@ -185,7 +186,12 @@
                 },
                 select: function (e, i) {
                     $("#hfCustomer").val(i.item.val);
+                     //  debugger                        
+                    if (i.item) {
+                        $('#btnSubmit').removeAttr('disabled');
+                    } 
                 },
+                
                 minLength: 1
             });
         });
