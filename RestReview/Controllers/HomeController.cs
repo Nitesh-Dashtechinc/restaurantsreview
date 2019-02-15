@@ -20,6 +20,7 @@ using System.Text.RegularExpressions;
 using RestReview.Models.phone_data;
 using RestReview.Models.FB;
 using RestReview.Models.PhotoCountFB;
+using RestReview.Models.ReviewClass;
 
 namespace RestReview.Controllers
 {
@@ -55,7 +56,7 @@ namespace RestReview.Controllers
 
                 List<BusinessMatch> closematches = new List<BusinessMatch>();
 
-                if (!string.IsNullOrEmpty(CustomerName) && !string.IsNullOrEmpty(CustomerId))
+                if (!string.IsNullOrEmpty(CustomerName) && !string.IsNullOrEmpty(CustomerId) && results.Location != null)
                 {
                     string name = results.Name;
                     string address1 = results.Location.Address1;
@@ -183,10 +184,12 @@ namespace RestReview.Controllers
                     ViewBag.closeresult3 = obj;
                     ViewBag.businessList = obj;
                 }
+                SearchList.Clear();
                 return View();
             }
             catch (Exception ex)
             {
+                SearchList.Clear();
                 return View();
             }
         }
@@ -198,7 +201,7 @@ namespace RestReview.Controllers
         }
 
 
-        public ActionResult Contact(float rateing, string Phone)
+        public ActionResult Contact(string id)
         {
             ViewBag.Message = "Your contact page.";
             ViewBag.ratingData = 0;  //total 40
@@ -208,66 +211,135 @@ namespace RestReview.Controllers
             ViewBag.reviewCount = 0;
             ViewBag.reviewRating = 0;
             ViewBag.website = 0;
+            ViewBag.likeCount = 0;
+            ViewBag.photoCount = 0;
+            ViewBag.socialMediaEng = 0;
             var website = "";
             var resturantName = "";
 
-            var res = new Example();
+
+            //  var res = new Example();
             var google_place_id = "";
             var fbID = "";
             int like_count = 0;
             int photo_count = 0;
-
+            string Phone = "";
+            string requestURL = "";
             //rating Data
             using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
             {
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", API_KEY);
-                client.BaseAddress = new Uri("https://api.yelp.com/v3/businesses/search/phone");
-                HttpResponseMessage response = client.GetAsync("?phone=" + Phone + "").Result;
-                response.EnsureSuccessStatusCode();
-                string result = response.Content.ReadAsStringAsync().Result;
-                res = JsonConvert.DeserializeObject<Example>(result);
-
-                if (res.businesses[0].name != null)
+                if (id != null)
                 {
-                    resturantName = res.businesses[0].name;
+                    ReviewExample res_review = new ReviewExample();
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", API_KEY);
+                    client.BaseAddress = new Uri("https://api.yelp.com/v3/businesses/");
+                    HttpResponseMessage response = client.GetAsync(id + "").Result;
+
+                    if (response.IsSuccessStatusCode)
+                    {                        
+                        response.EnsureSuccessStatusCode();
+                        string result = response.Content.ReadAsStringAsync().Result;
+                        res_review = JsonConvert.DeserializeObject<ReviewExample>(result);
+
+                        if (res_review.id != null)
+                        {
+                            resturantName = res_review.name;
+
+
+                            //rate count code
+                            Phone = res_review.phone;
+                            decimal rate = (Convert.ToDecimal(res_review.rating) * 20) / 5;
+                            decimal rate_count = (Convert.ToInt16(res_review.review_count) * 20) / 1738;
+                            if (rate_count > 20)
+                                rate_count = 20;
+                            else if (rate_count == 0)
+                                rate_count = 1;
+                            ViewBag.ratingData = (rate + rate_count);
+                            ViewBag.RestaurantName = res_review.name;
+                            ViewBag.reviewCount = res_review.review_count;
+                            ViewBag.reviewRating = res_review.rating;
+                        }
+                    }
+                    else
+                    {                        
+                        requestURL = response.RequestMessage.RequestUri.OriginalString;                        
+                    }
+
+                   
                 }
-                //rate count code
-                decimal rate = (Convert.ToDecimal(res.businesses[0].rating) * 20) / 5;
-                decimal rate_count = (Convert.ToInt16(res.businesses[0].review_count) * 20) / 1738;
-                if (rate_count > 20)
-                    rate_count = 20;
-                else if (rate_count == 0)
-                    rate_count = 1;
-                ViewBag.ratingData = (rate + rate_count);
-                ViewBag.RestaurantName = res.businesses[0].name;
-                ViewBag.reviewCount = res.businesses[0].review_count;
-                ViewBag.reviewRating = res.businesses[0].rating;
+            }
+
+            if (requestURL != "")
+            {
+                using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
+                {
+                    if (id != null)
+                    {
+                        ReviewExample res_review = new ReviewExample();
+                        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", API_KEY);
+                        string uri = requestURL.Split(',')[0];
+                        client.BaseAddress = new Uri(uri);
+                        HttpResponseMessage response = client.GetAsync("").Result;
+
+                        if (response.IsSuccessStatusCode)
+                        {
+                            response.EnsureSuccessStatusCode();
+                            string result = response.Content.ReadAsStringAsync().Result;
+                            res_review = JsonConvert.DeserializeObject<ReviewExample>(result);
+
+                            if (res_review.id != null)
+                            {
+                                resturantName = res_review.name;
+
+
+                                //rate count code
+                                Phone = res_review.phone;
+                                decimal rate = (Convert.ToDecimal(res_review.rating) * 20) / 5;
+                                decimal rate_count = (Convert.ToInt16(res_review.review_count) * 20) / 1738;
+                                if (rate_count > 20)
+                                    rate_count = 20;
+                                else if (rate_count == 0)
+                                    rate_count = 1;
+                                ViewBag.ratingData = (rate + rate_count);
+                                ViewBag.RestaurantName = res_review.name;
+                                ViewBag.reviewCount = res_review.review_count;
+                                ViewBag.reviewRating = res_review.rating;
+                            }
+                        }           
+
+
+                    }
+                }
 
             }
             //data consistency
             using (var client_consistency = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
             {
-                //data cosistency code
-                string original_phone = new string(Phone.Where(char.IsDigit).ToArray());
-                client_consistency.BaseAddress = new Uri("https://maps.googleapis.com/maps/api/place/findplacefromtext/json");
-                HttpResponseMessage response_consistency = client_consistency.GetAsync("?input=%2B"+ original_phone + "&inputtype=phonenumber&fields=place_id,name&key=AIzaSyBEnSTOkBqHX2LDW-yuzXD9Zi3lnQvbe9Y").Result;
-                response_consistency.EnsureSuccessStatusCode();
-                string result_consistency = response_consistency.Content.ReadAsStringAsync().Result;
-                var res_consistency = JsonConvert.DeserializeObject<TestExample>(result_consistency);
+                if (Phone != null)
+                {
+                    //data cosistency code
+                    string original_phone = new string(Phone.Where(char.IsDigit).ToArray());
+                    client_consistency.BaseAddress = new Uri("https://maps.googleapis.com/maps/api/place/findplacefromtext/json");
+                    HttpResponseMessage response_consistency = client_consistency.GetAsync("?input=%2B" + original_phone + "&inputtype=phonenumber&fields=place_id,name&key=AIzaSyBEnSTOkBqHX2LDW-yuzXD9Zi3lnQvbe9Y").Result;
+                    response_consistency.EnsureSuccessStatusCode();
+                    string result_consistency = response_consistency.Content.ReadAsStringAsync().Result;
+                    var res_consistency = JsonConvert.DeserializeObject<TestExample>(result_consistency);
 
-                var actual_nm = res.businesses[0].name;
-                   //data consistency full value is 10
+                    if (res_consistency.candidates.Count > 0)
+                    {
+                        // var actual_nm = res.businesses[0].name;
+                        //data consistency full value is 10
 
-               
+
                         var res1_nm = res_consistency.candidates[0].name;
                         google_place_id = res_consistency.candidates[0].place_id;
 
-                        string[] actual_nm_array = actual_nm.Split(' ');
+                        string[] actual_nm_array = resturantName.Split(' ');
                         string[] diff1 = res1_nm.Split(' ');
-                       
+
 
                         int count1 = 0;
-                       
+
                         for (int i = 0; i < actual_nm_array.Length; i++)
                         {
                             if (String.Compare(actual_nm_array[i], diff1[i]) != 0)
@@ -279,7 +351,7 @@ namespace RestReview.Controllers
                         {
                             ViewBag.dataConsistency = 10;       //data consistency full value is 10
                         }
-                       
+
                         if (ViewBag.dataConsistency == 0)
                         {
                             if (actual_nm_array.Length == diff1.Length)
@@ -288,100 +360,111 @@ namespace RestReview.Controllers
                                 if (diff < 0)
                                     diff = 2;
                                 ViewBag.dataConsistency = diff;        //data consistency full value is 10
-                            }                           
+                            }
                             else
                             {
                                 Random randm = new Random();
                                 ViewBag.dataConsistency = randm.Next(2, 7);
                             }
                         }
-                    
+                    }
                 }
-            
+            }
+
             //data consistency for website
             using (var client_consistency = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
             {
-               
+
                 //data cosistency with website from google
                 client_consistency.BaseAddress = new Uri("https://maps.googleapis.com/maps/api/place/details/json");
-                HttpResponseMessage response_consistency = client_consistency.GetAsync("?key=AIzaSyBEnSTOkBqHX2LDW-yuzXD9Zi3lnQvbe9Y&placeid=" + google_place_id+ "&fields=name,rating,formatted_phone_number,website,international_phone_number").Result;
+                HttpResponseMessage response_consistency = client_consistency.GetAsync("?key=AIzaSyBEnSTOkBqHX2LDW-yuzXD9Zi3lnQvbe9Y&placeid=" + google_place_id + "&fields=name,rating,formatted_phone_number,website,international_phone_number").Result;
                 response_consistency.EnsureSuccessStatusCode();
                 string result_consistency = response_consistency.Content.ReadAsStringAsync().Result;
                 var res_consistency = JsonConvert.DeserializeObject<Data_consi_Example>(result_consistency);
 
-                if (res_consistency.result.website != "")
+                if (res_consistency.result != null)
                 {
-                    ViewBag.website = 15;
-                    website = res_consistency.result.website;
+                    if (res_consistency.result.website != "")
+                    {
+                        ViewBag.website = 15;
+                        website = res_consistency.result.website;
+                    }
                 }
-              
             }
 
             //facebook Like Count
             using (var client_consistency = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
             {
 
-                //facebook
-                client_consistency.BaseAddress = new Uri("https://graph.facebook.com/");
-                HttpResponseMessage response_consistency = client_consistency.GetAsync("?ids="+website+"").Result;
-                response_consistency.EnsureSuccessStatusCode();
-                string result_consistency = response_consistency.Content.ReadAsStringAsync().Result;
+                if (website != "" && website != null)
+                {
+                    //facebook
+                    client_consistency.BaseAddress = new Uri("https://graph.facebook.com/");
+                    HttpResponseMessage response_consistency = client_consistency.GetAsync("?ids=" + website + "").Result;
+                    response_consistency.EnsureSuccessStatusCode();
+                    string result_consistency = response_consistency.Content.ReadAsStringAsync().Result;
 
-               
-                JavaScriptSerializer serializer = new JavaScriptSerializer();
-                dynamic item = serializer.Deserialize<dynamic>(result_consistency);
-                var like = item[website]["share"]["share_count"];
 
-                like_count = (Convert.ToInt16(like) * 20) / 2500;
-                if (like_count > 20)
-                    like_count = 20;
-                else if (like_count < 0)
-                    like_count = 0;
+                    JavaScriptSerializer serializer = new JavaScriptSerializer();
+                    dynamic item = serializer.Deserialize<dynamic>(result_consistency);
+                    var like = item[website]["share"]["share_count"];
 
+                    like_count = (Convert.ToInt16(like) * 20) / 2500;
+                    if (like_count > 20)
+                        like_count = 20;
+                    else if (like_count < 0)
+                        like_count = 0;
+                }
             }
 
             //facebook id generator
             using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
             {
-                var idRes = new FBidExample();
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", FACEBOOK_ACCESS_TOKEN);
-                client.BaseAddress = new Uri("https://graph.facebook.com/pages/search");
-                HttpResponseMessage response = client.GetAsync("?q=" + resturantName + "").Result;
-                response.EnsureSuccessStatusCode();
-                string result = response.Content.ReadAsStringAsync().Result;
-                idRes = JsonConvert.DeserializeObject<FBidExample>(result);
+                if (resturantName != "")
+                {
+                    var idRes = new FBidExample();
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", FACEBOOK_ACCESS_TOKEN);
+                    client.BaseAddress = new Uri("https://graph.facebook.com/pages/search");
+                    HttpResponseMessage response = client.GetAsync("?q=" + resturantName + "").Result;
+                    response.EnsureSuccessStatusCode();
+                    string result = response.Content.ReadAsStringAsync().Result;
+                    idRes = JsonConvert.DeserializeObject<FBidExample>(result);
 
-                fbID = idRes.data[0].id;
+                    fbID = idRes.data[0].id;
+                }
             }
 
             //facebook photo count api
             using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
             {
-                var idRes = new FBidExample();
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", FACEBOOK_ACCESS_TOKEN);
-                client.BaseAddress = new Uri("https://graph.facebook.com/v3.2/"+fbID+"/albums");
-                HttpResponseMessage response = client.GetAsync("?fields=count,name").Result;
-                response.EnsureSuccessStatusCode();
-                string result = response.Content.ReadAsStringAsync().Result;
-                idRes = JsonConvert.DeserializeObject<FBidExample>(result);
-
-                //photo count code
-                int count = idRes.data.Count;
-                int photos = 0;
-                for(int i = 0; i < count; i++)
+                if (fbID != "")
                 {
-                    photos += idRes.data[i].count;
+                    var idRes = new FBidExample();
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", FACEBOOK_ACCESS_TOKEN);
+                    client.BaseAddress = new Uri("https://graph.facebook.com/v3.2/" + fbID + "/albums");
+                    HttpResponseMessage response = client.GetAsync("?fields=count,name").Result;
+                    response.EnsureSuccessStatusCode();
+                    string result = response.Content.ReadAsStringAsync().Result;
+                    idRes = JsonConvert.DeserializeObject<FBidExample>(result);
+
+                    //photo count code
+                    int count = idRes.data.Count;
+                    int photos = 0;
+                    for (int i = 0; i < count; i++)
+                    {
+                        photos += idRes.data[i].count;
+                    }
+
+                    photo_count = (Convert.ToInt16(photos) * 15) / 100;
+                    if (photo_count > 15)
+                        photo_count = 15;
+                    else if (photo_count < 0)
+                        photo_count = 0;
+
+                    ViewBag.likeCount = like_count;
+                    ViewBag.photoCount = photo_count;
+                    ViewBag.socialMediaEng = like_count + photo_count;
                 }
-
-                photo_count = (Convert.ToInt16(photos) * 15) / 100;
-                if (photo_count > 15)
-                    photo_count = 15;
-                else if (photo_count < 0)
-                    photo_count = 0;
-
-                ViewBag.likeCount = like_count;
-                ViewBag.photoCount = photo_count;
-                ViewBag.socialMediaEng = like_count + photo_count;
             }
 
 
@@ -397,7 +480,7 @@ namespace RestReview.Controllers
             TempData["socialMediaEng"] = ViewBag.socialMediaEng;
             return View();
         }
-      
+
 
         public ActionResult Analyze()
         {
@@ -406,9 +489,9 @@ namespace RestReview.Controllers
             ViewBag.RestaurantName = TempData["RestaurantName"];
             ViewBag.phoneRate = TempData["RestaurantName"];
             ViewBag.ratingData = Convert.ToInt32(TempData["ratingData"]);
-            ViewBag.reviewCount= TempData["reviewCount"];
+            ViewBag.reviewCount = TempData["reviewCount"];
             ViewBag.reviewRating = TempData["reviewRating"];
-            ViewBag.website= TempData["website"];
+            ViewBag.website = TempData["website"];
             ViewBag.photoCount = TempData["photoCount"];
             ViewBag.likeCount = TempData["likeCount"];
             ViewBag.socialMediaEng = TempData["socialMediaEng"];
@@ -470,6 +553,7 @@ namespace RestReview.Controllers
             request.Location = location;
             request.Term = prefix;
             request.MaxResults = 50;
+            request.Categories = "Restaurants";
 
 
             searchResponse = await client.SearchBusinessesAllAsync(request);

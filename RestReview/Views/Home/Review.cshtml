@@ -125,7 +125,7 @@
                             <a class="btn btn-bold btn-review" href="@ViewBag.closeresult2[1].Url" target="_blank">@ViewBag.closeresult2[1].ratecount Reviews</a>
                         </div>
                     </p>
-                    <a href="@Url.Action("Contact", "Home",new { @rateing = ViewBag.closeresult2[1].rate, @Phone = ViewBag.closeresult2[1].Phone})" class="btn btn-bold btn-yellow btn-block">ANALYZE</a>
+                    <a href="@Url.Action("Contact", "Home",new { @id = ViewBag.closeresult2[1].id})" class="btn btn-bold btn-yellow btn-block">ANALYZE</a>
 
                 </div>
             </div>
@@ -162,7 +162,7 @@
                     <div style="padding-bottom:5px;">
                         <b>Closest Match</b>
                     </div>
-                    <a href="@Url.Action("Contact", "Home",new { @rateing = ViewBag.closeresult1[0].rate, @Phone = ViewBag.closeresult1[0].Phone})" class="btn btn-bold btn-yellow btn-block">ANALYZE</a>
+                    <a href="@Url.Action("Contact", "Home",new { @id = ViewBag.closeresult1[0].id})" class="btn btn-bold btn-yellow btn-block">ANALYZE</a>
                 </div>
             </div>
         </div>
@@ -193,7 +193,7 @@
                             <a class="btn btn-bold btn-review" href="@ViewBag.closeresult3[2].Url" target="_blank">@ViewBag.closeresult3[2].ratecount Review</a>
                         </div>
                     </p>
-                    <a href="@Url.Action("Contact", "Home",new { @rateing = ViewBag.closeresult3[2].rate, @Phone = ViewBag.closeresult3[2].Phone})" class="btn btn-bold btn-yellow btn-block">ANALYZE</a>
+                    <a href="@Url.Action("Contact", "Home",new { @id = ViewBag.closeresult3[2].id})" class="btn btn-bold btn-yellow btn-block">ANALYZE</a>
                 </div>
             </div>
         </div>

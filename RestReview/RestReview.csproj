@@ -229,6 +229,12 @@
     <Compile Include="Models\PhotoCountFB\Datum.cs" />
     <Compile Include="Models\PhotoCountFB\FBidExample.cs" />
     <Compile Include="Models\PhotoCountFB\Paging.cs" />
+    <Compile Include="Models\ReviewClass\Category.cs" />
+    <Compile Include="Models\ReviewClass\Coordinates.cs" />
+    <Compile Include="Models\ReviewClass\Hour.cs" />
+    <Compile Include="Models\ReviewClass\Location.cs" />
+    <Compile Include="Models\ReviewClass\Open.cs" />
+    <Compile Include="Models\ReviewClass\ReviewExample.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Table.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
