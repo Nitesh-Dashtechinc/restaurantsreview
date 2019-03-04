@@ -6,17 +6,17 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>D:\RestaurantReavivePublish</_PublishTargetUrl>
+    <_PublishTargetUrl>D:\ProjectPublishCode\RestaurantGraderPublish</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="ApplicationInsights.config">
-      <publishTime>11/02/2018 10:47:34</publishTime>
+      <publishTime>02/13/2019 10:10:02</publishTime>
     </File>
     <File Include="App_Data/Database1.mdf">
-      <publishTime>11/05/2018 14:37:44</publishTime>
+      <publishTime>02/13/2019 10:10:02</publishTime>
     </File>
     <File Include="App_Data/Database1_log.ldf">
-      <publishTime>11/05/2018 14:37:44</publishTime>
+      <publishTime>02/13/2019 10:10:02</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>09/10/2013 16:29:20</publishTime>
@@ -25,13 +25,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/10/2013 16:29:20</publishTime>
     </File>
     <File Include="bin/ApplicationInsights.config">
-      <publishTime>11/02/2018 10:47:34</publishTime>
+      <publishTime>02/13/2019 10:10:02</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>10/23/2017 13:15:18</publishTime>
     </File>
     <File Include="bin/EntityFramework.SqlServer.dll">
       <publishTime>10/23/2017 13:15:20</publishTime>
+    </File>
+    <File Include="bin/GraphQL-Parser.dll">
+      <publishTime>09/08/2017 20:13:30</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
       <publishTime>06/27/2017 12:59:34</publishTime>
@@ -63,14 +66,23 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>07/25/2012 11:48:56</publishTime>
     </File>
+    <File Include="bin/Microsoft.Win32.Primitives.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/netstandard.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>02/18/2018 09:44:54</publishTime>
     </File>
+    <File Include="bin/ProgressBar.dll">
+      <publishTime>06/22/2016 18:08:12</publishTime>
+    </File>
     <File Include="bin/RestReview.dll">
-      <publishTime>11/15/2018 20:09:26</publishTime>
+      <publishTime>02/25/2019 10:10:44</publishTime>
     </File>
     <File Include="bin/RestReview.pdb">
-      <publishTime>11/15/2018 20:09:26</publishTime>
+      <publishTime>02/25/2019 10:10:44</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>05/24/2018 13:38:22</publishTime>
@@ -210,11 +222,296 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/roslyn/VBCSCompiler.exe.config">
       <publishTime>05/24/2018 13:38:24</publishTime>
     </File>
+    <File Include="bin/System.AppContext.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Buffers.dll">
+      <publishTime>05/15/2018 13:29:34</publishTime>
+    </File>
+    <File Include="bin/System.Collections.Concurrent.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Collections.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Collections.NonGeneric.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Collections.Specialized.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.ComponentModel.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.ComponentModel.EventBasedAsync.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.ComponentModel.Primitives.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.ComponentModel.TypeConverter.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Console.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Data.Common.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Diagnostics.Contracts.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Diagnostics.Debug.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
     <File Include="bin/System.Diagnostics.DiagnosticSource.dll">
       <publishTime>07/19/2017 10:01:30</publishTime>
     </File>
+    <File Include="bin/System.Diagnostics.FileVersionInfo.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Diagnostics.Process.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Diagnostics.StackTrace.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Diagnostics.TextWriterTraceListener.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Diagnostics.Tools.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Diagnostics.TraceSource.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Diagnostics.Tracing.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Drawing.Primitives.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Dynamic.Runtime.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Globalization.Calendars.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Globalization.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Globalization.Extensions.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.IO.Compression.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.IO.Compression.ZipFile.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.IO.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.IO.FileSystem.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.IO.FileSystem.DriveInfo.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.IO.FileSystem.Primitives.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.IO.FileSystem.Watcher.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.IO.IsolatedStorage.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.IO.MemoryMappedFiles.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.IO.Pipes.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.IO.UnmanagedMemoryStream.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Linq.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Linq.Expressions.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Linq.Parallel.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Linq.Queryable.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Formatting.dll">
+      <publishTime>05/10/2018 22:38:56</publishTime>
+    </File>
+    <File Include="bin/System.Net.NameResolution.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Net.NetworkInformation.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Net.Ping.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Net.Primitives.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Net.Requests.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Net.Security.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Net.Sockets.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Net.WebHeaderCollection.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Net.WebSockets.Client.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Net.WebSockets.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.ObjectModel.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Reactive.Core.dll">
+      <publishTime>11/21/2016 14:01:44</publishTime>
+    </File>
+    <File Include="bin/System.Reactive.Interfaces.dll">
+      <publishTime>11/21/2016 14:02:06</publishTime>
+    </File>
+    <File Include="bin/System.Reactive.Linq.dll">
+      <publishTime>11/21/2016 14:02:12</publishTime>
+    </File>
+    <File Include="bin/System.Reflection.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Reflection.Extensions.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Reflection.Primitives.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Resources.Reader.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Resources.ResourceManager.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Resources.Writer.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Runtime.CompilerServices.VisualC.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Runtime.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Runtime.Extensions.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Runtime.Handles.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Runtime.InteropServices.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Runtime.InteropServices.RuntimeInformation.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Runtime.Numerics.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Runtime.Serialization.Formatters.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Runtime.Serialization.Json.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Runtime.Serialization.Primitives.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Runtime.Serialization.Xml.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Security.Claims.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Security.Cryptography.Algorithms.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Security.Cryptography.Csp.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Security.Cryptography.Encoding.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Security.Cryptography.Primitives.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Security.Cryptography.X509Certificates.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Security.Principal.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Security.SecureString.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Text.Encoding.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Text.Encoding.Extensions.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Text.RegularExpressions.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Threading.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Threading.Overlapped.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Threading.Tasks.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Threading.Tasks.Parallel.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Threading.Thread.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Threading.ThreadPool.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Threading.Timer.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.ValueTuple.dll">
+      <publishTime>05/15/2018 13:29:52</publishTime>
+    </File>
     <File Include="bin/System.Web.Helpers.dll">
       <publishTime>02/01/2018 12:20:56</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.dll">
+      <publishTime>05/10/2018 22:39:16</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.WebHost.dll">
+      <publishTime>05/10/2018 22:41:08</publishTime>
     </File>
     <File Include="bin/System.Web.Mvc.dll">
       <publishTime>02/01/2018 12:16:32</publishTime>
@@ -234,6 +531,24 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/System.Web.WebPages.Razor.dll">
       <publishTime>02/01/2018 12:20:56</publishTime>
     </File>
+    <File Include="bin/System.Xml.ReaderWriter.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Xml.XDocument.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Xml.XmlDocument.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Xml.XmlSerializer.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Xml.XPath.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
+    <File Include="bin/System.Xml.XPath.XDocument.dll">
+      <publishTime>02/11/2019 12:37:32</publishTime>
+    </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>01/23/2014 13:57:34</publishTime>
     </File>
@@ -241,166 +556,187 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/21/2018 12:35:44</publishTime>
     </File>
     <File Include="Content/bootstrap-theme.css">
-      <publishTime>11/02/2018 10:47:22</publishTime>
+      <publishTime>02/13/2019 10:10:02</publishTime>
     </File>
     <File Include="Content/bootstrap-theme.css.map">
-      <publishTime>11/02/2018 10:47:22</publishTime>
+      <publishTime>02/13/2019 10:10:02</publishTime>
     </File>
     <File Include="Content/bootstrap-theme.min.css">
-      <publishTime>11/02/2018 10:47:22</publishTime>
+      <publishTime>02/13/2019 10:10:02</publishTime>
     </File>
     <File Include="Content/bootstrap-theme.min.css.map">
-      <publishTime>11/02/2018 10:47:22</publishTime>
+      <publishTime>02/13/2019 10:10:02</publishTime>
     </File>
     <File Include="Content/bootstrap.css">
-      <publishTime>11/02/2018 10:47:22</publishTime>
+      <publishTime>02/13/2019 10:10:02</publishTime>
     </File>
     <File Include="Content/bootstrap.css.map">
-      <publishTime>11/02/2018 10:47:22</publishTime>
+      <publishTime>02/18/2019 17:39:22</publishTime>
     </File>
     <File Include="Content/bootstrap.min.css">
-      <publishTime>11/02/2018 10:47:22</publishTime>
+      <publishTime>02/13/2019 10:10:02</publishTime>
     </File>
     <File Include="Content/bootstrap.min.css.map">
-      <publishTime>11/02/2018 10:47:22</publishTime>
+      <publishTime>02/13/2019 10:10:03</publishTime>
     </File>
-    <File Include="Content/css/style.css">
-      <publishTime>11/15/2018 17:55:27</publishTime>
+    <File Include="Content/gif/Spin-1.2s-95px.gif">
+      <publishTime>02/13/2019 10:10:03</publishTime>
+    </File>
+    <File Include="Content/gif/Spin-1s-95px.gif">
+      <publishTime>02/13/2019 10:10:03</publishTime>
+    </File>
+    <File Include="Content/gif/spiner.gif">
+      <publishTime>02/18/2019 17:49:02</publishTime>
+    </File>
+    <File Include="Content/gif/Spinner-1s-200px.gif">
+      <publishTime>02/13/2019 10:10:03</publishTime>
     </File>
     <File Include="Content/image/backgrnd.png">
-      <publishTime>11/06/2018 14:49:00</publishTime>
+      <publishTime>02/13/2019 10:10:03</publishTime>
     </File>
     <File Include="Content/image/footer.png">
-      <publishTime>11/06/2018 15:24:53</publishTime>
+      <publishTime>02/13/2019 10:10:03</publishTime>
     </File>
     <File Include="Content/image/Howdoesstmnt.png">
-      <publishTime>11/06/2018 14:48:04</publishTime>
+      <publishTime>02/13/2019 10:10:03</publishTime>
     </File>
     <File Include="Content/image/logo.png">
-      <publishTime>11/06/2018 15:42:58</publishTime>
+      <publishTime>02/13/2019 10:10:03</publishTime>
+    </File>
+    <File Include="Content/image/NoImege.png">
+      <publishTime>02/13/2019 10:10:03</publishTime>
     </File>
     <File Include="Content/image/PoweredBy.png">
-      <publishTime>11/06/2018 14:45:09</publishTime>
+      <publishTime>02/13/2019 10:10:03</publishTime>
     </File>
     <File Include="Content/image/ReatmarkGrader.png">
-      <publishTime>11/06/2018 14:43:56</publishTime>
+      <publishTime>02/13/2019 10:10:03</publishTime>
     </File>
     <File Include="Content/image/RestaurantMainStatement.png">
-      <publishTime>11/06/2018 14:47:18</publishTime>
+      <publishTime>02/13/2019 10:10:03</publishTime>
     </File>
     <File Include="Content/image/submit.png">
-      <publishTime>11/06/2018 14:54:57</publishTime>
+      <publishTime>02/13/2019 10:10:03</publishTime>
     </File>
     <File Include="Content/image/Upserve.png">
-      <publishTime>11/06/2018 14:46:07</publishTime>
+      <publishTime>02/13/2019 10:10:03</publishTime>
+    </File>
+    <File Include="Content/loading-bar.css">
+      <publishTime>02/19/2019 19:41:53</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>11/14/2018 13:18:10</publishTime>
+      <publishTime>02/13/2019 10:10:02</publishTime>
+    </File>
+    <File Include="Content/style.css">
+      <publishTime>02/13/2019 10:10:03</publishTime>
     </File>
     <File Include="DbModel.edmx.diagram">
-      <publishTime>11/02/2018 11:52:28</publishTime>
+      <publishTime>02/13/2019 10:10:03</publishTime>
     </File>
     <File Include="favicon.ico">
-      <publishTime>11/02/2018 10:47:06</publishTime>
+      <publishTime>02/13/2019 10:10:03</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.eot">
-      <publishTime>11/02/2018 10:47:22</publishTime>
+      <publishTime>02/13/2019 10:10:03</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.svg">
-      <publishTime>11/02/2018 10:47:22</publishTime>
+      <publishTime>02/13/2019 10:10:03</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.ttf">
-      <publishTime>11/02/2018 10:47:22</publishTime>
+      <publishTime>02/13/2019 10:10:03</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.woff">
-      <publishTime>11/02/2018 10:47:22</publishTime>
+      <publishTime>02/13/2019 10:10:03</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.woff2">
-      <publishTime>11/02/2018 10:47:22</publishTime>
+      <publishTime>02/13/2019 10:10:03</publishTime>
     </File>
     <File Include="Global.asax">
-      <publishTime>11/02/2018 10:47:06</publishTime>
+      <publishTime>02/13/2019 10:10:03</publishTime>
     </File>
     <File Include="Images/restaurant.jpg">
-      <publishTime>11/05/2018 17:27:19</publishTime>
+      <publishTime>02/13/2019 10:10:03</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
-      <publishTime>11/02/2018 10:47:22</publishTime>
+      <publishTime>02/13/2019 10:10:03</publishTime>
     </File>
     <File Include="Scripts/bootstrap.min.js">
-      <publishTime>11/02/2018 10:47:22</publishTime>
+      <publishTime>02/13/2019 10:10:03</publishTime>
     </File>
     <File Include="Scripts/jquery-3.3.1.js">
-      <publishTime>11/02/2018 10:47:22</publishTime>
+      <publishTime>02/13/2019 10:10:03</publishTime>
     </File>
     <File Include="Scripts/jquery-3.3.1.min.js">
-      <publishTime>11/02/2018 10:47:22</publishTime>
+      <publishTime>02/13/2019 10:10:03</publishTime>
     </File>
     <File Include="Scripts/jquery-3.3.1.min.map">
-      <publishTime>11/02/2018 10:47:22</publishTime>
+      <publishTime>02/13/2019 10:10:03</publishTime>
     </File>
     <File Include="Scripts/jquery-3.3.1.slim.js">
-      <publishTime>11/02/2018 10:47:22</publishTime>
+      <publishTime>02/13/2019 10:10:03</publishTime>
     </File>
     <File Include="Scripts/jquery-3.3.1.slim.min.js">
-      <publishTime>11/02/2018 10:47:22</publishTime>
+      <publishTime>02/13/2019 10:10:03</publishTime>
     </File>
     <File Include="Scripts/jquery-3.3.1.slim.min.map">
-      <publishTime>11/02/2018 10:47:22</publishTime>
+      <publishTime>02/13/2019 10:10:03</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.js">
-      <publishTime>11/02/2018 10:47:32</publishTime>
+      <publishTime>02/13/2019 10:10:03</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.min.js">
-      <publishTime>11/02/2018 10:47:32</publishTime>
+      <publishTime>02/13/2019 10:10:03</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.unobtrusive.js">
-      <publishTime>11/02/2018 10:47:32</publishTime>
+      <publishTime>02/13/2019 10:10:03</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.unobtrusive.min.js">
-      <publishTime>11/02/2018 10:47:32</publishTime>
+      <publishTime>02/13/2019 10:10:03</publishTime>
     </File>
-    <File Include="Scripts/js/main.js">
-      <publishTime>11/06/2018 12:34:03</publishTime>
+    <File Include="Scripts/js/loading-bar.js">
+      <publishTime>02/22/2019 20:05:42</publishTime>
     </File>
     <File Include="Scripts/js/Meterplugin.js">
-      <publishTime>11/15/2018 18:08:39</publishTime>
+      <publishTime>02/19/2019 17:49:51</publishTime>
+    </File>
+    <File Include="Scripts/js/Meterplugin1.js">
+      <publishTime>02/19/2019 17:52:49</publishTime>
+    </File>
+    <File Include="Scripts/js/RestaurantNameMeter.js">
+      <publishTime>02/19/2019 12:51:21</publishTime>
     </File>
     <File Include="Scripts/modernizr-2.8.3.js">
-      <publishTime>11/02/2018 10:47:30</publishTime>
+      <publishTime>02/13/2019 10:10:03</publishTime>
     </File>
     <File Include="Views/Home/About.cshtml">
-      <publishTime>11/02/2018 10:47:04</publishTime>
+      <publishTime>02/13/2019 10:10:03</publishTime>
+    </File>
+    <File Include="Views/Home/Analyze.cshtml">
+      <publishTime>02/25/2019 10:06:59</publishTime>
     </File>
     <File Include="Views/Home/Contact.cshtml">
-      <publishTime>11/02/2018 10:47:04</publishTime>
+      <publishTime>02/22/2019 20:05:02</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>11/15/2018 18:09:38</publishTime>
+      <publishTime>02/20/2019 15:56:38</publishTime>
     </File>
     <File Include="Views/Home/Review.cshtml">
-      <publishTime>11/15/2018 19:52:57</publishTime>
-    </File>
-    <File Include="Views/Rest/Index.cshtml">
-      <publishTime>11/13/2018 17:27:38</publishTime>
-    </File>
-    <File Include="Views/Rest/restaurantsreviews.cshtml">
-      <publishTime>11/14/2018 16:30:47</publishTime>
+      <publishTime>02/20/2019 19:15:01</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
-      <publishTime>11/02/2018 10:47:04</publishTime>
+      <publishTime>02/13/2019 10:10:03</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>11/14/2018 15:30:44</publishTime>
+      <publishTime>02/20/2019 16:12:31</publishTime>
     </File>
     <File Include="Views/Web.config">
-      <publishTime>11/02/2018 10:47:06</publishTime>
+      <publishTime>02/13/2019 10:10:03</publishTime>
     </File>
     <File Include="Views/_ViewStart.cshtml">
-      <publishTime>11/02/2018 10:47:04</publishTime>
+      <publishTime>02/13/2019 10:10:03</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>11/15/2018 20:09:26</publishTime>
+      <publishTime>02/21/2019 10:12:56</publishTime>
     </File>
   </ItemGroup>
 </Project>

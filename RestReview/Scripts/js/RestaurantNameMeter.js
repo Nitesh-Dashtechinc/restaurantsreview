@@ -86,7 +86,6 @@
             var percentage = $("<div class='progress-percentage'></div>");
             percentage.text((val / 10).toFixed(1));
             $(this).append(percentage);
-            //   $(".progress-percentage").text((val / 10).toFixed(1));
         },
         animate: function (value, time) {
             // Apply global_settings

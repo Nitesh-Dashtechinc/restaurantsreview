@@ -26,11 +26,12 @@
     }
 
     .footer {
-        position: static !important;
+        /*position: static !important;*/
+        position: inherit !important;
         bottom: 0px;
     }
 </style>
-<link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/themes/blitzer/jquery-ui.css" rel="Stylesheet" type="text/css" />
+<link href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/themes/blitzer/jquery-ui.css" rel="Stylesheet" type="text/css" />
 
 <div class="container">
     <div class="row" style="margin-top:8%;">
@@ -70,8 +71,8 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
     
-    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.0.min.js" type="text/javascript"></script>
-    <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.0.min.js" type="text/javascript"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/jquery-ui.min.js" type="text/javascript"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-1061875490"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEnSTOkBqHX2LDW-yuzXD9Zi3lnQvbe9Y&sensor=false&libraries=places"></script>
@@ -118,11 +119,8 @@
     <script type="text/javascript">
         $(document).ready(function () {
             LoadData();
-
         });
         function showsl() {
-
-           // debugger;
             if ($('#hfCustomer').val() != "") {
                 ShowLoader();
                 var delay = 10;
@@ -130,10 +128,6 @@
                 while (new Date().getTime() < start + delay);
             } else {
                 $("#Form").empty();
-
-                //swal("Sorry, Restaurant not available,Please search another");
-               
-                
                 swal({                   
                     text: "Sorry, Restaurant not available,Please search another"                    
                 }).then(function () {
@@ -151,6 +145,7 @@
             $("#overDiv")[0].style.display = 'none';
             $("#loadMess")[0].style.display = 'none';
         }
+
         function LoadData() {
             if ($("#txtLocation").val().trim() == "") {
                 $("#txtLocation").focus();
