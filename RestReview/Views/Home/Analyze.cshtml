@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Yelp.Api.Models.BusinessResponse>
+﻿@*@model IEnumerable<Yelp.Api.Models.BusinessResponse>*@
+@model RestReview.Models.Analyzes
+
 @{
     ViewBag.Title = "Contact";
 }
@@ -7,10 +9,12 @@
     .progress-div {
         padding-top: 20px;
     }
+
     .progress-title {
         font-size: 8px;
         font-weight: 800;
     }
+
     .progress-percentage {
         color: black;
         transform: translate(-50%, -111%);
@@ -23,15 +27,23 @@
         text-align: center;
         padding: 0px 60px;
     }
+    .ldBar-label {
+        color: black;
+        font-family: tahoma;
+        font-size: inherit;
+        
+    }
 </style>
 <style type="text/css" media="(min-width: 768px)">
     .progress-div {
         padding-top: 20px;
     }
+
     .progress-title {
         font-size: 10px;
         font-weight: 800;
     }
+
     .progress-percentage {
         color: black;
         transform: translate(-50%, -110%);
@@ -44,15 +56,23 @@
         text-align: center;
         padding: 0px 60px;
     }
+    .ldBar-label {
+        color: black;
+        font-family: tahoma;
+        font-size: inherit;
+        
+    }
 </style>
 <style type="text/css" media="(min-width: 992px)">
     .progress-div {
         padding-top: 20px;
     }
+
     .progress-title {
         font-size: 12px;
         font-weight: 800;
     }
+
     .progress-percentage {
         color: black;
         transform: translate(-50%, -100%);
@@ -64,15 +84,23 @@
         left: 52%;
         text-align: center;
     }
+    .ldBar-label {
+        color: black;
+        font-family: tahoma;
+        font-size: 5.1em;
+        font-weight: 900
+    }
 </style>
 <style type="text/css" media="(min-width: 1200px)">
     .progress-div {
         padding-top: 20px;
     }
+
     .progress-title {
         font-size: 12px;
         font-weight: 800;
     }
+
     .progress-percentage {
         color: black;
         transform: translate(-50%, -100%);
@@ -83,6 +111,12 @@
         top: 65%;
         left: 53%;
         text-align: center;
+    }
+    .ldBar-label {
+        color: black;
+        font-family: tahoma;
+        font-size: 5.1em;
+        font-weight: 900
     }
 </style>
 <style type="text/css" media="(min-width: 2560px)">
@@ -105,9 +139,14 @@
         top: 65%;
         left: 53%;
     }
+    .ldBar-label {
+        color: black;
+        font-family: tahoma;
+        font-size: 5.1em;
+        font-weight: 900
+    }
 </style>
 <style type="text/css">
-   
     .progress-bar-black {
         background-color: black;
     }
@@ -183,6 +222,316 @@
         padding: 10px 0px 10px 2%;
     }
 </style>
+<style type="text/css">
+    .fontClass {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        margin-top:1%;
+    }
+</style>
+<link href="~/Content/loading-bar.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+    
+    svg {
+        transform: rotate(180deg);
+    }
+</style>
+<style type="text/css">
+    .restaurant-name-progress-bar {
+        position: relative;
+        margin: 4px;
+        /*float: left;*/
+        text-align: center;
+        /*padding-left: 175px;*/
+        padding-top: 27px;
+        text-align: -webkit-center;
+        margin-bottom:3%;
+    }
+
+    .barOverflow {
+        position: relative;
+        overflow: hidden;
+        width: 200px;
+        height: 100px;
+        margin-bottom: -14px;
+    }
+
+    .bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        box-sizing: border-box;
+        border: 20px solid #eee;
+        border-bottom-color: #0bf;
+        border-right-color: #0bf;
+    }
+</style>
+<style type="text/css">
+    .phone-number-progress-bar {
+        position: relative;
+        margin: 4px;
+        /*float: left;*/
+        text-align: center;
+        /*padding-left: 175px;*/
+        padding-top: 27px;
+        text-align: -webkit-center;
+        margin-bottom:3%;
+        
+    }
+
+    .barOverflow {
+        position: relative;
+        overflow: hidden;
+        width: 200px;
+        height: 100px;
+        margin-bottom: -14px;
+    }
+
+    .bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        box-sizing: border-box;
+        border: 20px solid #eee;
+        border-bottom-color: #0bf;
+        border-right-color: #0bf;
+    }
+</style>
+<style type="text/css">
+    .reviews-count-progress-bar {
+        position: relative;
+        margin: 4px;
+        /*float: left;*/
+        text-align: center;
+        /*padding-left: 175px;*/
+        padding-top: 27px;
+        text-align: -webkit-center;
+    }
+
+    .barOverflow {
+        position: relative;
+        overflow: hidden;
+        width: 200px;
+        height: 100px;
+        margin-bottom: -14px;
+    }
+
+    .bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        box-sizing: border-box;
+        border: 20px solid #eee;
+        border-bottom-color: #0bf;
+        border-right-color: #0bf;
+    }
+</style>
+<style type="text/css">
+    .reviews-rating-progress-bar {
+        position: relative;
+        margin: 4px;
+        /*float: left;*/
+        text-align: center;
+        /*padding-left: 175px;*/
+        padding-top: 27px;
+        text-align: -webkit-center;
+    }
+
+    .barOverflow {
+        position: relative;
+        overflow: hidden;
+        width: 200px;
+        height: 100px;
+        margin-bottom: -14px;
+    }
+
+    .bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        box-sizing: border-box;
+        border: 20px solid #eee;
+        border-bottom-color: #0bf;
+        border-right-color: #0bf;
+    }
+</style>
+<style type="text/css">
+    .facebook-progress-bar {
+        position: relative;
+        margin: 4px;
+        /*float: left;*/
+        text-align: center;
+        /*padding-left: 175px;*/
+        padding-top: 27px;
+        text-align: -webkit-center;
+        margin-bottom:3%;
+    }
+
+    .barOverflow {
+        position: relative;
+        overflow: hidden;
+        width: 200px;
+        height: 100px;
+        margin-bottom: -14px;
+    }
+
+    .bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        box-sizing: border-box;
+        border: 20px solid #eee;
+        border-bottom-color: #0bf;
+        border-right-color: #0bf;
+    }
+</style>
+<style type="text/css">
+    .photos-progress-bar {
+        position: relative;
+        margin: 4px;
+        /*float: left;*/
+        text-align: center;
+        /*padding-left: 175px;*/
+        padding-top: 27px;
+        text-align: -webkit-center;
+        margin-bottom:3%;
+    }
+
+    .barOverflow {
+        position: relative;
+        overflow: hidden;
+        width: 200px;
+        height: 100px;
+        margin-bottom: -14px;
+    }
+
+    .bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        box-sizing: border-box;
+        border: 20px solid #eee;
+        border-bottom-color: #0bf;
+        border-right-color: #0bf;
+    }
+</style>
+<style type="text/css">
+    .website-url-progress-bar {
+        position: relative;
+        margin: 4px;
+        /*float: left;*/
+        text-align: center;
+        /*padding-left: 175px;*/
+        padding-top: 27px;
+        text-align: -webkit-center;
+        margin-bottom:3%
+    }
+
+    .barOverflow {
+        position: relative;
+        overflow: hidden;
+        width: 200px;
+        height: 100px;
+        margin-bottom: -14px;
+    }
+
+    .bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        box-sizing: border-box;
+        border: 20px solid #eee;
+        border-bottom-color: #0bf;
+        border-right-color: #0bf;
+    }
+</style>
+<style type="text/css">
+    .referral-domain-progress-bar {
+        position: relative;
+        margin: 4px;
+        /*float: left;*/
+        text-align: center;
+        /*padding-left: 175px;*/
+        padding-top: 27px;
+        text-align: -webkit-center;
+        margin-bottom: 3%
+    }
+
+    .barOverflow {
+        position: relative;
+        overflow: hidden;
+        width: 200px;
+        height: 100px;
+        margin-bottom: -14px;
+    }
+
+    .bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        box-sizing: border-box;
+        border: 20px solid #eee;
+        border-bottom-color: #0bf;
+        border-right-color: #0bf;
+    }
+</style>
+<style type="text/css">
+    .number-of-pages-progress-bar {
+        position: relative;
+        margin: 4px;
+        /*float: left;*/
+        text-align: center;
+        /*padding-left: 175px;*/
+        padding-top: 27px;
+        text-align: -webkit-center;
+        margin-bottom: 3%
+    }
+
+    .barOverflow {
+        position: relative;
+        overflow: hidden;
+        width: 200px;
+        height: 100px;
+        margin-bottom: -14px;
+    }
+
+    .bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        box-sizing: border-box;
+        border: 20px solid #eee;
+        border-bottom-color: #0bf;
+        border-right-color: #0bf;
+    }
+</style>
+
 <div class="container">
     <div class="row" style="margin-top:7%;">
         <div class="text-center col-lg-12 col-md-12 page_title">
@@ -191,10 +540,11 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-3" id="progress_div_left"></div>
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6" id="progress_div_center">
-                <div class="my-progress-bar" id="progress_div_right"></div>
-            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-3"></div>
+            @*<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6" id="progress_div_center">
+                    <div class="my-progress-bar" id="progress_div_right"></div>
+                </div>*@
+            <div id="mainProgressbar" class="ldBar label-center" style="width:28%; height:50%; margin:auto" data-value="@Model.MainProgress" data-preset="circle"></div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-3"></div>
         </div>
     </div>
@@ -211,10 +561,15 @@
                     </div>
                 </div>
                 <div>
-                    <h5><strong class="initialism">@ViewBag.dataConsistency / </strong><small style="color: white;">10</small></h5>
+                    @if (@Model.DataDependecy != null)
+                    {
+                        <h5><strong class="initialism">@Model.DataDependecy / </strong><small style="color: white;">10</small></h5>
+                    }
+                    else
+                    {
+                        <h5><strong class="initialism">0 / </strong><small style="color: white;">10</small></h5>
+                    }
                 </div>
-
-
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div class="progress-div"><div class="text-uppercase"><span class="progress-title">Reviews</span></div></div>
@@ -223,7 +578,14 @@
                     </div>
                 </div>
                 <div>
-                    <h5><strong class="initialism">@ViewBag.ratingData / </strong><small style="color: white;">40</small></h5>
+                    @if (@Model.RatingData != null)
+                    {
+                        <h5><strong class="initialism">@Model.RatingData / </strong><small style="color: white;">40</small></h5>
+                    }
+                    else
+                    {
+                        <h5><strong class="initialism">0 / </strong><small style="color: white;">40</small></h5>
+                    }
                 </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -233,7 +595,14 @@
                     </div>
                 </div>
                 <div>
-                    <h5><strong class="initialism">@ViewBag.socialMediaEng / </strong><small style="color: white;">35</small></h5>
+                    @if (@Model.SocialMediaEngagement != null)
+                    {
+                        <h5><strong class="initialism">@Model.SocialMediaEngagement / </strong><small style="color: white;">35</small></h5>
+                    }
+                    else
+                    {
+                        <h5><strong class="initialism">0 / </strong><small style="color: white;">35</small></h5>
+                    }
                 </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -243,13 +612,19 @@
                     </div>
                 </div>
                 <div>
-                    <h5><strong class="initialism">@ViewBag.website / </strong><small style="color: white;">15</small></h5>
+                    @if (@Model.WebSite != null)
+                    {
+                        <h5><strong class="initialism">@Model.WebSite / </strong><small style="color: white;">15</small></h5>
+                    }
+                    else
+                    {
+                        <h5><strong class="initialism">0 / </strong><small style="color: white;">15</small></h5>
+                    }
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 <div class="container" style="padding-top:7%;padding-bottom:5%; "></div>
 <div class="container">
     <!--Data Consistency-->
@@ -257,7 +632,20 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="border-baner">
                 <div class="text-center" style="padding-top:3%;">
-                    <span> <b style="font-weight: 800;font-size:35px;letter-spacing:-2px;color:orange;padding-top:5%;">@ViewBag.dataConsistency/</b><b style="font-weight: 800;font-size:25px;letter-spacing:-2px;">10</b></span>
+                    @if (@Model.DataDependecy != null)
+                    {
+                        <span>
+                            <b style="font-weight: 800;font-size:35px;letter-spacing:-2px;color:orange;padding-top:5%;">@Model.DataDependecy</b>
+                            <b style="font-weight: 800;font-size:25px;letter-spacing:-2px;">/10</b>
+                        </span>
+                    }
+                    else
+                    {
+                        <span>
+                            <b style="font-weight: 800;font-size:35px;letter-spacing:-2px;color:orange;padding-top:5%;">0</b>
+                            <b style="font-weight: 800;font-size:25px;letter-spacing:-2px;">/10</b>
+                        </span>
+                    }
                 </div>
                 <div class="text-center" style="padding-bottom:2%;">
                     <div class="col-md-3"></div>
@@ -269,32 +657,39 @@
                     <div class="col-md-3"></div>
                 </div>
                 <div class="text-center" style="padding-bottom:2%;">
-                    <span> <b style="font-weight: 700;font-size:35px;letter-spacing:0px;color:#72a0fe;padding-top:5%;padding-bottom:5%;">Data Consistency</b></span>
+                    <span>
+                        <b style="font-weight: 750;font-size:32px;letter-spacing:0px;color:#72a0fe;padding-top:5%;padding-bottom:5%;">Data Consistency</b>
+                    </span>
                 </div>
                 <div class="text-center">
-                    <b style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">
+                    <b class="fontClass" style="font-weight: 700;font-size:16px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">
                         It's important that all of your restaurant's information is consistent across all social media platform.<br />
                         You don't want customers driving to the wrong address of calling the wrong phone number!
                     </b>
                 </div>
                 <div class="text-center" style="padding-bottom:5%;padding-top:3%;">
-                    <span><a href="#"><b style="font-weight: 600;font-size:20px;letter-spacing:0px;color:orange;padding-top:5%;">Read More </b></a></span>
+                    <span><a href="#"><b style="font-weight: 650;font-size:17px;letter-spacing:0px;color:orange;padding-top:5%;">Read More</b></a></span>
                 </div>
             </div>
         </div>
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="border-baner left-box">
-                    <div class="text-center" style="padding-bottom:4%;padding-top:4%;">
-                        <span> <b style="font-weight: 700;font-size:20px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">Restaurant Name</b></span>
+                    <div class="text-center" style="padding-top:4%;">
+                        <span> <b style="font-weight: 750;font-size:25px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">Restaurant Name</b></span>
                     </div>
-                    <div class="restaurant-name-progress-bar"></div>
+                    <div class="restaurant-name-progress-bar">
+                        <div class="barOverflow">
+                            <div class="bar"></div>
+                        </div>
+                    </div>
+                    @*<div data-preset="fan" class="ldBar label-center" data-value="0" style="width: 269px;height: 134px;"></div>*@
                     <div class="text-center">
-                        <span> <b style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:2%;padding-bottom:2%;">ADVICE</b></span>
+                        <span> <b class="fontClass" style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:2%;padding-bottom:2%;">ADVICE</b></span>
                     </div>
                     <div class="text-center" style="padding-bottom:5%;padding-top:4%;">
                         <span>
-                            <b style="font-weight: 600;font-size:15px;letter-spacing:0px;">
+                            <b class="fontClass" style="font-weight: 600;font-size:16px;letter-spacing:0px;">
                                 When updating your social media,<br />
                                 make sure that your restaurant's name<br />
                                 is the same across all platforms.
@@ -305,16 +700,20 @@
             </div>
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="border-baner right-box">
-                    <div class="text-center" style="padding-bottom:4%;padding-top:4%;">
-                        <span> <b style="font-weight: 700;font-size:20px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">Phone Number </b></span>
+                    <div class="text-center" style="padding-top:4%;">
+                        <span> <b style="font-weight: 750;font-size:25px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">Phone Number </b></span>
                     </div>
-                    <div class="phone-number-progress-bar"></div>
+                    <div class="phone-number-progress-bar">
+                        <div class="barOverflow">
+                            <div class="bar"></div>
+                        </div>
+                    </div>
                     <div class="text-center">
-                        <span> <b style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:2%;padding-bottom:2%;">ADVICE</b></span>
+                        <span> <b class="fontClass" style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:2%;padding-bottom:2%;">ADVICE</b></span>
                     </div>
                     <div class="text-center" style="padding-bottom:9%;padding-top:4%;">
                         <span>
-                            <b style="font-weight: 600;font-size:15px;letter-spacing:0px;">
+                            <b class="fontClass" style="font-weight: 600;font-size:16px;letter-spacing:0px;">
                                 Your phone number should be the,<br />
                                 same and correct on all platforms!<br />
                             </b>
@@ -329,7 +728,20 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="border-baner">
                 <div class="text-center" style="padding-top:3%;">
-                    <span> <b style="font-weight: 800;font-size:35px;letter-spacing:-2px;color:orange;padding-top:5%;">@ViewBag.ratingData/</b><b style="font-weight: 800;font-size:25px;letter-spacing:-2px;">40</b></span>
+                    @if (@Model.RatingData != null)
+                    {
+                        <span>
+                            <b style="font-weight: 800;font-size:35px;letter-spacing:-2px;color:orange;padding-top:5%;">@Model.RatingData</b>
+                            <b style="font-weight: 800;font-size:25px;letter-spacing:-2px;">/40</b>
+                        </span>
+                    }
+                    else
+                    {
+                        <span>
+                            <b style="font-weight: 800;font-size:35px;letter-spacing:-2px;color:orange;padding-top:5%;">0</b>
+                            <b style="font-weight: 800;font-size:25px;letter-spacing:-2px;">/40</b>
+                        </span>
+                    }
                 </div>
                 <div class="text-center" style="padding-bottom:2%;">
                     <div class="col-md-3"></div>
@@ -341,39 +753,45 @@
                     <div class="col-md-3"></div>
                 </div>
                 <div class="text-center" style="padding-bottom:2%;">
-                    <span> <b style="font-weight: 700;font-size:35px;letter-spacing:0px;color:#72a0fe;padding-top:5%;padding-bottom:5%;">Reviews</b></span>
+                    <span> <b style="font-weight: 750;font-size:32px;letter-spacing:0px;color:#72a0fe;padding-top:5%;padding-bottom:5%;">Reviews</b></span>
                 </div>
                 <div class="text-center">
-                    <b style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">
+                    <b class="fontClass" style="font-weight: 600;font-size:16px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">
                         Reviews quantify the experience that your customers have at your restaurant and they set a<br />
                         precedence for fututre customers. Today, 85% of diners trust online reviews as much as personal<br />
                         reviews <font color="orange">(source)</font> making reviews on websites such as Yelp, Facebook, and Zomato crucial to your<br />
-    online presence. 97% of consumers read online reviews for local businesses last year (Brightlocal)<br />
-</b>
+                        online presence. 97% of consumers read online reviews for local businesses last year (Brightlocal)<br />
+                    </b>
                 </div>
                 <div class="text-center" style="padding-bottom:5%;padding-top:3%;">
-                    <span><a href="#"><b style="font-weight: 600;font-size:20px;letter-spacing:0px;color:orange;padding-top:5%;">Read More </b></a></span>
+                    <span><a href="#"><b style="font-weight: 650;font-size:17px;letter-spacing:0px;color:orange;padding-top:5%;">Read More </b></a></span>
                 </div>
             </div>
         </div>
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="border-baner left-box">
-                    <div class="text-center" style="padding-bottom:4%;padding-top:4%;">
-                        <span> <b style="font-weight: 700;font-size:20px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">Reviews Count</b></span>
+                    <div class="text-center" style="padding-top:4%;">
+                        <span> <b style="font-weight: 750;font-size:25px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">Reviews Count</b></span>
                     </div>
-                    <div class="reviews-count-progress-bar"></div>
+                    <div class="reviews-count-progress-bar">
+                        <div class="barOverflow">
+                            <div class="bar"></div>
+                        </div>
+                    </div>
                     <div class="text-center">
-                        <span> <b style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:2%;padding-bottom:2%;">ADVICE</b></span>
+                        <b><label id="rev_count_val1" style="font-size: x-large;color:orange;"></label></b>
+                        <br />
+                        <span> <b class="fontClass" style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:2%;padding-bottom:2%;">ADVICE</b></span>
                     </div>
                     <div class="text-center" style="padding-bottom:5%;padding-top:4%;">
                         <span>
-                            <b style="font-weight: 600;font-size:15px;letter-spacing:0px;">
-                                Having online reviews is extremely<br/>
+                            <b class="fontClass" style="font-weight: 600;font-size:16px;letter-spacing:0px;">
+                                Having online reviews is extremely<br />
                                 important as most diners search a<br />
                                 restaurant before they visit it.Not<br />
                                 having any reviews can potentially<br />
-                                deter visitors.<br/>
+                                deter visitors.<br />
                                 &nbsp;
                             </b>
                         </span>
@@ -382,16 +800,22 @@
             </div>
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="border-baner right-box">
-                    <div class="text-center" style="padding-bottom:4%;padding-top:4%;">
-                        <span> <b style="font-weight: 700;font-size:20px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">Reviews Rating </b></span>
+                    <div class="text-center" style="padding-top:4%;">
+                        <span> <b style="font-weight: 750;font-size:25px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">Reviews Rating </b></span>
                     </div>
-                    <div class="reviews-rating-progress-bar"></div>
+                    <div class="reviews-rating-progress-bar">
+                        <div class="barOverflow">
+                            <div class="bar"></div>
+                        </div>
+                    </div>
                     <div class="text-center">
-                        <span> <b style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:2%;padding-bottom:2%;">ADVICE</b></span>
+                        <b><label id="ReviewsRatingVal" style="font-size: x-large;color:orange;"></label></b>
+                        <br/>
+                        <span> <b class="fontClass" style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:2%;padding-bottom:2%;">ADVICE</b></span>
                     </div>
                     <div class="text-center" style="padding-bottom:5%;padding-top:4%;">
                         <span>
-                            <b style="font-weight: 600;font-size:15px;letter-spacing:0px;">
+                            <b class="fontClass" style="font-weight: 600;font-size:16px;letter-spacing:0px;">
                                 Consumers read and consider<br />
                                 restaurant reviews at a higher rate<br />
                                 than any other industry.It's important<br />
@@ -410,7 +834,20 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="border-baner">
                 <div class="text-center" style="padding-top:3%;">
-                    <span> <b style="font-weight: 800;font-size:35px;letter-spacing:-2px;color:orange;padding-top:5%;"> @ViewBag.socialMediaEng /</b><b style="font-weight: 800;font-size:25px;letter-spacing:-2px;">35</b></span>
+                    @if (@Model.SocialMediaEngagement != null)
+                    {
+                        <span>
+                            <b style="font-weight: 800;font-size:35px;letter-spacing:-2px;color:orange;padding-top:5%;">@Model.SocialMediaEngagement</b>
+                            <b style="font-weight: 800;font-size:25px;letter-spacing:-2px;">/35</b>
+                        </span>
+                    }
+                    else
+                    {
+                        <span>
+                            <b style="font-weight: 800;font-size:35px;letter-spacing:-2px;color:orange;padding-top:5%;">0</b>
+                            <b style="font-weight: 800;font-size:25px;letter-spacing:-2px;">/35</b>
+                        </span>
+                    }
                 </div>
                 <div class="text-center" style="padding-bottom:2%;">
                     <div class="col-md-3"></div>
@@ -422,33 +859,37 @@
                     <div class="col-md-3"></div>
                 </div>
                 <div class="text-center" style="padding-bottom:2%;">
-                    <span> <b style="font-weight: 700;font-size:35px;letter-spacing:0px;color:#72a0fe;padding-top:5%;padding-bottom:5%;">Social Media</b></span>
+                    <span> <b style="font-weight: 750;font-size:32px;letter-spacing:0px;color:#72a0fe;padding-top:5%;padding-bottom:5%;">Social Media</b></span>
                 </div>
                 <div class="text-center">
-                    <b style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">
+                    <b class="fontClass" style="font-weight: 600;font-size:16px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
                         Social media is king in today's information age making it an important asset for any restaurant that<br />
                         wants to have a robust online presence. Engaging with customers online by sharing their photos and<br />
                         keeping them up to date with what is happening at your restaurant is a great way to boost your web presence!
                     </b>
                 </div>
                 <div class="text-center" style="padding-bottom:5%;padding-top:3%;">
-                    <span><a href="#"><b style="font-weight: 600;font-size:20px;letter-spacing:0px;color:orange;padding-top:5%;">Read More </b></a></span>
+                    <span><a href="#"><b style="font-weight: 650;font-size:17px;letter-spacing:0px;color:orange;padding-top:5%;">Read More </b></a></span>
                 </div>
             </div>
         </div>
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="border-baner left-box">
-                    <div class="text-center" style="padding-bottom:4%;padding-top:4%;">
-                        <span> <b style="font-weight: 700;font-size:20px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">Facebook</b></span>
+                    <div class="text-center" style="padding-top:4%;">
+                        <span> <b style="font-weight: 750;font-size:25px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">Facebook</b></span>
                     </div>
-                    <div class="facebook-progress-bar"></div>
+                    <div class="facebook-progress-bar">
+                        <div class="barOverflow">
+                            <div class="bar"></div>
+                        </div>
+                    </div>
                     <div class="text-center">
-                        <span> <b style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:2%;padding-bottom:2%;">ADVICE</b></span>
+                        <span> <b class="fontClass" style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:2%;padding-bottom:2%;">ADVICE</b></span>
                     </div>
                     <div class="text-center" style="padding-bottom:5%;padding-top:4%;">
                         <span>
-                            <b style="font-weight: 600;font-size:15px;letter-spacing:0px;">
+                            <b class="fontClass" style="font-weight: 600;font-size:16px;letter-spacing:0px;">
                                 Facebook is alive and well! The 'book<br />
                                 is a great tool to update your loyal<br />
                                 customers on everything that is<br />
@@ -460,16 +901,20 @@
             </div>
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="border-baner right-box">
-                    <div class="text-center" style="padding-bottom:4%;padding-top:4%;">
-                        <span> <b style="font-weight: 700;font-size:20px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">Photos </b></span>
+                    <div class="text-center" style="padding-top:4%;">
+                        <span> <b style="font-weight: 750;font-size:25px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">Photos </b></span>
                     </div>
-                    <div class="photos-progress-bar"></div>
+                    <div class="photos-progress-bar">
+                        <div class="barOverflow">
+                            <div class="bar"></div>
+                        </div>
+                    </div>
                     <div class="text-center">
-                        <span> <b style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:2%;padding-bottom:2%;">ADVICE</b></span>
+                        <span> <b class="fontClass" style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:2%;padding-bottom:2%;">ADVICE</b></span>
                     </div>
                     <div class="text-center" style="padding-bottom:5%;padding-top:4%;">
                         <span>
-                            <b style="font-weight: 600;font-size:15px;letter-spacing:0px;">
+                            <b class="fontClass" style="font-weight: 600;font-size:16px;letter-spacing:0px;">
                                 People love visuals,especially when it  comes<br />
                                 to photos of food.Use this to your advantage by encouraging<br />
                                 dinners to take pictures of their food and re-posting<br />
@@ -486,7 +931,20 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="border-baner">
                 <div class="text-center" style="padding-top:3%;">
-                    <span> <b style="font-weight: 800;font-size:35px;letter-spacing:-2px;color:orange;padding-top:5%;">@ViewBag.website/</b><b style="font-weight: 800;font-size:25px;letter-spacing:-2px;">15</b></span>
+                    @if (@Model.WebSite != null)
+                    {
+                        <span>
+                            <b style="font-weight: 800;font-size:35px;letter-spacing:-2px;color:orange;padding-top:5%;">@Model.WebSite</b>
+                            <b style="font-weight: 800;font-size:25px;letter-spacing:-2px;">/15</b>
+                        </span>
+                    }
+                    else
+                    {
+                        <span>
+                            <b style="font-weight: 800;font-size:35px;letter-spacing:-2px;color:orange;padding-top:5%;">0</b>
+                            <b style="font-weight: 800;font-size:25px;letter-spacing:-2px;">/15</b>
+                        </span>
+                    }
                 </div>
                 <div class="text-center" style="padding-bottom:2%;">
                     <div class="col-md-3"></div>
@@ -498,33 +956,37 @@
                     <div class="col-md-3"></div>
                 </div>
                 <div class="text-center" style="padding-bottom:2%;">
-                    <span> <b style="font-weight: 700;font-size:35px;letter-spacing:0px;color:#72a0fe;padding-top:5%;padding-bottom:5%;">Website</b></span>
+                    <span> <b style="font-weight: 750;font-size:32px;letter-spacing:0px;color:#72a0fe;padding-top:5%;padding-bottom:5%;">Website</b></span>
                 </div>
                 <div class="text-center">
-                    <b style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">
+                    <b class="fontClass" style="font-weight: 600;font-size:16px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
                         Wheter it is to look at your restaurant's ,menu or to find your hours, customers are constantly<br />
                         searching about your restaurant. By keeping all thi information up to date your website it<br />
                         provides customers with one easy place to find everything they need!
                     </b>
                 </div>
                 <div class="text-center" style="padding-bottom:5%;padding-top:3%;">
-                    <span><a href="#"><b style="font-weight: 600;font-size:20px;letter-spacing:0px;color:orange;padding-top:5%;">Read More </b></a></span>
+                    <span><a href="#"><b style="font-weight: 650;font-size:17px;letter-spacing:0px;color:orange;padding-top:5%;">Read More </b></a></span>
                 </div>
             </div>
         </div>
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="border-baner left-box">
-                    <div class="text-center" style="padding-bottom:4%;padding-top:4%;">
-                        <span> <b style="font-weight: 700;font-size:20px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">Website URL</b></span>
+                    <div class="text-center" style="padding-top:4%;">
+                        <span> <b style="font-weight: 750;font-size:25px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">Website URL</b></span>
                     </div>
-                    <div class="website-url-progress-bar"></div>
+                    <div class="website-url-progress-bar">
+                        <div class="barOverflow">
+                            <div class="bar"></div>
+                        </div>
+                    </div>
                     <div class="text-center">
-                        <span> <b style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:2%;padding-bottom:2%;">ADVICE</b></span>
+                        <span> <b class="fontClass" style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:2%;padding-bottom:2%;">ADVICE</b></span>
                     </div>
                     <div class="text-center" style="padding-bottom:5%;padding-top:4%;">
                         <span>
-                            <b style="font-weight: 600;font-size:15px;letter-spacing:0px;">
+                            <b class="fontClass" style="font-weight: 600;font-size:16px;letter-spacing:0px;">
                                 It's important that your website<br />
                                 URL is correct across all social<br />
                                 media platforms. Consistency<br />
@@ -538,19 +1000,22 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="border-baner last-center-box">
-                    <div class="text-center" style="padding-bottom:4%;padding-top:4%;">
-                        <span> <b style="font-weight: 700;font-size:20px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">Referral Domain </b></span>
+                    <div class="text-center" style="padding-top:4%;">
+                        <span> <b style="font-weight: 750;font-size:25px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">Referral Domain </b></span>
                     </div>
-                    <div class="referral-domain-progress-bar"></div>
+                    <div class="referral-domain-progress-bar">
+                        <div class="barOverflow">
+                            <div class="bar"></div>
+                        </div>
+                    </div>
                     <div class="text-center">
-                        <span> <b style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:2%;padding-bottom:2%;">ADVICE</b></span>
+                        <span> <b class="fontClass" style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:2%;padding-bottom:2%;">ADVICE</b></span>
                     </div>
                     <div class="text-center" style="padding-bottom:5%;padding-top:4%;">
                         <span>
-                            <b style="font-weight: 600;font-size:15px;letter-spacing:0px;">
+                            <b class="fontClass" style="font-weight: 600;font-size:16px;letter-spacing:0px;">
                                 When other websites mention<br />
                                 or link to youe website it drives<br />
                                 more traffic to your site!<br />
@@ -564,19 +1029,22 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="border-baner right-box">
-                    <div class="text-center" style="padding-bottom:4%;padding-top:4%;">
-                        <span> <b style="font-weight: 700;font-size:20px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">Number of Pages </b></span>
+                    <div class="text-center" style="padding-top:4%;">
+                        <span> <b style="font-weight: 750;font-size:25px;letter-spacing:0px;padding-top:5%;padding-bottom:5%;">Number of Pages </b></span>
                     </div>
-                    <div class="number-of-pages-progress-bar"></div>
+                    <div class="number-of-pages-progress-bar">
+                        <div class="barOverflow">
+                            <div class="bar"></div>
+                        </div>
+                    </div>
                     <div class="text-center">
-                        <span> <b style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:2%;padding-bottom:2%;">ADVICE</b></span>
+                        <span> <b class="fontClass" style="font-weight: 600;font-size:15px;letter-spacing:0px;padding-top:2%;padding-bottom:2%;">ADVICE</b></span>
                     </div>
                     <div class="text-center" style="padding-bottom:5%;padding-top:4%;">
                         <span>
-                            <b style="font-weight: 600;font-size:15px;letter-spacing:0px;">
+                            <b class="fontClass" style="font-weight: 600;font-size:16px;letter-spacing:0px;">
                                 Don't just throw all of your<br />
                                 restaurant's onformation onto<br />
                                 one oage on your website.<br />
@@ -598,14 +1066,14 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center" style="padding-top:3%;">
-                <span> <b style="font-weight: 800;font-size:35px;letter-spacing:-2px;padding-top:5%;">Next Steps</b></span>
+                <span> <b style="font-weight: 800;font-size:45px;letter-spacing:-2px;padding-top:5%;">Next Steps</b></span>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center" style="padding-top:1%;">
-                <span> <b style="font-size:20px;">Here are some ways to improve your restaurant's marketing!</b></span>
+                <span> <b style="font-size:25px;">Here are some ways to improve your restaurant's marketing!</b></span>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center" style="padding-top:3%;"><hr style="border-top:2px solid black" />    </div>
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center" style="padding-top:3%;">
-                <span> <b style="font-weight: 800;font-size:35px;letter-spacing:-2px;">List Advice</b></span>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                <span> <b style="font-weight: 850;font-size:45px;letter-spacing:-2px;">List Advice</b></span>
             </div>
 
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-top:3%;">
@@ -865,7 +1333,7 @@
                     </table>
                 </div>
             </div>
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-top:3%;">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-top:3%;margin-bottom:50px">
                 <div class="table-responsive">
                     <table>
                         <thead>
@@ -979,6 +1447,7 @@
 </div>
 @section Scripts {
     @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/js/loading-bar.js" type="text/javascript"></script>
     <script src="~/Scripts/js/RestaurantNameMeter.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -987,327 +1456,174 @@
                 dynamic_line_width = 8
             else
                 dynamic_line_width = 12;
-             var dataConsistencyProgressValue = (@ViewBag.dataConsistency* 100) / 10;
+
+            var dataConsistencyProgressValue = (@Model.DataDependecy * 100) / 10;
             $('#DataConsistencyProgressbar').attr("style", "width:" + dataConsistencyProgressValue + "%");
             $('#DataConsistencyProgressbarIn').attr("style", "width:" + dataConsistencyProgressValue + "%");
 
-            var progressValue = (@ViewBag.ratingData* 100) / 40;
+            var progressValue = (@Model.RatingData * 100) / 40;
             $('#RateProgressbar').attr("style", "width:" + progressValue + "%");
             $('#RateProgressbarIn').attr("style", "width:" + progressValue + "%");
 
             //FacebookProgressbarIn   FacebookProgressbar
-            var progressValue = (@ViewBag.socialMediaEng * 100) / 35;
+            var progressValue = (@Model.SocialMediaEngagement * 100) / 35;
             $('#FacebookProgressbar').attr("style", "width:" + progressValue + "%");
             $('#FacebookProgressbarIn').attr("style", "width:" + progressValue + "%");
 
-             var websiteProgressValue = (@ViewBag.website* 100) / 15;
+             var websiteProgressValue = (@Model.WebSite * 100) / 15;
             $('#websiteProgressbar').attr("style", "width:" + websiteProgressValue + "%");
             $('#websiteProgressbarIn').attr("style", "width:" + websiteProgressValue + "%");
 
-             var mainProgress = @ViewBag.ratingData + @ViewBag.dataConsistency + @ViewBag.website + @ViewBag.socialMediaEng;
-            $(".my-progress-bar").circularProgressMain({
-                line_width: dynamic_line_width,
-                color: "black",
-                starting_position: 50, // 12.00 o' clock position, 25 stands for 3.00 o'clock (clock-wise)
-                percent: 0, // percent starts from
-                percentage: true,
-                //text: "More power behind every pixel"
-            }).circularProgressMain('animate', mainProgress, 1000);
+            var nm_bar_val= (@Model.DataDependecy * 2 * 50) / 10;
+            $(".restaurant-name-progress-bar").each(function () {
+                var $bar = $(this).find(".bar");
+                var $val = $(this).find("span");
+                var perc = parseInt(nm_bar_val, 10);
 
-            var nm_bar_val=(@ViewBag.dataConsistency* 50) / 10;
-            $(".restaurant-name-progress-bar").circularProgress({
-                line_width: 12,
-                color: "#8470ff",
-                starting_position: 75, // 12.00 o' clock position, 25 stands for 3.00 o'clock (clock-wise)
-                percent: 0, // percent starts from
-                percentage: true,
-                //text: "More power behind every pixel"
-            }).circularProgress('animate', nm_bar_val, 500); //50 is max value
+                $({ p: 0 }).animate({ p: perc }, {
+                    easing: "swing",
+                    step: function (p) {
+                        $bar.css({
+                            transform: "rotate(" + (45 + (p * 1.8)) + "deg)",
+                        });
+                        $val.text(p | 0);
+                    }
+                });
+            });
 
-            var pn_bar_val=(@ViewBag.dataConsistency* 50) / 10;  //phone rate /5
-            $(".phone-number-progress-bar").circularProgress({
-                line_width: 12,
-                color: "#8470ff",
-                starting_position: 75, // 12.00 o' clock position, 25 stands for 3.00 o'clock (clock-wise)
-                percent: 0, // percent starts from
-                percentage: true,
-                //text: "More power behind every pixel"
-            }).circularProgress('animate', pn_bar_val, 500);
+            var pn_bar_val=(@Model.DataDependecy * 2 * 50) / 10;
+            $(".phone-number-progress-bar").each(function () {
+                var $bar = $(this).find(".bar");
+                var $val = $(this).find("span");
+                var perc = parseInt(pn_bar_val, 10);
 
-            var rev_count_val = (@ViewBag.reviewCount* 50) / 1738;
+                $({ p: 0 }).animate({ p: perc }, {
+                    easing: "swing",
+                    step: function (p) {
+                        $bar.css({
+                            transform: "rotate(" + (45 + (p * 1.8)) + "deg)",
+                        });
+                        $val.text(p | 0);
+                    }
+                });
+            });
+
+            var rev_count_val = (@Model.ReviewCount * 2 * 50) / 1738;
+            var rev_count_val1 = (@Model.ReviewCount);
+            $('#rev_count_val1').text(rev_count_val1);
             if (rev_count_val > 50)
                 rev_count_val = 50;
-            $(".reviews-count-progress-bar").circularProgress({
-                line_width: 12,
-                color: "#8470ff",
-                starting_position: 75, // 12.00 o' clock position, 25 stands for 3.00 o'clock (clock-wise)
-                percent: 0, // percent starts from
-                percentage: true,
-                //text: "More power behind every pixel"
-            }).circularProgress('animate', rev_count_val, 500);
+            $(".reviews-count-progress-bar").each(function () {
+                var $bar = $(this).find(".bar");
+                var $val = $(this).find("span");
+                var perc = parseInt(rev_count_val, 10);
 
-            var rev_rating_val = (@ViewBag.reviewRating* 50) / 5;
-            $(".reviews-rating-progress-bar").circularProgress({
-                line_width: 12,
-                color: "#8470ff",
-                starting_position: 75, // 12.00 o' clock position, 25 stands for 3.00 o'clock (clock-wise)
-                percent: 0, // percent starts from
-                percentage: true,
-                //text: "More power behind every pixel"
-            }).circularProgress('animate',rev_rating_val, 500);
+                $({ p: 0 }).animate({ p: perc }, {
+                    easing: "swing",
+                    step: function (p) {
+                        $bar.css({
+                            transform: "rotate(" + (45 + (p * 1.8)) + "deg)",
+                        });
+                        $val.text(p | 0);
+                    }
+                });
+            });
 
-            var like_val = (@ViewBag.likeCount* 50) / 20;
-            $(".facebook-progress-bar").circularProgress({
-                line_width: 12,
-                color: "#8470ff",
-                starting_position: 75, // 12.00 o' clock position, 25 stands for 3.00 o'clock (clock-wise)
-                percent: 0, // percent starts from
-                percentage: true,
-                //text: "More power behind every pixel"
-            }).circularProgress('animate', like_val, 500);
+            var rev_rating_val = (@Model.ReviewRating * 2 * 50) / 5;
+            var rev_rating_val1 = (@Model.ReviewRating);
+            $('#ReviewsRatingVal').text(rev_rating_val1);
+            $(".reviews-rating-progress-bar").each(function () {
+                var $bar = $(this).find(".bar");
+                var $val = $(this).find("span");
+                var perc = parseInt(rev_rating_val, 10);
+                $({ p: 0 }).animate({ p: perc }, {
+                    easing: "swing",
+                    step: function (p) {
+                        $bar.css({
+                            transform: "rotate(" + (45 + (p * 1.8)) + "deg)",
+                        });
+                        $val.text(p | 0);
+                    }
+                });
+            });
 
-            var photo_val = (@ViewBag.photoCount* 50) / 15;
-            $(".photos-progress-bar").circularProgress({
-                line_width: 12,
-                color: "#8470ff",
-                starting_position: 75, // 12.00 o' clock position, 25 stands for 3.00 o'clock (clock-wise)
-                percent: 0, // percent starts from
-                percentage: true,
-                //text: "More power behind every pixel"
-            }).circularProgress('animate', photo_val, 500);
+            var like_val = (@Model.LikeCount * 2 * 50) / 20;
+            $(".facebook-progress-bar").each(function () {
+                var $bar = $(this).find(".bar");
+                var $val = $(this).find("span");
+                var perc = parseInt(like_val, 10);
+                $({ p: 0 }).animate({ p: perc }, {
+                    easing: "swing",
+                    step: function (p) {
+                        $bar.css({
+                            transform: "rotate(" + (45 + (p * 1.8)) + "deg)",
+                        });
+                        $val.text(p | 0);
+                    }
+                });
+            });
 
-            var rev_web_val = (@ViewBag.website* 50) / 15;
-            $(".website-url-progress-bar").circularProgress({
-                line_width: 12,
-                color: "#8470ff",
-                starting_position: 75, // 12.00 o' clock position, 25 stands for 3.00 o'clock (clock-wise)
-                percent: 0, // percent starts from
-                percentage: true,
-                //text: "More power behind every pixel"
-            }).circularProgress('animate', rev_web_val, 500);
+            var photo_val = (@Model.PhotoCount * 2 * 50) / 15;
+            $(".photos-progress-bar").each(function () {
+                var $bar = $(this).find(".bar");
+                var $val = $(this).find("span");
+                var perc = parseInt(photo_val, 10);
+                $({ p: 0 }).animate({ p: perc }, {
+                    easing: "swing",
+                    step: function (p) {
+                        $bar.css({
+                            transform: "rotate(" + (45 + (p * 1.8)) + "deg)",
+                        });
+                        $val.text(p | 0);
+                    }
+                });
+            });
 
-            $(".referral-domain-progress-bar").circularProgress({
-                line_width: 12,
-                color: "#8470ff",
-                starting_position: 75, // 12.00 o' clock position, 25 stands for 3.00 o'clock (clock-wise)
-                percent: 0, // percent starts from
-                percentage: true,
-                //text: "More power behind every pixel"
-            }).circularProgress('animate', rev_web_val, 500);
+            var rev_web_val = (@Model.WebSite * 2 * 50) / 15;
+            $(".website-url-progress-bar").each(function () {
+                var $bar = $(this).find(".bar");
+                var $val = $(this).find("span");
+                var perc = parseInt(rev_web_val, 10);
+                $({ p: 0 }).animate({ p: perc }, {
+                    easing: "swing",
+                    step: function (p) {
+                        $bar.css({
+                            transform: "rotate(" + (45 + (p * 1.8)) + "deg)",
+                        });
+                        $val.text(p | 0);
+                    }
+                });
+            });
 
-            $(".number-of-pages-progress-bar").circularProgress({
-                line_width: 12,
-                color: "#8470ff",
-                starting_position: 75, // 12.00 o' clock position, 25 stands for 3.00 o'clock (clock-wise)
-                percent: 0, // percent starts from
-                percentage: true,
-                //text: "More power behind every pixel"
-            }).circularProgress('animate', rev_web_val, 500);
+            $(".referral-domain-progress-bar").each(function () {
+                var $bar = $(this).find(".bar");
+                var $val = $(this).find("span");
+                var perc = parseInt(rev_web_val, 10);
+                $({ p: 0 }).animate({ p: perc }, {
+                    easing: "swing",
+                    step: function (p) {
+                        $bar.css({
+                            transform: "rotate(" + (45 + (p * 1.8)) + "deg)",
+                        });
+                        $val.text(p | 0);
+                    }
+                });
+            });
 
-
+            $(".number-of-pages-progress-bar").each(function () {
+                var $bar = $(this).find(".bar");
+                var $val = $(this).find("span");
+                var perc = parseInt(rev_web_val, 10);
+                $({ p: 0 }).animate({ p: perc }, {
+                    easing: "swing",
+                    step: function (p) {
+                        $bar.css({
+                            transform: "rotate(" + (45 + (p * 1.8)) + "deg)",
+                        });
+                        $val.text(p | 0);
+                    }
+                });
+            });
         });
-
-        (function ($) {
-            var divsize = $('#progress_div_center').width() + "px";
-            var global_settings = {};
-            var methods = {
-                init: function (options) {
-                    // This is the easiest way to have default options.
-                    var settings = $.extend({
-                        // These are the defaults.
-                        color: "#72a0fe",
-                        height: divsize,
-                        width: divsize,
-                        line_width: 8,
-                        starting_position: 75,
-                        percent: 100,
-                        counter_clockwise: false,
-                        percentage: true,
-                        text: ''
-                    }, options);
-                    global_settings = settings;
-
-                    // Create percentage
-                    var percentage = $("<div class='progress-percentage'></div>");
-
-                    if (!global_settings.percentage) {
-                        percentage.text(global_settings.percentage);
-                    }
-                    $(this).append(percentage);
-
-                    // Correct any invalid values
-                    if (global_settings.starting_position != 100) {
-                        global_settings.starting_position = global_settings.starting_position % 100;
-                    }
-                    if (global_settings.ending_position != 100) {
-                        global_settings.ending_position = global_settings.ending_position % 100;
-                    }
-                    // No 'px' or '%', add 'px'
-                    appendUnit(global_settings.width);
-                    appendUnit(global_settings.height);
-
-                    // Apply global_settings
-                    $(this).css({
-                        "height": global_settings.height,
-                        "width": global_settings.width
-                    });
-                    $(this).addClass("circular-progress-bar");
-
-                    // Remove old canvas
-                    $(this).find("canvas").remove();
-
-                    // Put canvas inside this
-                    $(this).append(createCanvas($(this)));
-
-                    // Return allows for chaining
-                    return this;
-                },
-                percent: function (value) {
-                    // Change percent
-                    global_settings.percent = value;
-                    // Apply global_settings
-                    $(this).css({
-                        "height": global_settings.height,
-                        "width": global_settings.width
-                    });
-                    // Remove old canvas
-                    $(this).children("canvas").remove();
-                    // Put canvas inside this
-                    $(this).append(createCanvas($(this)));
-
-                    // Return allows for chaining
-                    return this;
-                },
-                animate: function (value, time) {
-                    // Apply global_settings
-                    $(this).css({
-                        "height": global_settings.height,
-                        "width": global_settings.width
-                    });
-
-                    // Number of intervals, 10ms interval
-                    var num_of_steps = time / 10;
-                    // Amount of change each step
-                    var percent_change = Math.round((value - global_settings.percent) / num_of_steps);
-                    if (percent_change <= 0)
-                        percent_change = 1;
-
-                    // Variable conflict, rename this
-                    var scope = $(this);
-                    var theInterval = setInterval(function () {
-                        if (global_settings.percent < value) {
-                            // Remove old canvas
-                            scope.children("canvas").remove();
-                            // Increment percent
-                            global_settings.percent += percent_change;
-                            // Put canvas inside this
-                            scope.append(createCanvas(scope));
-                        } else {
-                            clearInterval(theInterval);
-                        }
-                    }, 10);
-
-                    // Return allows for chaining
-                    return this;
-                }
-            };
-
-            $.fn.circularProgressMain = function (methodOrOptions) {
-                if (methods[methodOrOptions]) {
-                    // Method found
-                    return methods[methodOrOptions].apply(this, Array.prototype.slice.call(arguments, 1));
-                } else if (typeof methodOrOptions === 'object' || !methodOrOptions) {
-                    // Default to "init", object passed in or nothing passed in
-                    return methods.init.apply(this, arguments);
-                } else {
-                    $.error('Method ' + methodOrOptions + ' does not exist.');
-                }
-            };
-
-            /* =========================================================================
-                PRIVATE FUNCTIONS
-            ========================================================================= */
-
-            // return string without 'px' or '%'
-            function removeUnit(apples) {
-                if (apples.indexOf("px")) {
-                    return apples.substring(0, apples.length - 2);
-                } else if (canvas_height.indexOf("%")) {
-                    return apples.substring(0, apples.length - 1);
-                }
-            };
-            // return string with 'px'
-            function appendUnit(apples) {
-                if (apples.toString().indexOf("px") < -1 && apples.toString().indexOf("%") < -1) {
-                    return apples += "px";
-                }
-            };
-            // calculate starting position on canvas
-            function calcPos(apples, percent) {
-                if (percent < 0) {
-                    // Calculate starting position
-                    var starting_degree = (parseInt(apples) / 100) * 360;
-                    var starting_radian = starting_degree * (Math.PI / 180);
-                    return starting_radian - (Math.PI / 2);
-                } else {
-                    // Calculate ending position
-                    var ending_degree = ((parseInt(apples) + parseInt(percent)) / 100) * 360;
-                    var ending_radian = ending_degree * (Math.PI / 180);
-                    return ending_radian - (Math.PI / 2);
-                }
-            };
-            // Put percentage or custom text inside progress circle
-            function insertText(scope) {
-                //$(".progress-percentage").text(Math.round(global_settings.percent));
-                $(".progress-percentage").text(global_settings.percent + '%');
-            }
-            // create canvas
-            function createCanvas(scope) {
-                // Remove 'px' or '%'
-                var canvas_height = removeUnit(global_settings.height.toString());
-                var canvas_width = removeUnit(global_settings.width.toString());
-
-                // Create canvas
-                var canvas = document.createElement("canvas");
-                canvas.height = canvas_height;
-                //canvas.height = 180;
-                canvas.width = canvas_width;
-
-                // Create drawable canvas and apply properties
-                var ctx = canvas.getContext("2d");
-                ctx.strokeStyle = global_settings.color;
-                ctx.lineWidth = global_settings.line_width;
-
-                // Draw arc
-                ctx.beginPath();
-
-                // Calculate starting and ending positions
-                var starting_radian = calcPos(global_settings.starting_position, -1);
-                var ending_radian = calcPos(global_settings.starting_position, global_settings.percent);
-                // Calculate radius and x,y coordinates
-                var radius = 0;
-                var xcoord = canvas_width / 2;
-                var ycoord = canvas_height / 2;
-                // Height or width greater
-                if (canvas_height >= canvas_width) {
-                    radius = canvas_width * 0.9 / 2 - (global_settings.line_width * 2);
-                } else {
-                    radius = canvas_height * 0.9 / 2 - (global_settings.line_width * 2);
-                }
-                ctx.arc(xcoord, ycoord, radius, starting_radian, ending_radian, global_settings.counter_clockwise);
-                ctx.stroke();
-
-                // Add text
-                if (global_settings.percentage) {
-                    insertText(scope);
-                }
-
-                return canvas;
-            };
-
-        }(jQuery));
-
-
-
     </script>
 }

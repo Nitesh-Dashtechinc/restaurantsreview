@@ -1,13 +1,11 @@
 (function ($) {
-
     var global_settings = {};
-
     var methods = {
         init: function (options) {
             // This is the easiest way to have default options.
             var settings = $.extend({
                 // These are the defaults.
-                color: "#000000",
+                color: "#C21BE4",
                 height: "300px",
                 width: "300px",
                 line_width: 8,
@@ -19,16 +17,13 @@
             }, options);
             global_settings = settings;
 
-
             // Create percentage
             var percentage = $("<div class='progress-percentage'></div>");
-
             if (!global_settings.percentage) {
               //  percentage.text(global_settings.percentage);
             }
             $(this).append(percentage);
-
-
+            
             // Create text
             var text = $("<div class='progress-text'></div>");
 
@@ -65,6 +60,7 @@
             // Return allows for chaining
             return this;
         },
+
         percent: function (value) {
             // Change percent
             global_settings.percent = value;
@@ -82,11 +78,11 @@
             // Return allows for chaining
             return this;
         },
+
         myvalue: function (val) {
             var percentage = $("<div class='progress-percentage'></div>");
             percentage.text((val / 10).toFixed(1));
                         $(this).append(percentage);
-         //   $(".progress-percentage").text((val / 10).toFixed(1));
         },
         animate: function (value, time) {
             // Apply global_settings
@@ -95,7 +91,7 @@
                 "width": global_settings.width
             });           
 
-           // $(".progress-percentage").text((value / 10).toFixed(1));
+            // $(".progress-percentage").text((value / 10).toFixed(1));
 
             // Number of intervals, 10ms interval
             var num_of_steps = time / 10;
@@ -116,8 +112,6 @@
                     clearInterval(theInterval);
                 }
             }, 10);
-
-         
             // Return allows for chaining
             return this;
         }
@@ -172,8 +166,6 @@
     function insertText(scope) {
         //$(".progress-percentage").text(Math.round(global_settings.percent) + "%");
         //  $(".progress-percentage").text((global_settings.percent / 10).toFixed(1));
-      
-        
     }
     // create canvas
     function createCanvas(scope) {
@@ -224,8 +216,6 @@
         if (global_settings.percentage) {
        //     insertText(scope);
         }
-
         return canvas;
     };
-
 }(jQuery));

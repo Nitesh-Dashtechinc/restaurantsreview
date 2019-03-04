@@ -11,7 +11,5 @@
         public string display_phone { get; set; }
         public string review_count { get; set; }
         public string rating { get; set; }
-
-        
     }
 }

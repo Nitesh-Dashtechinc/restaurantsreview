@@ -60,7 +60,167 @@
         font-weight: 600;
     }
 </style>
-<link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/themes/blitzer/jquery-ui.css" rel="Stylesheet" type="text/css" />
+<style type="text/css">
+    .fontClass {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+</style>
+<link href="~/Content/loading-bar.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+    .leftbar {
+        position: relative;
+        margin: 4px;
+        /*float: left;*/
+        text-align: center;
+        /*padding-left: 30px;*/
+        padding-top: 27px;
+        text-align: -webkit-center;
+    }
+
+    .barOverflow {
+        position: relative;
+        overflow: hidden;
+        width: 200px;
+        height: 100px;
+        margin-bottom: -51px;
+    }
+
+    .bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        box-sizing: border-box;
+        border: 17px solid #eee;
+        border-bottom-color: blue;
+        border-right-color: blue;
+    }
+</style>
+<style type="text/css">
+    .centerbar {
+        position: relative;
+        margin: 4px;
+        /*float: left;*/
+        text-align: center;
+        /*padding-left: 46px;*/
+        padding-top: 27px;
+        text-align: -webkit-center;
+    }
+
+    .barOverflow {
+        position: relative;
+        overflow: hidden;
+        width: 200px;
+        height: 100px;
+        margin-bottom: -51px;
+    }
+
+    .bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        box-sizing: border-box;
+        border: 17px solid #eee;
+        border-bottom-color: blue;
+        border-right-color: blue;
+    }
+</style>
+<style type="text/css">
+    .rightbar {
+        position: relative;
+        margin: 4px;
+        /*float: left;*/
+        text-align: center;
+        /*padding-left: 30px;*/
+        padding-top: 27px;
+        text-align: -webkit-center;
+    }
+    .barOverflow {
+        position: relative;
+        overflow: hidden;
+        width: 200px;
+        height: 100px;
+        margin-bottom: -51px;
+    }
+    .bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        box-sizing: border-box;
+        border: 17px solid #eee;
+        border-bottom-color: blue;
+        border-right-color: blue;
+    }
+</style>
+<style>
+
+    @@media screen and (max-width: 767px) {
+        .ldBar-label {
+            color: black;
+            font-family: tahoma;
+            font-size: inherit;
+        }
+    }
+    @@media screen and (min-width: 768px) {
+        .ldBar-label {
+            color: black;
+            font-family: tahoma;
+            font-size: inherit;
+        }
+    }
+    @@media screen and (min-width: 992px) {
+        .ldBar-label {
+            color: black;
+            font-family: tahoma;
+            font-size: inherit;
+        }
+    }
+
+    @@media screen and (min-width: 1200px) {
+        .ldBar-label {
+            color: black;
+            font-family: tahoma;
+            font-size: 5.1em;
+            font-weight: 900
+        }
+    }
+
+    @@media screen and (min-width: 2560px) {
+        .ldBar-label {
+            color: black;
+            font-family: tahoma;
+            font-size: 5.1em;
+            font-weight: 900
+        }
+    }
+    @@media screen and (min-width: 2560px) {
+        .bottom-height {
+            margin-bottom: 10%;
+        }
+
+        .center-Icons {
+            margin-left: 20%;
+        }
+
+        .ldBar-label {
+            color: black;
+            font-family: tahoma;
+            font-size: 5.1em;
+            font-weight: 900
+        }
+    }
+
+</style>
+
+<link href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/themes/blitzer/jquery-ui.css" rel="Stylesheet" type="text/css" />
 <div class="container">
     <div class="row" style="margin-top:8%;">
         <div class="text-center col-lg-12 col-md-12 page_title">
@@ -73,7 +233,7 @@
 </div>
 <div class="container" style="min-height:280px;padding-top:7%;">
     <div class="row text-center">
-        <div class="col-md-12">
+        <div class="col-md-12 bottom-height">
             @using (Html.BeginForm("Review", "Home", FormMethod.Post, new { @class = "", @id = "Form" }))
             {
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-0">
@@ -88,8 +248,6 @@
                     <input type="submit" id="btnSubmit" value="SUBMIT" class="btn btn-bold btn-black" onclick="showsl();" />
                     <div id="overDiv" class="overlay"></div><div id="loadMess" class=" loadMess"><img id="mySpinner" src="~/Content/gif/Spin-1s-95px.gif" /></div>
                 </div>
-
-
                 <input type="hidden" id="hfCustomer" name="CustomerId" />
             }
         </div>
@@ -105,31 +263,36 @@
                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-md-8">
                         @if (ViewBag.closeresult2[1].imageurl == "" || ViewBag.closeresult2[1].imageurl == null)
                         {
-                            <img src="~/Content/image/NoImege.png" class="img-round-border img-responsive" style="width: 200px;height: 200px;">
+                            <img src="~/Content/image/NoImege.png" class="img-round-border img-responsive center-Icons" style="width: 200px;height: 200px;">
                         }
                         else
                         {
-                            <img src="@ViewBag.closeresult2[1].imageurl" class="img-round-border img-responsive" style="width: 200px;height: 200px;">
+                            <img src="@ViewBag.closeresult2[1].imageurl" class="img-round-border img-responsive center-Icons" style="width: 200px;height: 200px;">
                         }
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-md-2"></div>
                 </div>
-                <div class="card-container text-center">
+                <div class="card-container text-center fontClass">
                     <h4><b>@ViewBag.closeresult2[1].name</b></h4>
                     <span>@ViewBag.closeresult2[1].Phone</span>
                     <p>
                         @ViewBag.closeresult2[1].Location
                         <div>
-                            <div class="my-progress-bar-left">
+                            <div class="leftbar">
+                                <div class="barOverflow">
+                                    <div class="bar"></div>
+                                </div>
+                                <span style="font-size: 55px;color:#FFCD00">0</span>
                             </div>
+                            @*<div id="myItem1" data-preset="fan" class="ldBar label-center" data-value="0" style="width: 269px;height: 134px;"></div>*@
                             <a class="btn btn-bold btn-review" href="@ViewBag.closeresult2[1].Url" target="_blank">@ViewBag.closeresult2[1].ratecount Reviews</a>
                         </div>
                     </p>
                     <a href="@Url.Action("Contact", "Home",new { @id = ViewBag.closeresult2[1].id})" class="btn btn-bold btn-yellow btn-block">ANALYZE</a>
-
                 </div>
             </div>
         </div>
+
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 card-mobile-responsive">
             <div class="card card-inverse col-md-12">
                 <div class="row">
@@ -137,24 +300,31 @@
                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-md-8">
                         @if (ViewBag.closeresult1[0].imageurl == "" || ViewBag.closeresult1[0].imageurl == null)
                         {
-                            <img src="~/Content/image/NoImege.png" class="img-round-border img-responsive" style="width: 200px;height: 200px;">
+                            <img src="~/Content/image/NoImege.png" class="img-round-border img-responsive center-Icons" style="width: 200px;height: 200px;">
                         }
                         else
                         {
-                            <img src="@ViewBag.closeresult1[0].imageurl" class="img-round-border img-responsive" style="width: 200px;height: 200px;">
+                            <img src="@ViewBag.closeresult1[0].imageurl" class="img-round-border img-responsive center-Icons" style="width: 200px;height: 200px;">
                         }
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-md-2"></div>
                 </div>
-                <div class="card-container text-center">
+                <div class="card-container text-center fontClass">
                     <div class="titel">
                         <h4><b>@ViewBag.closeresult1[0].name</b></h4>
                         <span>@ViewBag.closeresult1[0].Phone</span>
                         <p>
                             @ViewBag.closeresult1[0].Location
                             <div>
-                                <div class="my-progress-bar-center">
+                                <div class="centerbar">
+                                    <div class="barOverflow">
+                                        <div class="bar"></div>
+                                    </div>
+                                    <span style="font-size: 55px;color:#FFCD00">0</span>
                                 </div>
+                                @*<div class="my-progress-bar-center">
+                                    </div>*@
+                                @*<div id="myItem2" data-preset="fan" class="ldBar label-center" data-value="@ViewBag.closeresult1[0].rate" style="width: 269px;height: 134px;"></div>*@
                                 <a class="btn btn-bold btn-review" href="@ViewBag.closeresult1[0].Url" target="_blank">@ViewBag.closeresult1[0].ratecount Reviews</a>
                             </div>
                         </p>
@@ -166,6 +336,7 @@
                 </div>
             </div>
         </div>
+
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 card-mobile-responsive">
             <div class="card col-md-11">
                 <div class="row">
@@ -173,23 +344,30 @@
                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-md-8">
                         @if (ViewBag.closeresult3[2].imageurl == "" || ViewBag.closeresult3[2].imageurl == null)
                         {
-                            <img src="~/Content/image/NoImege.png" class="img-round-border img-responsive" style="width: 200px;height: 200px;">
+                            <img src="~/Content/image/NoImege.png" class="img-round-border img-responsive center-Icons" style="width: 200px;height: 200px;">
                         }
                         else
                         {
-                            <img src="@ViewBag.closeresult3[2].imageurl" class="img-round-border img-responsive" style="width: 200px;height: 200px;">
+                            <img src="@ViewBag.closeresult3[2].imageurl" class="img-round-border img-responsive center-Icons" style="width: 200px;height: 200px;">
                         }
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-md-2"></div>
                 </div>
-                <div class="card-container text-center">
+                <div class="card-container text-center fontClass">
                     <h4><b>@ViewBag.closeresult3[2].name</b></h4>
                     <span>@ViewBag.closeresult3[2].Phone</span>
                     <p>
                         @ViewBag.closeresult3[2].Location
                         <div>
-                            <div class="my-progress-bar-right">
+                            <div class="rightbar">
+                                <div class="barOverflow">
+                                    <div class="bar"></div>
+                                </div>
+                                <span style="font-size: 55px;color:#FFCD00">0</span>
                             </div>
+                            @*<div class="my-progress-bar-right">
+                                </div>*@
+                            @*<div id="myItem3" data-preset="fan" class="ldBar label-center" data-value="@ViewBag.closeresult3[2].rate" style="width: 269px;height: 134px;"></div>*@
                             <a class="btn btn-bold btn-review" href="@ViewBag.closeresult3[2].Url" target="_blank">@ViewBag.closeresult3[2].ratecount Review</a>
                         </div>
                     </p>
@@ -208,7 +386,7 @@
                 @foreach (var item in ViewBag.businessList)
                 {
                     <tr>
-                        <td class="p-l">@item.name <button class="btn btn-bold btn-green btn-xs">@item.rate <i class="glyphicon glyphicon-star-empty"></i></button></td>
+                        <td class="p-l fontClass" style="font-weight: 500">@item.name <button class="btn btn-bold btn-green btn-xs">@item.rate <i class="glyphicon glyphicon-star-empty"></i></button></td>
                         <td><a class="btn btn-review btn-xs pull-right" href="@item.Url" target="_blank">@item.ratecount Reviews</a></td>
                     </tr>
                 }
@@ -220,8 +398,9 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jquery")
     @*@Scripts.Render("~/bundles/jqueryval")*@
-    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.0.min.js" type="text/javascript"></script>
-    <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/loading-bar.js" type="text/javascript"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.0.min.js" type="text/javascript"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/jquery-ui.min.js" type="text/javascript"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-1061875490"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEnSTOkBqHX2LDW-yuzXD9Zi3lnQvbe9Y&sensor=false&libraries=places"></script>
@@ -264,7 +443,6 @@
         });
 
         function showsl() {
-            debugger
              if ($('#hfCustomer').val() != "") {
                 ShowLoader();
                 var delay = 10;
@@ -346,44 +524,65 @@
             });
         });
     </script>
-
     <script src="~/Scripts/js/Meterplugin.js"></script>
     <script type="text/javascript">
-       // debugger
         var Rating0 = @ViewBag.closeresult2[1].rate;
         var Rating1 = @ViewBag.closeresult1[0].rate;
         var Rating2 = @ViewBag.closeresult3[2].rate;
         if (Rating0 || Rating1 || Rating2) {
-            RatingF = parseInt(Rating0 * 10);
-            RatingS = parseInt(Rating1 * 10);
-            RatingT = parseInt(Rating2 * 10);
+            RatingF = parseInt(Rating0 * 2 * 10);
+            RatingS = parseInt(Rating1 * 2 * 10);
+            RatingT = parseInt(Rating2 * 2 * 10);
         }
-        $(document).ready(function () {
-            $(".my-progress-bar-left").circularProgress({
-                line_width: 12,
-                color: "#8470ff",
-                starting_position: 75, // 12.00 o' clock position, 25 stands for 3.00 o'clock (clock-wise)
-                percent: 0, // percent starts from
-                percentage: true,
-                //text: "More power behind every pixel"
-            }).circularProgress('animate', RatingF, 500).circularProgress('myvalue', RatingF);
-            $(".my-progress-bar-center").circularProgress({
-                line_width: 12,
-                color: "#8470ff",
-                starting_position: 75, // 12.00 o' clock position, 25 stands for 3.00 o'clock (clock-wise)
-                percent: 0, // percent starts from
-                percentage: true,
-                //text: "More power behind every pixel"
-            }).circularProgress('animate', RatingS, 500).circularProgress('myvalue', RatingS);
-            $(".my-progress-bar-right").circularProgress({
-                line_width: 12,
-                color: "#8470ff",
-                starting_position: 75, // 12.00 o' clock position, 25 stands for 3.00 o'clock (clock-wise)
-                percent: 0, // percent starts from
-                percentage: true,
-                //text: "More power behind every pixel"
-            }).circularProgress('animate', RatingT, 500).circularProgress('myvalue', RatingT);
+
+        $(".leftbar").each(function () {
+            var $bar = $(this).find(".bar");
+            var $val = $(this).find("span");
+            var perc = parseInt(RatingF, 10);
+
+            $({ p: 0 }).animate({ p: perc }, {
+                easing: "swing",
+                step: function (p) {
+                    $bar.css({
+                        transform: "rotate(" + (45 + (p * 1.8)) + "deg)",
+                    });
+                    $val.text(Rating0);
+                }
+            });
         });
+
+        $(".centerbar").each(function () {
+            var $bar = $(this).find(".bar");
+            var $val = $(this).find("span");
+            var perc = parseInt(RatingS , 10);
+
+            $({ p: 0 }).animate({ p: perc }, {
+                easing: "swing",
+                step: function (p) {
+                    $bar.css({
+                        transform: "rotate(" + (45 + (p * 1.8)) + "deg)",
+                    });
+                    $val.text(Rating1);
+                }
+            });
+        });
+
+        $(".rightbar").each(function () {
+            var $bar = $(this).find(".bar");
+            var $val = $(this).find("span");
+            var perc = parseInt(RatingT , 10);
+
+            $({ p: 0 }).animate({ p: perc }, {
+                easing: "swing",
+                step: function (p) {
+                    $bar.css({
+                        transform: "rotate(" + (45 + (p * 1.8)) + "deg)",
+                    });
+                    $val.text(Rating2);
+                }
+            });
+        });
+
     </script>
 
     <script type="text/javascript">

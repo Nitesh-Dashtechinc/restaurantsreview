@@ -55,6 +55,9 @@
       <HintPath>..\packages\GraphQL-Parser.3.0.0\lib\net45\GraphQL-Parser.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="ProgressBar, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ProgressBar.1.0.10\lib\ProgressBar.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
@@ -204,6 +207,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Analyzes.cs" />
     <Compile Include="Models\business_data.cs" />
     <Compile Include="Models\Business.cs" />
     <Compile Include="Models\BusinessMatch.cs" />
@@ -251,8 +255,11 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\gif\Spin-1.2s-95px.gif" />
     <Content Include="Content\gif\Spin-1s-95px.gif" />
+    <Content Include="Content\gif\spiner.gif" />
     <Content Include="Content\gif\Spinner-1s-200px.gif" />
     <Content Include="Content\image\NoImege.png" />
+    <Content Include="Content\image\Restaurantbg.png" />
+    <Content Include="Content\loading-bar.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\image\backgrnd.png" />
     <Content Include="Content\image\footer.png" />
@@ -291,7 +298,7 @@
       <DependentUpon>DbModel.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
-    <None Include="Properties\PublishProfiles\restaurantgrader - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\restaurantgraders - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -302,7 +309,9 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\js\loading-bar.js" />
     <Content Include="Scripts\js\Meterplugin.js" />
+    <Content Include="Scripts\js\Meterplugin1.js" />
     <Content Include="Scripts\js\RestaurantNameMeter.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Web.config" />
